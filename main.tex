@@ -107,7 +107,7 @@ To model the micro-scale, it is important to model the snow slab as multiple gra
 \begin{figure}
     \centering
     \includegraphics[width=0.7\linewidth]{Figures/disconnections_iso01_iso15.pdf}
-    \caption{Example of disconnections. a) Fresh snow from \protect\cite{flin_three-dimensional_2004} series: initial state (left) and after 40 days of simulation (right) ; b) Sample that underwent 30 days of isothermal conditions: initial state (left) and after 40 days of simulation (right) }
+    \caption{Influence of the starting snow type on the disconnections. a) Fresh snow from \protect\cite{flin_three-dimensional_2004} series: initial state (left) and after 40 days of simulation (right) ; b) Sample that underwent 30 days of isothermal conditions: initial state (left) and after 40 days of simulation (right) }
     \label{fig:disco}
 \end{figure}
 
@@ -115,10 +115,10 @@ The model takes as input a binary 3D image of a snow sample digitized with X-ray
 Simulating metamorphism and calculating properties on finite volumes relying only on the sample geometry induces artefacts:
 \begin{itemize}[label=-]
 
-\item Edge effect: The driver of the model is the curvature difference. Due to the periodic boundary conditions of the model, some curvature misestimations may occur at the edge of snow 3D volumes, i.e., snow grains may be considered as cut by the borders of the image, leading to very high curvatures. To avoid those errors  in this area of the sample, we chose to cut a certain width (at least one heterogeneity using the covariance length $l_c$) of the image edges on the simulation outputs before the calculation of the microstructural properties.\\
+\item Edge effect: The driver of the model is the curvature difference. Due to the periodic boundary conditions of the model, some curvature misestimations may occur at the edge of snow 3D volumes, i.e., snow grains may be considered as cut by the borders of the image, leading to very high curvatures. To avoid those errors  in this area of the sample, we chose to cut a certain width (at least one heterogeneity using the covariance length $l_c$(Sec. \ref{subsec:methode_physical_appli})) of the image edges on the simulation outputs before the calculation of the microstructural properties.\\
 \vspace{0.2cm}
 
-\item Grain disconnection: As the model does not simulate gravity, when particles are disconnected because of shape evolution, they tend to ``float" in the air phase before getting small enough to disappear. The consequence is that the model gives realistic results only when the input snow image is not too porous and fresh. To prevent this non physical phenomenon, we suppress disconnected ice particles during the simulation, and we chose as inputs snow samples that already underwent preliminary stages of metamorphism. An example of disconnections is shown in Figure \ref{fig:disco}. 
+\item Grain disconnection: As the model does not simulate gravity, when particles are disconnected because of morphological evolution, they tend to ``float" in the air phase before getting small enough to disappear. The consequence is that the model gives realistic results only when the input snow image is not too porous and fresh. To prevent this non physical phenomenon, we suppress disconnected ice particles during the simulation, and we chose as inputs snow samples that already underwent preliminary stages of metamorphism. An example of disconnections is shown in Figure \ref{fig:disco}. 
 % As an example, we loose 6.10$^{-4}$ g of Grad3 sample (0.08 g) during the simulated 75 days of ETM with the suppression of disconnected particles. 
 \end{itemize}
 
