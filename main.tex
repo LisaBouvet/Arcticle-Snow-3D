@@ -262,7 +262,7 @@ In the following, $D$, $k$ and $K$ refer to the averages of the diagonal terms o
 
 
  Here, we evaluate the calibrated model by comparing experiments and simulations through SSA, covariance length and mean curvature.
-We compared with the time series of \citeA{flin_three-dimensional_2004}, the dataset used to calibrate the condensation coefficient required in the model (Sec. \ref{subsec:calib}), as well as with the one of \citeA{hagenmuller_motion_2019} to allow for an independent comparison. Results for each time series are shown in Figure \ref{fig:flin_evaluation} and \ref{fig:eboni}, respectively. For the comparison with the data of \citeA{flin_three-dimensional_2004}, iso05, the first image used for the calibration which is a RG sample of snow scanned after 118 h of equi-temperature metamorphism, was taken as the initial image to avoid simulating fresh snow evolution and large grain disconnection issues (Sec. \ref{subsec:model}). \\
+We compared with the time series of \citeA{flin_three-dimensional_2004}, the dataset used to calibrate the condensation coefficient required in the model (Sec. \ref{subsec:calib}), as well as with the one of \citeA{hagenmuller_motion_2019} to allow for an independent comparison. Results for each time series are shown in Figure \ref{fig:flin_evaluation} and \ref{fig:eboni}, respectively. For the comparison with the data of \citeA{flin_three-dimensional_2004}, iso05, the first image used for the calibration which is a RG sample of snow scanned after 118 h of ETM, was used as initial image. \\
 
 As expected, simulations follow closely the SSA decrease reported in the experiment of \citeA{flin_three-dimensional_2004} (Fig \ref{fig:flin_evaluation}.a).
 The RMSE is of $0.58\ \mathrm{m}^2\ \mathrm{kg}^{-1}$ for SSA values evolving from 35 to 18 m$^2$ kg$^{-1}$.
@@ -276,11 +276,6 @@ Overall good agreements are found for the mean curvature distribution (Fig. \ref
 
 % The condensation coefficient $\alpha$ have been calibrated using the SSA parameter, that is a good indicator of the global sample microstructure evolution. Others global microstructural parameters are useful to describe the snow sample, such as the covariance length and the anisotropy of covariance. The mean curvature distribution gives a more detailed description of the structure. Split between the downward facing and the upward facing distributions, this variable shows the distribution of rounded or facetted grains found depending on the orientation. The curvature is the main driver parameter of the model. The microstructural parameters of \citeA{flin_three-dimensional_2004} are shown in Figure \ref{fig:flin_evaluation} and the mean curvature distribution is shown in Figure \ref{fig:histo_flin_evaluation}.
 
-
-
-
-
-
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{Figures/eboni_courbes_lc_ssa_histo.pdf}
@@ -289,15 +284,7 @@ Overall good agreements are found for the mean curvature distribution (Fig. \ref
 \end{figure}
 
 
-%%%%Figure
-
-% description pour iso et iso05: RMSE pour la SSA, pas vraiment d'anisotropie... histogramme: on suit bien même si la moyenne semble être décalé par rapport à l'expérimental
-
-% description de EBONI : RMSE sur la SSA, différence de pente mais on colle bien à lcov, aniso=0, histo : arrondissement plus rapide pour exp (à recouper avec la ssa) -> conditions de l'expérience !
-
-
-\subsection{Model application: studying  the evolution of different snow microstructures during isothermal metamorphism}
-
+\subsection{Model application: evolution of different snow microstructures during ETM}
 
 \subsubsection{Microstructural parameters}
 
