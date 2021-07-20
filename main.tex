@@ -162,12 +162,12 @@ An important effort has been made in calibrating the model through the condensat
     t_\varphi = \frac{t_{\text{sim}} \rho_i dx^2}{\alpha \rho_{v s}(T) d_0} \sqrt{\frac{2 \pi M}{R T}}
 \end{align}\end{minipage}
 \begin{minipage}{0.45\textwidth}\begin{align}\label{equ:d0}
-    d_0 = \frac{\lambda a^3}{k_B T}
+    d_0 = \frac{\lambda a^3}{k T}
 \end{align}\end{minipage}
 \end{subequations}\\
 \vspace{0.3cm}
 
-\noindent with $t_{\varphi}$ the physical time in s, $t_{\text{sim}}$ the simulated time in the model, $dx$ the image resolution in m. Equation (\ref{equ:d0}) comes from the  Gibbs-Thomson relation and links the capillary length $d_0$ to $\lambda$ the interfacial free energy in J m$^{-2}$ and $a$ the mean intermolecular spacing in the ice in m \cite{kaempfer_phase-field_2009}. $k_B$ is the Boltzmann's constant. The saturation vapor density $\rho_{\text{sat}}$ has been deduced as a function of temperature with the formulation of \citeA{gofflow}.% which is generally considered as the reference equation \cite{murphy2005review}. 
+\noindent with $t_{\varphi}$ the physical time in s, $t_{\text{sim}}$ the simulated time in the model, $dx$ the image resolution in m. Equation (\ref{equ:d0}) comes from the  Gibbs-Thomson relation and links the capillary length $d_0$ to $\lambda$ the interfacial free energy in J m$^{-2}$ and $a$ the mean intermolecular spacing in the ice in m \cite{kaempfer_phase-field_2009}. The saturation vapor density $\rho_{\text{sat}}$ has been deduced as a function of temperature with the formulation of \citeA{gofflow}.% which is generally considered as the reference equation \cite{murphy2005review}. 
 
 To calibrate the model we used the experimental series of \citeA{flin_three-dimensional_2004} (cf Table \ref{tab:series_exp}). This series is a 3 months long experiment of isothermal metamorphism at -2$^\circ$C that lead to 10 tomographic images. From this series we only use the samples from 118 h to the end of the experiment. We chose to set the first images aside to avoid problems with the primary stage of settling. We removed on each side of the image a layer with a thickness equal to the size of two heterogeneities (0.6 mm) to avoid edge artifacts. With this transformation the volumes were still in the range of the representative elementary volumes (REV). The calibration process is schematized in 5 steps in Figure \ref{fig:workflow}. For each selected image of the experimental series: \\
 \begin{enumerate}
@@ -313,7 +313,7 @@ The covariance length evolution shows the characteristic increase of the ETM, re
 
 \subsubsection{Macroscale physical properties}
 
-Here we compare estimates of thermal conductivity, effective coefficient of diffusion, and permeability calculated on the simulated 3D images (Sec. \ref{subsec:methode_physical_appli}) with models based on simplified microstructures and current parameterizations. In Figure \ref{fig:Tplot}, conductivity, diffusivity and permeability are plotted as a function of the porosity. This representation is relevant because those properties does not evolve much in time and are mostly parameterized as a function of the porosity. To show the structural anisotropy of the samples, the tips and horizontal bars of the ``T" markers represent respectively the vertical and horizontal components. Colors correspond to the ICSSG \cite{fierz2009international}.\\
+Here we compare estimates of thermal conductivity, effective coefficient of diffusion, and permeability calculated on the simulated 3D images (Sec. \ref{subsec:methode_physical_appli}) with models based on simplified microstructures and current parameterizations. In Figure \ref{fig:Tplot}, conductivity, diffusivity and permeability are plotted as a function of the porosity. To show the structural anisotropy of the samples, the tips and horizontal bars of the ``T" markers represent respectively the vertical and horizontal components. Colors correspond to the ICSSG \cite{fierz2009international}.\\
  
  For the thermal conductivity, the fit of \citeA{calonne_numerical_2011} was used. This regression has been obtained using images of snow spanning a wide range of seasonal snow types using the same analysis tools we used above. It is expressed as:
 \begin{equation}k_{\mathrm{th}}=2.5 \times 10^{-6} \rho_{\mathrm{s}}^{2}-1.23 \times 10^{-4} \rho_{\mathrm{s}}+0.024\end{equation}
