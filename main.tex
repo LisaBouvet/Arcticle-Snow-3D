@@ -80,15 +80,13 @@ In this article we attend to go further by applying the phase-field growth model
 
 %PHASE FIELD ET MODELE NUMERIQUE
 \color{blue}
-The model of \citeA{bretin_phase-field_2019} simulates a two-phases medium evolving under mean curvature flow, which is defined by an interface evolution where the normal velocity $v_n$ is proportional to the curvature C, the volume of each phase being conserved. The mean curvature flow is solved with the phase-field method enabling a implicit description of the interface using the famous Allen-Cahn equation \cite{bretin_and_denis_discrete-continuous_2015}:
+The model of \citeA{bretin_phase-field_2019} simulates a two-phases medium evolving under mean curvature flow, which is defined by an interface evolution where the normal velocity $v_n$ is proportional to the curvature C, the volume of each phase being conserved. The mean curvature flow is solved with the phase-field method enabling a implicit description of the interface using a function that varies smoothly from a value in ice to another value in air. This is done by solving the famous Allen-Cahn equation \cite{bretin_and_denis_discrete-continuous_2015, kaempfer_phase-field_2009}:
 \begin{equation}\frac{\partial u}{\partial t}(x, t)=\Delta u(x, t)-\frac{1}{\varepsilon^{2}} W^{\prime}(u)\end{equation}
 \noindent with $u$ the phase function defined as: \begin{equation}
 u(x,t) := \frac{1}{2}(1-tanh(\frac{s}{2}))(\frac{d(x,t)}{\varepsilon})    
 \end{equation}
 with $s$ the curvilinear  abscissa, $d$ the distance function from the interface $\Gamma$, $\varepsilon$ the interface sharpness parameter, and $W$ a double-well potential $W(s):=\frac{1}{2} s^{2}(1-s)^{2}$. The distance function  is linked to the surface mean curvature C by $\Delta d(x) = C$ and to the interface normal speed $v_n$ by $\partial_t d (x,t) = - v_n$.
 \color{black}
-
-To model the micro-scale, it is important to model the snow slab as multiple grains with their own dynamics, interacting with each others. The physical phenomenon studied here occurs at the interface between grains and air in the pores, and is driven by the geometry of this interface. This model uses the phase-field description to model the sublimation-deposition process. This method can solve coupled heat and mass transfer, with topological changes. The idea is to avoid the explicit interfaces problem by introducing the phase-field, a function that varies smoothly from a value in ice to another value in air. It results in a system of partial equations much easier to handle numerically \cite{bretin_and_denis_discrete-continuous_2015, kaempfer_phase-field_2009}.
 
 \begin{figure}
     \centering
@@ -110,6 +108,8 @@ The model takes as input a binary 3D image of a snow sample digitized with X-ray
 
 
 % APPLICATION A LA NEIGE (EQUATIONS ETC)
+This model uses the phase-field description to model the sublimation-deposition process. This method can solve coupled heat and mass transfer, with topological changes. 
+
 The model simulates the evolution of a 3D image under isothermal metamorphism. It can take as input tomographic snow samples as in Figure \ref{fig:eboni_sous_volume}. It describes the process of sublimation and deposition at the ice/air interface due to water vapor density variations driven by curvature. Vapor transport in the pore space by diffusion or convection is not simulated and is assumed to be instantaneous, so the evolution is limited by the kinetics at the interface. Finally, the model does not include any mechanics and the settling of the ice grains is thus not described here.\\
 
 The metamorphism is considered here to be fully curvature-driven and the temperature is isotropic and constant. The variations of vapor density with curvature can be described by the Gibbs-Thomson relation:\\
