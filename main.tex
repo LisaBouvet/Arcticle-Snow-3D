@@ -69,7 +69,6 @@ In this article we attend to go further by applying the phase-field growth model
 
 \section{Method}
 \label{sec:method}
-
 \subsection{Model}
 \label{subsec:model}
 \begin{figure}
@@ -79,12 +78,28 @@ In this article we attend to go further by applying the phase-field growth model
     \label{fig:eboni_sous_volume}
 \end{figure}
 
+\color{blue}
+The model of \citeA{bretin_phase-field_2019} simulates a two-phases medium evolving under mean curvature flow, which is defined by an interface evolution where the normal velocity $v_n$ is proportional to the curvature C, the volume of each phase being conserved. The mean curvature flow is solved with the phase-field method enabling a implicit description of the interface using the famous Allen-Cahn equation \cite{bretin_and_denis_discrete-continuous_2015}:
+\begin{equation}\frac{\partial u}{\partial t}(x, t)=\Delta u(x, t)-\frac{1}{\varepsilon^{2}} W^{\prime}(u)\end{equation}
+\noindent with $u$ the phase function defined as: \begin{equation}
+u(x,t) := \frac{1}{2}(1-tanh(\frac{s}{2}))(\frac{d(x,t)}{\varepsilon})    
+\end{equation}
+with $s$ the curvilinear  abscissa, $d$ the distance function from the interface $\Gamma$, $\varepsilon$ the interface sharpness parameter, and $W$ a double-well potential $W(s):=\frac{1}{2} s^{2}(1-s)^{2}$. The distance function  is linked to the surface mean curvature C by $\Delta d(x) = C$ and to the interface normal speed by $\partial_t d (x,t) = - v_n$.
+\color{black}
+
 The model simulates the evolution of a 3D image under isothermal metamorphism. It can take as input tomographic snow samples as in Figure \ref{fig:eboni_sous_volume}. It describes the process of sublimation and deposition at the ice/air interface due to water vapor density variations driven by curvature. Vapor transport in the pore space by diffusion or convection is not simulated and is assumed to be instantaneous, so the evolution is limited by the kinetics at the interface. Finally, the model does not include any mechanics and the settling of the ice grains is thus not described here.\\
 
-The metamorphism is considered here to be fully curvature-driven and the temperature is isotropic and constant. The variations of vapor density with curvature can be described by Kelvin's Law:
-\begin{equation}\rho_v(C)=\rho_v^{\mathrm{ref}}(T) \exp \left(\frac{2 \gamma \Omega C}{R T}\right)\end{equation}
-\noindent with $\rho_v(C)$ the vapor density at a point of mean curvature $C$ in m$^{-1}$, $R$ the universal gas constant in J K$^{-1}$ mol$^{-1}$, $T$ the temperature of snow in K and $\rho_v^{\mathrm{ref}}$ in kg m$^{-3}$ the vapor density at equilibrium with a flat ice surface at temperature $T$. $\Omega$ is the molar volume of ice in m$^3$ mol$^{-1}$ and $\gamma$ is the surface tension between ice and vapor in N m$^{-1}$. 
-The vapor density gradient induced by curvature differences results in ice sublimation on high curvature surfaces and deposition of water vapor on low curvature surfaces, leading to rounding, coarsening and sintering the ice structure. In Figure \ref{fig:eboni_sous_volume} the effect of sublimation-deposition is shown with concave surfaces in green and convex surfaces in red \cite{ogawa2006representation}. Generally $(2 \gamma \Omega C / R T) \ll 1$, we can thus write:
+The metamorphism is considered here to be fully curvature-driven and the temperature is isotropic and constant. The variations of vapor density with curvature can be described by the Gibbs-Thomson relation:\\
+\begin{subequations}\label{equ:gibbs}
+\begin{minipage}{0.45\textwidth}\begin{align}
+    \rho_{vs}(T,C)=\rho_{vs}^{\mathrm{ref}}(T, C=0)\ e^{d_0 C}
+\end{align}\end{minipage}
+\begin{minipage}{0.45\textwidth}\begin{align}\label{equ:d0}
+    d_0 = \frac{\lambda a^3}{k T}
+\end{align}\end{minipage}
+\end{subequations}
+
+\noindent with $\rho_{vs}(T, C)$ the saturation vapor density at a point of mean curvature $C$ (m$^{-1}$) and of temperature $T$ (K). $\rho_{vs}^{\mathrm{ref}}(T, C=0)$ in kg m$^{-3}$ is the vapor density at equilibrium with a flat ice surface at temperature $T$. $d_0$ (m) is the capillary length with $\lambda$ (J m$^{-2}$) the interfacial free energy and $a$ (m) the mean intermolecular spacing in the ice \cite{kaempfer_phase-field_2009}. The saturation vapor density $\rho_{vs}(T, C=0)$ above a flat surface has been largely studied, and can be determined using one of the existing parameterizations. We use the formulation of \citeA{gofflow} that seems to be largely used in our range of temperature. The vapor density gradient induced by curvature differences results in ice sublimation on high curvature surfaces and deposition of water vapor on low curvature surfaces, leading to rounding, coarsening and sintering the ice structure. In Figure \ref{fig:eboni_sous_volume} the effect of sublimation-deposition is shown with concave surfaces in green and convex surfaces in red \cite{ogawa2006representation}. Generally $(2 \gamma \Omega C / R T) \ll 1$, we can thus write:
 
 \begin{equation}
 \Delta \rho_v=\rho_v - \rho_v^{\mathrm{ref}} \simeq \rho_v^{\mathrm{ref}}(T)\left(\frac{2 \gamma \Omega C}{R T}\right)\label{eq:kelv_lin} 
