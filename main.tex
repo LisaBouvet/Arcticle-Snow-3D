@@ -96,7 +96,7 @@ with $s$ the curvilinear  abscissa, $d$ the distance function from the interface
 \end{figure}
 
 % ARTEFACTS
-The model takes as input a binary 3D image of a snow sample digitized with X-ray absorption microtomography. The adjustable parameters are the time step $t_{step}$ and the number of time steps $n$. The output is a series of 3D binary images that underwent the simulated isothermal metamorphism. Artefacts are induced by the sample geometry during the simulation, including: 
+The model takes as input a binary 3D image of a snow sample digitized with X-ray absorption microtomography. The adjustable parameters are the time step $t_{step}$, the number of time steps $n$ and the interface sharpness parameter $\varepsilon$. The output is a series of 3D binary images that underwent the mean curvature flow. Artefacts are induced by the sample geometry during the simulation, including: 
 \begin{itemize}[label=-]
 
 \item Edge effect: The driver of the model is the curvature difference. Due to the periodic boundary conditions of the model, some curvature misestimations may occur at the edge of snow 3D volumes, i.e., snow grains may be considered as cut by the borders of the image, leading to very high curvatures. To avoid those errors  in this area of the sample, we chose to cut a certain width (at least one heterogeneity using the covariance length $l_c$(Sec. \ref{subsec:methode_physical_appli})) of the image edges on the simulation outputs before the calculation of the microstructural properties.\\
