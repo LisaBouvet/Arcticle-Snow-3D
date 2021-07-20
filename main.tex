@@ -78,6 +78,7 @@ In this article we attend to go further by applying the phase-field growth model
     \label{fig:eboni_sous_volume}
 \end{figure}
 
+%PHASE FIELD ET MODELE NUMERIQUE
 \color{blue}
 The model of \citeA{bretin_phase-field_2019} simulates a two-phases medium evolving under mean curvature flow, which is defined by an interface evolution where the normal velocity $v_n$ is proportional to the curvature C, the volume of each phase being conserved. The mean curvature flow is solved with the phase-field method enabling a implicit description of the interface using the famous Allen-Cahn equation \cite{bretin_and_denis_discrete-continuous_2015}:
 \begin{equation}\frac{\partial u}{\partial t}(x, t)=\Delta u(x, t)-\frac{1}{\varepsilon^{2}} W^{\prime}(u)\end{equation}
@@ -87,6 +88,28 @@ u(x,t) := \frac{1}{2}(1-tanh(\frac{s}{2}))(\frac{d(x,t)}{\varepsilon})
 with $s$ the curvilinear  abscissa, $d$ the distance function from the interface $\Gamma$, $\varepsilon$ the interface sharpness parameter, and $W$ a double-well potential $W(s):=\frac{1}{2} s^{2}(1-s)^{2}$. The distance function  is linked to the surface mean curvature C by $\Delta d(x) = C$ and to the interface normal speed $v_n$ by $\partial_t d (x,t) = - v_n$.
 \color{black}
 
+To model the micro-scale, it is important to model the snow slab as multiple grains with their own dynamics, interacting with each others. The physical phenomenon studied here occurs at the interface between grains and air in the pores, and is driven by the geometry of this interface. This model uses the phase-field description to model the sublimation-deposition process. This method can solve coupled heat and mass transfer, with topological changes. The idea is to avoid the explicit interfaces problem by introducing the phase-field, a function that varies smoothly from a value in ice to another value in air. It results in a system of partial equations much easier to handle numerically \cite{bretin_and_denis_discrete-continuous_2015, kaempfer_phase-field_2009}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{Figures/disconnections_iso01_iso15.pdf}
+    \caption{Influence of the starting snow type on the disconnections. a) Fresh snow from \protect\cite{flin_three-dimensional_2004} series: initial state (left) and after 40 days of simulation (right) ; b) Sample that underwent 30 days of isothermal conditions: initial state (left) and after 40 days of simulation (right) }
+    \label{fig:disco}
+\end{figure}
+
+% ARTEFACTS
+The model takes as input a binary 3D image of a snow sample digitized with X-ray absorption microtomography. The adjustable parameters are the time step $t_{step}$ and the number of time steps $n$. The output is a series of 3D binary images that underwent the simulated isothermal metamorphism. Artefacts are induced by the sample geometry during the simulation, including: 
+\begin{itemize}[label=-]
+
+\item Edge effect: The driver of the model is the curvature difference. Due to the periodic boundary conditions of the model, some curvature misestimations may occur at the edge of snow 3D volumes, i.e., snow grains may be considered as cut by the borders of the image, leading to very high curvatures. To avoid those errors  in this area of the sample, we chose to cut a certain width (at least one heterogeneity using the covariance length $l_c$(Sec. \ref{subsec:methode_physical_appli})) of the image edges on the simulation outputs before the calculation of the microstructural properties.\\
+\vspace{0.2cm}
+
+\item Grain disconnection: As the model does not simulate gravity, when particles are disconnected because of morphological evolution, they tend to ``float" in the air phase before getting small enough to disappear. The consequence is that the model gives realistic results only when the input snow image is not too porous and fresh. To prevent this non physical phenomenon, we suppress disconnected ice particles during the simulation, and we chose as inputs snow samples that already underwent preliminary stages of metamorphism. An example of disconnections is shown in Figure \ref{fig:disco}. 
+% As an example, we loose 6.10$^{-4}$ g of Grad3 sample (0.08 g) during the simulated 75 days of ETM with the suppression of disconnected particles. 
+\end{itemize}
+
+
+% APPLICATION A LA NEIGE (EQUATIONS ETC)
 The model simulates the evolution of a 3D image under isothermal metamorphism. It can take as input tomographic snow samples as in Figure \ref{fig:eboni_sous_volume}. It describes the process of sublimation and deposition at the ice/air interface due to water vapor density variations driven by curvature. Vapor transport in the pore space by diffusion or convection is not simulated and is assumed to be instantaneous, so the evolution is limited by the kinetics at the interface. Finally, the model does not include any mechanics and the settling of the ice grains is thus not described here.\\
 
 The metamorphism is considered here to be fully curvature-driven and the temperature is isotropic and constant. The variations of vapor density with curvature can be described by the Gibbs-Thomson relation:\\
@@ -116,25 +139,6 @@ v_{k i n} &= \frac{\rho_{v s}(T, C)}{\rho_i}\sqrt{\frac{k T}{2 \pi m}} \\
 
 This equation defines the kinetic velocity $v_{\mathrm{kin}}$. $\alpha$ is the condensation coefficient, $m$ is the mass of a water molecule, $\rho_i$ is the ice density and $\sigma$ is the local supersaturation. 
 
-%phase-field
-To model the micro-scale, it is important to model the snow slab as multiple grains with their own dynamics, interacting with each others. The physical phenomenon studied here occurs at the interface between grains and air in the pores, and is driven by the geometry of this interface. This model uses the phase-field description to model the sublimation-deposition process. This method can solve coupled heat and mass transfer, with topological changes. The idea is to avoid the explicit interfaces problem by introducing the phase-field, a function that varies smoothly from a value in ice to another value in air. It results in a system of partial equations much easier to handle numerically \cite{bretin_and_denis_discrete-continuous_2015, kaempfer_phase-field_2009}.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.7\linewidth]{Figures/disconnections_iso01_iso15.pdf}
-    \caption{Influence of the starting snow type on the disconnections. a) Fresh snow from \protect\cite{flin_three-dimensional_2004} series: initial state (left) and after 40 days of simulation (right) ; b) Sample that underwent 30 days of isothermal conditions: initial state (left) and after 40 days of simulation (right) }
-    \label{fig:disco}
-\end{figure}
-
-The model takes as input a binary 3D image of a snow sample digitized with X-ray absorption microtomography. The adjustable parameters are the time step $t_{step}$ and the number of time steps $n$. The output is a series of 3D binary images that underwent the simulated isothermal metamorphism. Artefacts are induced by the sample geometry during the simulation, including: 
-\begin{itemize}[label=-]
-
-\item Edge effect: The driver of the model is the curvature difference. Due to the periodic boundary conditions of the model, some curvature misestimations may occur at the edge of snow 3D volumes, i.e., snow grains may be considered as cut by the borders of the image, leading to very high curvatures. To avoid those errors  in this area of the sample, we chose to cut a certain width (at least one heterogeneity using the covariance length $l_c$(Sec. \ref{subsec:methode_physical_appli})) of the image edges on the simulation outputs before the calculation of the microstructural properties.\\
-\vspace{0.2cm}
-
-\item Grain disconnection: As the model does not simulate gravity, when particles are disconnected because of morphological evolution, they tend to ``float" in the air phase before getting small enough to disappear. The consequence is that the model gives realistic results only when the input snow image is not too porous and fresh. To prevent this non physical phenomenon, we suppress disconnected ice particles during the simulation, and we chose as inputs snow samples that already underwent preliminary stages of metamorphism. An example of disconnections is shown in Figure \ref{fig:disco}. 
-% As an example, we loose 6.10$^{-4}$ g of Grad3 sample (0.08 g) during the simulated 75 days of ETM with the suppression of disconnected particles. 
-\end{itemize}
 
 \begin{table}[ht]
 \hspace*{-0.5cm}
