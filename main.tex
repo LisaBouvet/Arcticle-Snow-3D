@@ -84,7 +84,7 @@ The model of \citeA{bretin_phase-field_2019} simulates a two-phases medium evolv
 \noindent with $u$ the phase function defined as: \begin{equation}
 u(x,t) := \frac{1}{2}(1-tanh(\frac{s}{2}))(\frac{d(x,t)}{\varepsilon})    
 \end{equation}
-with $s$ the curvilinear  abscissa, $d$ the distance function from the interface $\Gamma$, $\varepsilon$ the interface sharpness parameter, and $W$ a double-well potential $W(s):=\frac{1}{2} s^{2}(1-s)^{2}$. The distance function  is linked to the surface mean curvature C by $\Delta d(x) = C$ and to the interface normal speed by $\partial_t d (x,t) = - v_n$.
+with $s$ the curvilinear  abscissa, $d$ the distance function from the interface $\Gamma$, $\varepsilon$ the interface sharpness parameter, and $W$ a double-well potential $W(s):=\frac{1}{2} s^{2}(1-s)^{2}$. The distance function  is linked to the surface mean curvature C by $\Delta d(x) = C$ and to the interface normal speed $v_n$ by $\partial_t d (x,t) = - v_n$.
 \color{black}
 
 The model simulates the evolution of a 3D image under isothermal metamorphism. It can take as input tomographic snow samples as in Figure \ref{fig:eboni_sous_volume}. It describes the process of sublimation and deposition at the ice/air interface due to water vapor density variations driven by curvature. Vapor transport in the pore space by diffusion or convection is not simulated and is assumed to be instantaneous, so the evolution is limited by the kinetics at the interface. Finally, the model does not include any mechanics and the settling of the ice grains is thus not described here.\\
@@ -99,22 +99,22 @@ The metamorphism is considered here to be fully curvature-driven and the tempera
 \end{align}\end{minipage}
 \end{subequations}
 
-\noindent with $\rho_{vs}(T, C)$ the saturation vapor density at a point of mean curvature $C$ (m$^{-1}$) and of temperature $T$ (K). $\rho_{vs}^{\mathrm{ref}}(T, C=0)$ in kg m$^{-3}$ is the vapor density at equilibrium with a flat ice surface at temperature $T$. $d_0$ (m) is the capillary length with $\lambda$ (J m$^{-2}$) the interfacial free energy and $a$ (m) the mean intermolecular spacing in the ice \cite{kaempfer_phase-field_2009}. The saturation vapor density $\rho_{vs}(T, C=0)$ above a flat surface has been largely studied, and can be determined using one of the existing parameterizations. We use the formulation of \citeA{gofflow} that seems to be largely used in our range of temperature. The vapor density gradient induced by curvature differences results in ice sublimation on high curvature surfaces and deposition of water vapor on low curvature surfaces, leading to rounding, coarsening and sintering the ice structure. In Figure \ref{fig:eboni_sous_volume} the effect of sublimation-deposition is shown with concave surfaces in green and convex surfaces in red \cite{ogawa2006representation}. Generally $(2 \gamma \Omega C / R T) \ll 1$, we can thus write:
-
-\begin{equation}
-\Delta \rho_v=\rho_v - \rho_v^{\mathrm{ref}} \simeq \rho_v^{\mathrm{ref}}(T)\left(\frac{2 \gamma \Omega C}{R T}\right)\label{eq:kelv_lin} 
-\end{equation}
-
-This equation gives us access to the saturation vapor density distribution within pores depending on the surrounding interface curvatures. Using the Hertz-Knudsen equation, it can be linked to the growth speed of the interfaces.
+\noindent with $\rho_{vs}(T, C)$ the saturation vapor density at a point of mean curvature $C$ (m$^{-1}$) and of temperature $T$ (K). $d_0$ (m) is the capillary length with $\lambda$ (J m$^{-2}$) the interfacial free energy, $a$ (m) the mean intermolecular spacing in the ice and $k$ Boltzmann constant \cite{kaempfer_phase-field_2009}. The saturation vapor density $\rho_{vs}(T, C=0)$ above a flat surface has been largely studied, and can be determined using one of the existing parameterizations. We use the formulation of \citeA{gofflow} that seems to be largely used in our range of temperature. The vapor density gradient induced by curvature differences results in ice sublimation on high curvature surfaces and deposition of water vapor on low curvature surfaces, leading to rounding, coarsening and sintering the ice structure. In Figure \ref{fig:eboni_sous_volume} the effect of sublimation-deposition is shown with concave surfaces in green and convex surfaces in red \cite{ogawa2006representation}. \\
+% Generally $(2 \gamma \Omega C / R T) \ll 1$, we can thus write:
+% \begin{equation}
+% \Delta \rho_v=\rho_v - \rho_v^{\mathrm{ref}} \simeq \rho_v^{\mathrm{ref}}(T)\left(\frac{2 \gamma \Omega C}{R T}\right)\label{eq:kelv_lin} 
+% \end{equation}
+% This equation gives us access to t distribution within pores depending on the surrounding interface curvatures. 
+Using the Hertz-Knudsen equation, the saturation vapor density can be linked to the growth speed of the interfaces:
 
 \begin{align}
 v_{n} &= \alpha v_{k i n} \sigma(T, C) \\
-v_{k i n} &= \frac{\rho_{v s}(T, C)}{\rho_i}\sqrt{\frac{R T}{2 \pi M}} \\
+v_{k i n} &= \frac{\rho_{v s}(T, C)}{\rho_i}\sqrt{\frac{k T}{2 \pi m}} \\
 \sigma(T, C) &= \frac{\rho_v - \rho_{v s}(T, C)}{\rho_{v s}(T, C)}
 \end{align}
 \label{eq:hertz_knu}
 
-This equation defines the kinetic velocity $v_{\mathrm{kin}}$. $M$ is the molar mass of a water molecule in kg mol$^{-1}$, $\alpha$ is the condensation coefficient, $\rho_i$ is the ice density, $\sigma$ is the local supersaturation, and $\rho_{v s}$ is the water vapor density at saturation. The saturation density above a flat surface $\rho_{v}^{\mathrm{ref}}$ has been largely studied, and can be determined using one of the existing parameterizations. We choose here to use \citeA{gofflow} parameterization that seems to be largely used in our range of temperature. 
+This equation defines the kinetic velocity $v_{\mathrm{kin}}$. $\alpha$ is the condensation coefficient, $m$ is the mass of a water molecule, $\rho_i$ is the ice density and $\sigma$ is the local supersaturation. 
 
 %phase-field
 To model the micro-scale, it is important to model the snow slab as multiple grains with their own dynamics, interacting with each others. The physical phenomenon studied here occurs at the interface between grains and air in the pores, and is driven by the geometry of this interface. This model uses the phase-field description to model the sublimation-deposition process. This method can solve coupled heat and mass transfer, with topological changes. The idea is to avoid the explicit interfaces problem by introducing the phase-field, a function that varies smoothly from a value in ice to another value in air. It results in a system of partial equations much easier to handle numerically \cite{bretin_and_denis_discrete-continuous_2015, kaempfer_phase-field_2009}.
