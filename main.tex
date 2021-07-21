@@ -108,9 +108,9 @@ The model takes as input a binary 3D image of a snow sample digitized with X-ray
 
 
 % APPLICATION A LA NEIGE (EQUATIONS ETC)
-The model can be applied to the topological changes of sublimation-deposition process of ETM in the sense that mean curvature flow can be closely related to this process.
+The model can be applied to the topological changes of ETM in the sense that mean curvature flow can be closely related to the sublimation-deposition process.
 
-The model simulates the evolution of a 3D image under isothermal metamorphism. It can take as input tomographic snow samples as in Figure \ref{fig:eboni_sous_volume}. It describes the process of sublimation and deposition at the ice/air interface due to water vapor density variations driven by curvature. Vapor transport in the pore space by diffusion or convection is not simulated and is assumed to be instantaneous, so the evolution is limited by the kinetics at the interface. Finally, the model does not include any mechanics and the settling of the ice grains is thus not described here.\\
+It can take as input tomographic snow samples as in Figure \ref{fig:eboni_sous_volume}. It describes the process of sublimation and deposition at the ice/air interface due to water vapor density variations driven by curvature. Vapor transport in the pore space by diffusion or convection is not simulated and is assumed to be instantaneous, so the evolution is limited by the kinetics at the interface. Finally, the model does not include any mechanics and the settling of the ice grains is thus not described here.\\
 
 The metamorphism is considered here to be fully curvature-driven and the temperature is isotropic and constant. The variations of vapor density with curvature can be described by the Gibbs-Thomson relation:\\
 \begin{subequations}\label{equ:gibbs}
@@ -180,7 +180,7 @@ An important effort has been made in calibrating the model through the condensat
 \begin{minipage}{0.45\textwidth}\begin{align}
     t_\varphi = \frac{t_{\text{sim}} \rho_i dx^2}{\alpha \rho_{v s}(T) d_0} \sqrt{\frac{2 \pi M}{R T}}
 \end{align}\end{minipage}
-\begin{minipage}{0.45\textwidth}\begin{align}\label{equ:d0}
+\begin{minipage}{0.45\textwidth}\begin{align}\label{equ:d0calib}
     d_0 = \frac{\lambda a^3}{k T}
 \end{align}\end{minipage}
 \end{subequations}\\
