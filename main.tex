@@ -79,29 +79,29 @@ In this article we attend to go further by applying the phase-field growth model
 \end{figure}
 
 % APPLICATION A LA NEIGE (EQUATIONS ETC)
-The physics described by the model is the process of sublimation and deposition at the ice/air interface due to water vapor density variations driven by curvature. Vapor transport in the pore space by diffusion or convection is not simulated and is assumed to be instantaneous, so the evolution is limited by the kinetics at the interface. Finally, the model does not include any mechanics and the settling of the ice grains is thus not described here. The model take as input tomographic snow samples as in Figure \ref{fig:eboni_sous_volume}.\\
+The physics described by the model is the process of sublimation and deposition at the ice/air interface due to water vapor density variations driven by curvature. Vapor transport in the pore space by diffusion or convection is not simulated and is assumed to be instantaneous, so the evolution is limited by the kinetics at the interface. Finally, the model does not include any mechanics and the settling of the ice grains is thus not described here.
 % The model can be applied to the topological changes of ETM in the sense that mean curvature flow can be closely related to the sublimation-deposition process.
 %
 % It can take as input tomographic snow samples as in Figure \ref{fig:eboni_sous_volume}. It describes the process of sublimation and deposition at the ice/air interface due to water vapor density variations driven by curvature. Vapor transport in the pore space by diffusion or convection is not simulated and is assumed to be instantaneous, so the evolution is limited by the kinetics at the interface. Finally, the model does not include any mechanics and the settling of the ice grains is thus not described here.\\
 %
-The metamorphism is considered here to be fully curvature-driven and the temperature is isotropic and constant. The variations of vapor density with curvature can be described by the Gibbs-Thomson relation:\\
+The metamorphism is fully curvature-driven and the temperature is isotropic and constant. The variations of vapor density with curvature can be described by the Gibbs-Thomson relation:\\
 \begin{subequations}\label{equ:gibbs}
 \begin{minipage}{0.45\textwidth}\begin{align}
-    \rho_{vs}(T,C)=\rho_{vs}^{\mathrm{ref}}(T, C=0)\ e^{d_0 C}
+    \rho_{vs}(T,C)=\rho_{vs}(T, C=0)\ e^{d_0 C}
 \end{align}\end{minipage}
 \begin{minipage}{0.45\textwidth}\begin{align}\label{equ:d0}
     d_0 = \frac{\lambda a^3}{k T}
 \end{align}\end{minipage}
 \end{subequations}
 
-\noindent with $\rho_{vs}(T, C)$ the saturation vapor density at a point of mean curvature $C$ (m$^{-1}$) and of temperature $T$ (K). $d_0$ (m) is the capillary length with $\lambda$ (J m$^{-2}$) the interfacial free energy, $a$ (m) the mean intermolecular spacing in the ice and $k$ Boltzmann constant \cite{kaempfer_phase-field_2009}. The saturation vapor density $\rho_{vs}(T, C=0)$ above a flat surface has been largely studied, and can be determined using one of the existing parameterizations. We use the formulation of \citeA{gofflow} that seems to be largely used in our range of temperature. The vapor density gradient induced by curvature differences results in ice sublimation on high curvature surfaces and deposition of water vapor on low curvature surfaces, leading to rounding, coarsening and sintering the ice structure. In Figure \ref{fig:eboni_sous_volume} the effect of sublimation-deposition is shown with concave surfaces in green and convex surfaces in red \cite{ogawa2006representation}. \\
+\noindent with $\rho_{vs}(T, C)$ the saturation vapor density at a point of mean curvature $C$ (m$^{-1}$) and of temperature $T$ (K). $d_0$ (m) is the capillary length with $\lambda$ (J m$^{-2}$) the interfacial free energy, $a$ (m) the mean intermolecular spacing in the ice and $k$ the Boltzmann constant \cite{kaempfer_phase-field_2009}. The saturation vapor density $\rho_{vs}(T, C=0)$ above a flat surface has been largely studied, and can be determined using one of the existing parameterizations. We use the formulation of \citeA{gofflow} that seems to be largely used in our range of temperature. The vapor density gradient induced by curvature differences results in ice sublimation on high curvature surfaces and deposition of water vapor on low curvature surfaces, leading to rounding, coarsening and sintering the ice structure. In Figure \ref{fig:eboni_sous_volume} the effect of sublimation-deposition is shown on a tomogaphic snow sample with concave surfaces in green and convex surfaces in red \cite{ogawa2006representation}. \\
 Using the Hertz-Knudsen equation, the saturation vapor density can be linked to the growth speed of the interfaces:\\
 \begin{align}
 v_{n} &= \alpha v_{k i n} \frac{\rho_v - \rho_{v s}(T, C)}{\rho_{v s}(T, C)} \\
-v_{k i n} &= \frac{\rho_{v s}(T, C)}{\rho_i}\sqrt{\frac{k T}{2 \pi m}}
+v_{k i n} &= \frac{\rho_{v s}(T, C=0)}{\rho_i}\sqrt{\frac{k T}{2 \pi m}} % vérifier la formulation de vkin ?
 \end{align}
 \label{eq:hertz_knu}
-This equation defines the kinetic velocity $v_{\mathrm{kin}}$. $\alpha$ is the condensation coefficient, $m$ is the mass of a water molecule and $\rho_i$ is the ice density. 
+This equation relates the curvature to the interface velocity $v_n$ and defines the kinetic velocity $v_{\mathrm{kin}}$. $\alpha$ is the condensation coefficient, $m$ is the mass of a water molecule and $\rho_i$ is the ice density. 
 
 
 %PHASE FIELD ET MODELE NUMERIQUE
@@ -111,12 +111,17 @@ This curvature-driven sublimation-deposition process can be described by a two-p
 \noindent with $u$ the phase function defined as: \begin{equation}
 u(x,t) := \frac{1}{2}\left(1-\tanh\left(\frac{s}{2}\right)\right)\frac{d(x,t)}{\varepsilon}
 \end{equation}
-This is done by solving the famous Allen-Cahn equation \cite{bretin_and_denis_discrete-continuous_2015, kaempfer_phase-field_2009}:
+In the following, we will work at constant temperature. We can therefore omit the $d_0 \alpha v_{kin}$ coefficient that acts as a time-scale factor. The canonical form of this equation, solved by the model, is the famous Allen-Cahn equation \cite{bretin_and_denis_discrete-continuous_2015, kaempfer_phase-field_2009}:
 \begin{equation}\frac{\partial u}{\partial t}(x, t)=\Delta u(x, t)-\frac{1}{\varepsilon^{2}} W^{\prime}(u)\end{equation}
 
-with $s$ the curvilinear  abscissa, $d$ the distance function from the interface $\Gamma$, $\varepsilon$ the interface sharpness parameter, and $W$ a double-well potential $W(s):=\frac{1}{2} s^{2}(1-s)^{2}$. The distance function  is linked to the surface mean curvature C by $\Delta d(x) = C$ and to the interface normal speed $v_n$ by $\partial_t d (x,t) = - v_n$.
-\color{black}
+with $s$ the curvilinear  abscissa, $d$ the distance function from the interface $\Gamma$, $\varepsilon$ the interface sharpness parameter, and $W$ a double-well potential $W(s):=\frac{1}{2} s^{2}(1-s)^{2}$. The distance function  is linked to the surface mean curvature C by $\Delta d(x) = C$ and to the interface normal speed $v_n$ by $\partial_t d (x,t) = - v_n$.\\
 
+\color{black}
+Considering the dimensional and dimensionless equations, the model physical time can be expressed as \cite{bretin_and_denis_discrete-continuous_2015}: 
+\begin{equation}
+   t_\varphi = \frac{t_{\text{sim}} dx^2}{\alpha v_{kin} d_0}
+\end{equation}
+with $t_{\varphi}$ the physical time in s, $t_{\text{sim}}$ the simulated time, $dx$ the image resolution in m. 
 \begin{figure}
     \centering
     \includegraphics[width=0.7\linewidth]{Figures/disconnections_iso01_iso15.pdf}
@@ -125,13 +130,13 @@ with $s$ the curvilinear  abscissa, $d$ the distance function from the interface
 \end{figure}
 
 % ARTEFACTS
-The model takes as input a binary 3D image of a snow sample digitized with X-ray absorption microtomography. The adjustable parameters are the time step $t_{step}$, the number of time steps $n$ and the interface sharpness parameter $\varepsilon$. The output is a series of 3D binary images that underwent the mean curvature flow. Artefacts are induced by the sample geometry during the simulation, including: 
+The model takes as input a binary 3D tomographic image of a snow sample as in Figure \ref{fig:eboni_sous_volume}. The adjustable parameters are the time step $t_{step}$, the number of time steps $n$ and the interface sharpness parameter $\varepsilon$. The output is a series of 3D binary images that underwent the mean curvature flow.\\ 
+Artefacts are induced by the sample geometry during the simulation, including: 
 \begin{itemize}[label=-]
-
-\item Edge effect: The driver of the model is the curvature difference. Due to the periodic boundary conditions of the model, some curvature misestimations may occur at the edge of snow 3D volumes, i.e., snow grains may be considered as cut by the borders of the image, leading to very high curvatures. To avoid those errors  in this area of the sample, we chose to cut a certain width (at least one heterogeneity using the covariance length $l_c$(Sec. \ref{subsec:methode_physical_appli})) of the image edges on the simulation outputs before the calculation of the microstructural properties.\\
+\item Edge effect: The driver of the model is the curvature difference. Due to the periodic boundary conditions of the model, some curvature misestimations may occur at the edge of snow 3D volumes, i.e., snow grains may be considered as cut by the borders of the image, leading to very high curvatures. To avoid those errors  in this area of the sample, we chose to cut a certain width of the image edges on the simulation output images before the calculation of the microstructural properties.\\
 \vspace{0.2cm}
 
-\item Grain disconnection: As the model does not simulate gravity, when particles are disconnected because of morphological evolution, they tend to ``float" in the air phase before getting small enough to disappear. The consequence is that the model gives realistic results only when the input snow image is not too porous and fresh. To prevent this non physical phenomenon, we suppress disconnected ice particles during the simulation, and we chose as inputs snow samples that already underwent preliminary stages of metamorphism. An example of disconnections is shown in Figure \ref{fig:disco}. 
+\item Grain disconnection: As the model does not simulate gravity, when particles are disconnected because of morphological evolution, they tend to ``float" in the air phase before getting small enough to disappear. To prevent this non physical phenomenon, we suppress disconnected ice particles during the simulation, and we chose as inputs snow samples that already underwent preliminary stages of metamorphism and settling. An example of disconnections is shown in Figure \ref{fig:disco}. 
 % As an example, we loose 6.10$^{-4}$ g of Grad3 sample (0.08 g) during the simulated 75 days of ETM with the suppression of disconnected particles. 
 \end{itemize}
 
