@@ -94,7 +94,7 @@ The metamorphism is fully curvature-driven and the temperature is isotropic and 
 \end{align}\end{minipage}
 \end{subequations}
 
-\noindent with $\rho_{vs}(T, C)$ the saturation vapor density at a point of mean curvature $C$ (m$^{-1}$) and of temperature $T$ (K). $d_0$ (m) is the capillary length with $\lambda$ (J m$^{-2}$) the interfacial free energy, $a$ (m) the mean intermolecular spacing in the ice and $k$ the Boltzmann constant \cite{kaempfer_phase-field_2009}. The saturation vapor density $\rho_{vs}(T, C=0)$ above a flat surface has been largely studied, and can be determined using one of the existing parameterizations. We use the formulation of \citeA{gofflow} that seems to be largely used in our range of temperature. The vapor density gradient induced by curvature differences results in ice sublimation on high curvature surfaces and deposition of water vapor on low curvature surfaces, leading to rounding, coarsening and sintering the ice structure. In Figure \ref{fig:eboni_sous_volume} the effect of sublimation-deposition is shown on a tomogaphic snow sample with concave surfaces in green and convex surfaces in red \cite{ogawa2006representation}. \\
+\noindent with $\rho_{vs}(T, C)$ the saturation vapor density at a point of mean curvature $C$ (m$^{-1}$) and of temperature $T$ (K). $d_0$ (m) is the capillary length with $\lambda$ (J m$^{-2}$) the interfacial free energy, $a$ (m) the mean intermolecular spacing in the ice and $k$ the Boltzmann constant \cite{kaempfer_phase-field_2009}. The saturation vapor density $\rho_{vs}(T, C=0)$ above a flat surface has been largely studied, and can be determined using one of the existing parameterizations. We use the formulation of \citeA{gofflow} which is appropriated for our range of temperature. The vapor density gradient induced by curvature differences results in ice sublimation on high curvature surfaces and deposition of water vapor on low curvature surfaces, leading to rounding, coarsening and sintering the ice structure. In Figure \ref{fig:eboni_sous_volume} the effect of sublimation-deposition is shown on a tomogaphic snow sample with concave surfaces in green and convex surfaces in red \cite{ogawa2006representation}. \\
 Using the Hertz-Knudsen equation, the saturation vapor density can be linked to the growth speed of the interfaces:\\
 \begin{align}
 v_{n} &= \alpha v_{k i n} \frac{\rho_v - \rho_{v s}(T, C)}{\rho_{v s}(T, C)} \\
@@ -106,22 +106,18 @@ This equation relates the curvature to the interface velocity $v_n$ and defines 
 
 %PHASE FIELD ET MODELE NUMERIQUE
 \color{blue}
-This curvature-driven sublimation-deposition process can be described by a two-phases medium evolving under mean curvature flow. This flow is described by the model of \citeA{bretin_phase-field_2019} and is defined by an interface evolution where the normal velocity $v_n$ is proportional to the curvature C, the volume of each phase being conserved. The mean curvature flow is solved with the phase-field method enabling a implicit description of the interface using a function that varies smoothly from a value in ice to another value in air. 
+In \citeA{bretin_phase-field_2019} model, the curvature-driven sublimation-deposition process is described by a two-phases medium evolving under mean curvature flow. This flow  is defined by an interface evolution where the normal velocity $v_n$ is proportional to the curvature C, the volume of each phase being conserved. The morphological transformation induced by the mean curvature flow can be interpreted as "smoothing" surfaces and is equivalent to sublimation on high curvature surfaces and deposition on negative curvature surfaces. The mean curvature flow is solved with the phase-field method enabling a implicit description of the interface using a function that varies smoothly from a value in ice to another value in air. The phase-field equation can be expressed as \cite{bretin_and_denis_discrete-continuous_2015}:\\
 \begin{equation}\frac{\partial u}{\partial t}(x, t)= d_0 \alpha v_{kin} \left(\Delta u(x, t)-\frac{1}{\varepsilon^{2}} W^{\prime}(u)\right)\end{equation}
 \noindent with $u$ the phase function defined as: \begin{equation}
 u(x,t) := \frac{1}{2}\left(1-\tanh\left(\frac{s}{2}\right)\right)\frac{d(x,t)}{\varepsilon}
 \end{equation}
-In the following, we will work at constant temperature. We can therefore omit the $d_0 \alpha v_{kin}$ coefficient that acts as a time-scale factor. The canonical form of this equation, solved by the model, is the famous Allen-Cahn equation \cite{bretin_and_denis_discrete-continuous_2015, kaempfer_phase-field_2009}:
+In the following, we will work at constant temperature. We choose the characteristic time as: $d_x^2 / \left(\alpha v_{kin} d_0\right)$ with $d_x$ (m) the characteristic length which is the input image resolution. The canonical dimensionless form of this equation solved by the model is the famous Allen-Cahn equation \cite{bretin_and_denis_discrete-continuous_2015, kaempfer_phase-field_2009}:
 \begin{equation}\frac{\partial u}{\partial t}(x, t)=\Delta u(x, t)-\frac{1}{\varepsilon^{2}} W^{\prime}(u)\end{equation}
 
 with $s$ the curvilinear  abscissa, $d$ the distance function from the interface $\Gamma$, $\varepsilon$ the interface sharpness parameter, and $W$ a double-well potential $W(s):=\frac{1}{2} s^{2}(1-s)^{2}$. The distance function  is linked to the surface mean curvature C by $\Delta d(x) = C$ and to the interface normal speed $v_n$ by $\partial_t d (x,t) = - v_n$.\\
 
 \color{black}
-Considering the dimensional and dimensionless equations, the model physical time can be expressed as \cite{bretin_and_denis_discrete-continuous_2015}: 
-\begin{equation}
-   t_\varphi = \frac{t_{\text{sim}} dx^2}{\alpha v_{kin} d_0}
-\end{equation}
-with $t_{\varphi}$ the physical time in s, $t_{\text{sim}}$ the simulated time, $dx$ the image resolution in m. 
+
 \begin{figure}
     \centering
     \includegraphics[width=0.7\linewidth]{Figures/disconnections_iso01_iso15.pdf}
@@ -176,19 +172,25 @@ Grad3 \small{\cite{flin2011computations}} & 8 days, $\mathrm{TG}=100\ \mathrm{K}
 \subsection{Calibration} 
 \label{subsec:calib}
 
-An important effort has been made in calibrating the model through the condensation coefficient $\alpha$. In our case, finding $\alpha$ is equivalent to scale the simulation steps to real time steps via the equations \cite{bretin_and_denis_discrete-continuous_2015}: \\
+Considering the characteristic time of the equations, the model physical time can be expressed as \cite{bretin_and_denis_discrete-continuous_2015}: 
+\begin{equation}\label{equ:alpha}
+   t_\varphi = \frac{t_{\text{sim}} d_x^2}{\alpha v_{kin} d_0}
+\end{equation}
+with $t_{\varphi}$ the physical time in s and $t_{\text{sim}}$ the simulated time. Finding a value of the condensation coefficient $\alpha$ is thus equivalent to scale the simulation steps to real time steps.
 
-\begin{subequations}\label{equ:alpha}
-\begin{minipage}{0.45\textwidth}\begin{align}
-    t_\varphi = \frac{t_{\text{sim}} \rho_i dx^2}{\alpha \rho_{v s}(T) d_0} \sqrt{\frac{2 \pi M}{R T}}
-\end{align}\end{minipage}
-\begin{minipage}{0.45\textwidth}\begin{align}\label{equ:d0calib}
-    d_0 = \frac{\lambda a^3}{k T}
-\end{align}\end{minipage}
-\end{subequations}\\
-\vspace{0.3cm}
+% An important effort has been made in calibrating the model through the condensation coefficient $\alpha$. In our case, finding $\alpha$ is equivalent to scale the simulation steps to real time steps via the equations \cite{bretin_and_denis_discrete-continuous_2015}: \\
 
-\noindent with $t_{\varphi}$ the physical time in s, $t_{\text{sim}}$ the simulated time in the model, $dx$ the image resolution in m. Equation (\ref{equ:d0}) comes from the  Gibbs-Thomson relation and links the capillary length $d_0$ to $\lambda$ the interfacial free energy in J m$^{-2}$ and $a$ the mean intermolecular spacing in the ice in m \cite{kaempfer_phase-field_2009}. The saturation vapor density $\rho_{\text{sat}}$ has been deduced as a function of temperature with the formulation of \citeA{gofflow}.% which is generally considered as the reference equation \cite{murphy2005review}. 
+% \begin{subequations}\label{equ:alpha}
+% \begin{minipage}{0.45\textwidth}\begin{align}
+%     t_\varphi = \frac{t_{\text{sim}} \rho_i dx^2}{\alpha \rho_{v s}(T) d_0} \sqrt{\frac{2 \pi M}{R T}}
+% \end{align}\end{minipage}
+% \begin{minipage}{0.45\textwidth}\begin{align}\label{equ:d0calib}
+%     d_0 = \frac{\lambda a^3}{k T}
+% \end{align}\end{minipage}
+% \end{subequations}\\
+% \vspace{0.3cm}
+
+% \noindent with $t_{\varphi}$ the physical time in s, $t_{\text{sim}}$ the simulated time in the model, $dx$ the image resolution in m. Equation (\ref{equ:d0}) comes from the  Gibbs-Thomson relation and links the capillary length $d_0$ to $\lambda$ the interfacial free energy in J m$^{-2}$ and $a$ the mean intermolecular spacing in the ice in m \cite{kaempfer_phase-field_2009}. The saturation vapor density $\rho_{\text{sat}}$ has been deduced as a function of temperature with the formulation of \citeA{gofflow}.% which is generally considered as the reference equation \cite{murphy2005review}. 
 
 To calibrate the model we used the experimental series of \citeA{flin_three-dimensional_2004} (cf Table \ref{tab:series_exp}). This series is a 3 months long experiment of isothermal metamorphism at -2$^\circ$C that lead to 10 tomographic images. From this series we only use the samples from 118 h to the end of the experiment. We chose to set the first images aside to avoid problems with the primary stage of settling. We removed on each side of the image a layer with a thickness equal to the size of two heterogeneities (0.6 mm) to avoid edge artifacts. With this transformation the volumes were still in the range of the representative elementary volumes (REV). The calibration process is schematized in 5 steps in Figure \ref{fig:workflow}. For each selected image of the experimental series: \\
 \begin{enumerate}
