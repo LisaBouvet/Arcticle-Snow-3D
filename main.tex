@@ -78,6 +78,37 @@ In this article we attend to go further by applying the phase-field growth model
     \label{fig:eboni_sous_volume}
 \end{figure}
 
+% APPLICATION A LA NEIGE (EQUATIONS ETC)
+
+
+The model can be applied to the topological changes of ETM in the sense that mean curvature flow can be closely related to the sublimation-deposition process.
+
+It can take as input tomographic snow samples as in Figure \ref{fig:eboni_sous_volume}. It describes the process of sublimation and deposition at the ice/air interface due to water vapor density variations driven by curvature. Vapor transport in the pore space by diffusion or convection is not simulated and is assumed to be instantaneous, so the evolution is limited by the kinetics at the interface. Finally, the model does not include any mechanics and the settling of the ice grains is thus not described here.\\
+
+The metamorphism is considered here to be fully curvature-driven and the temperature is isotropic and constant. The variations of vapor density with curvature can be described by the Gibbs-Thomson relation:\\
+\begin{subequations}\label{equ:gibbs}
+\begin{minipage}{0.45\textwidth}\begin{align}
+    \rho_{vs}(T,C)=\rho_{vs}^{\mathrm{ref}}(T, C=0)\ e^{d_0 C}
+\end{align}\end{minipage}
+\begin{minipage}{0.45\textwidth}\begin{align}\label{equ:d0}
+    d_0 = \frac{\lambda a^3}{k T}
+\end{align}\end{minipage}
+\end{subequations}
+
+\noindent with $\rho_{vs}(T, C)$ the saturation vapor density at a point of mean curvature $C$ (m$^{-1}$) and of temperature $T$ (K). $d_0$ (m) is the capillary length with $\lambda$ (J m$^{-2}$) the interfacial free energy, $a$ (m) the mean intermolecular spacing in the ice and $k$ Boltzmann constant \cite{kaempfer_phase-field_2009}. The saturation vapor density $\rho_{vs}(T, C=0)$ above a flat surface has been largely studied, and can be determined using one of the existing parameterizations. We use the formulation of \citeA{gofflow} that seems to be largely used in our range of temperature. The vapor density gradient induced by curvature differences results in ice sublimation on high curvature surfaces and deposition of water vapor on low curvature surfaces, leading to rounding, coarsening and sintering the ice structure. In Figure \ref{fig:eboni_sous_volume} the effect of sublimation-deposition is shown with concave surfaces in green and convex surfaces in red \cite{ogawa2006representation}. \\
+
+Using the Hertz-Knudsen equation, the saturation vapor density can be linked to the growth speed of the interfaces:
+
+\begin{align}
+v_{n} &= \alpha v_{k i n} \sigma(T, C) \\
+v_{k i n} &= \frac{\rho_{v s}(T, C)}{\rho_i}\sqrt{\frac{k T}{2 \pi m}} \\
+\sigma(T, C) &= \frac{\rho_v - \rho_{v s}(T, C)}{\rho_{v s}(T, C)}
+\end{align}
+\label{eq:hertz_knu}
+
+This equation defines the kinetic velocity $v_{\mathrm{kin}}$. $\alpha$ is the condensation coefficient, $m$ is the mass of a water molecule, $\rho_i$ is the ice density and $\sigma$ is the local supersaturation. 
+
+
 %PHASE FIELD ET MODELE NUMERIQUE
 \color{blue}
 The model of \citeA{bretin_phase-field_2019} simulates a two-phases medium evolving under mean curvature flow, which is defined by an interface evolution where the normal velocity $v_n$ is proportional to the curvature C, the volume of each phase being conserved. The mean curvature flow is solved with the phase-field method enabling a implicit description of the interface using a function that varies smoothly from a value in ice to another value in air. This is done by solving the famous Allen-Cahn equation \cite{bretin_and_denis_discrete-continuous_2015, kaempfer_phase-field_2009}:
@@ -106,38 +137,6 @@ The model takes as input a binary 3D image of a snow sample digitized with X-ray
 % As an example, we loose 6.10$^{-4}$ g of Grad3 sample (0.08 g) during the simulated 75 days of ETM with the suppression of disconnected particles. 
 \end{itemize}
 
-
-% APPLICATION A LA NEIGE (EQUATIONS ETC)
-The model can be applied to the topological changes of ETM in the sense that mean curvature flow can be closely related to the sublimation-deposition process.
-
-It can take as input tomographic snow samples as in Figure \ref{fig:eboni_sous_volume}. It describes the process of sublimation and deposition at the ice/air interface due to water vapor density variations driven by curvature. Vapor transport in the pore space by diffusion or convection is not simulated and is assumed to be instantaneous, so the evolution is limited by the kinetics at the interface. Finally, the model does not include any mechanics and the settling of the ice grains is thus not described here.\\
-
-The metamorphism is considered here to be fully curvature-driven and the temperature is isotropic and constant. The variations of vapor density with curvature can be described by the Gibbs-Thomson relation:\\
-\begin{subequations}\label{equ:gibbs}
-\begin{minipage}{0.45\textwidth}\begin{align}
-    \rho_{vs}(T,C)=\rho_{vs}^{\mathrm{ref}}(T, C=0)\ e^{d_0 C}
-\end{align}\end{minipage}
-\begin{minipage}{0.45\textwidth}\begin{align}\label{equ:d0}
-    d_0 = \frac{\lambda a^3}{k T}
-\end{align}\end{minipage}
-\end{subequations}
-
-\noindent with $\rho_{vs}(T, C)$ the saturation vapor density at a point of mean curvature $C$ (m$^{-1}$) and of temperature $T$ (K). $d_0$ (m) is the capillary length with $\lambda$ (J m$^{-2}$) the interfacial free energy, $a$ (m) the mean intermolecular spacing in the ice and $k$ Boltzmann constant \cite{kaempfer_phase-field_2009}. The saturation vapor density $\rho_{vs}(T, C=0)$ above a flat surface has been largely studied, and can be determined using one of the existing parameterizations. We use the formulation of \citeA{gofflow} that seems to be largely used in our range of temperature. The vapor density gradient induced by curvature differences results in ice sublimation on high curvature surfaces and deposition of water vapor on low curvature surfaces, leading to rounding, coarsening and sintering the ice structure. In Figure \ref{fig:eboni_sous_volume} the effect of sublimation-deposition is shown with concave surfaces in green and convex surfaces in red \cite{ogawa2006representation}. \\
-% Generally $(2 \gamma \Omega C / R T) \ll 1$, we can thus write:
-% \begin{equation}
-% \Delta \rho_v=\rho_v - \rho_v^{\mathrm{ref}} \simeq \rho_v^{\mathrm{ref}}(T)\left(\frac{2 \gamma \Omega C}{R T}\right)\label{eq:kelv_lin} 
-% \end{equation}
-% This equation gives us access to t distribution within pores depending on the surrounding interface curvatures. 
-Using the Hertz-Knudsen equation, the saturation vapor density can be linked to the growth speed of the interfaces:
-
-\begin{align}
-v_{n} &= \alpha v_{k i n} \sigma(T, C) \\
-v_{k i n} &= \frac{\rho_{v s}(T, C)}{\rho_i}\sqrt{\frac{k T}{2 \pi m}} \\
-\sigma(T, C) &= \frac{\rho_v - \rho_{v s}(T, C)}{\rho_{v s}(T, C)}
-\end{align}
-\label{eq:hertz_knu}
-
-This equation defines the kinetic velocity $v_{\mathrm{kin}}$. $\alpha$ is the condensation coefficient, $m$ is the mass of a water molecule, $\rho_i$ is the ice density and $\sigma$ is the local supersaturation. 
 
 
 \begin{table}[ht]
