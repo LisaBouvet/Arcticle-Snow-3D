@@ -74,50 +74,52 @@ In this article we attend to go further by applying the phase-field growth model
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{Figures/eboni_sous_volumes_simu.pdf}
-    \caption{Curvature map of a three-dimensional representation of a sample evolution from \protect\citeA{hagenmuller_motion_2019} under the equi-temperature metamorphism model Snow-3D after 0, 8 and 16 days at -2$^\circ$C.}
+    \caption{Curvature map of a three-dimensional representation of a tomographic snow sample evolution from \protect\citeA{hagenmuller_motion_2019} under the equi-temperature metamorphism model Snow-3D after 0, 8 and 16 days at -2$^\circ$C. Concave surfaces are shown in green and convex surfaces in red \protect\cite{ogawa2006representation}. }
     \label{fig:eboni_sous_volume}
 \end{figure}
 
 % APPLICATION A LA NEIGE (EQUATIONS ETC)
-The physics described by the model is the process of sublimation and deposition at the ice/air interface due to water vapor density variations driven by curvature. Vapor transport in the pore space by diffusion or convection is not simulated and is assumed to be instantaneous, so the evolution is limited by the kinetics at the interface. Finally, the model does not include any mechanics and the settling of the ice grains is thus not described here.
+The model of \cite{bretin_phase-field_2019} is applied to the physics of snow equi-temperature metamorphism via the sublimation and deposition process at the ice/air interface due to water vapor density variations driven by curvature. Vapor transport in the pore space by diffusion or convection is not simulated and is assumed to be instantaneous, so the evolution is limited by the kinetics at the interface. Finally, the model does not include any mechanics and the settling of the ice grains is thus not described here.
 % The model can be applied to the topological changes of ETM in the sense that mean curvature flow can be closely related to the sublimation-deposition process.
 %
 % It can take as input tomographic snow samples as in Figure \ref{fig:eboni_sous_volume}. It describes the process of sublimation and deposition at the ice/air interface due to water vapor density variations driven by curvature. Vapor transport in the pore space by diffusion or convection is not simulated and is assumed to be instantaneous, so the evolution is limited by the kinetics at the interface. Finally, the model does not include any mechanics and the settling of the ice grains is thus not described here.\\
 %
-The metamorphism is fully curvature-driven and the temperature is isotropic and constant. The variations of vapor density with curvature can be described by the Gibbs-Thomson relation:\\
+At the interface $\Gamma$, the saturation density depends on the surfaces curvature and on the temperature, which is considered isotropic and constant. It is described by the Gibbs-Thomson relation:\\
 \begin{subequations}\label{equ:gibbs}
-\begin{minipage}{0.45\textwidth}\begin{align}
-    \rho_{vs}(T,C)=\rho_{vs}(T, C=0)\ e^{d_0 C}
+\begin{minipage}{0.55\textwidth}\begin{align}
+    \rho_{vs}(T,C)=\rho_{vs}(T, C=0)\ e^{d_0 C}\quad \text{on}\ \Gamma\text{,}
 \end{align}\end{minipage}
-\begin{minipage}{0.45\textwidth}\begin{align}\label{equ:d0}
+\begin{minipage}{0.35\textwidth}\begin{align}\label{equ:d0}
     d_0 = \frac{\lambda a^3}{k T}
 \end{align}\end{minipage}
 \end{subequations}
 
-\noindent with $\rho_{vs}(T, C)$ the saturation vapor density at a point of mean curvature $C$ (m$^{-1}$) and of temperature $T$ (K). $d_0$ (m) is the capillary length with $\lambda$ (J m$^{-2}$) the interfacial free energy, $a$ (m) the mean intermolecular spacing in the ice and $k$ the Boltzmann constant \cite{kaempfer_phase-field_2009}. The saturation vapor density $\rho_{vs}(T, C=0)$ above a flat surface has been largely studied, and can be determined using one of the existing parameterizations. We use the formulation of \citeA{gofflow} which is appropriated for our range of temperature. The vapor density gradient induced by curvature differences results in ice sublimation on high curvature surfaces and deposition of water vapor on low curvature surfaces, leading to rounding, coarsening and sintering the ice structure. In Figure \ref{fig:eboni_sous_volume} the effect of sublimation-deposition is shown on a tomogaphic snow sample with concave surfaces in green and convex surfaces in red \cite{ogawa2006representation}. \\
-Using the Hertz-Knudsen equation, the saturation vapor density can be linked to the growth speed of the interfaces:\\
+\noindent with $\rho_{vs}(T, C)$ the saturation vapor density in the pores above a point of mean curvature $C$ (m$^{-1}$) and of temperature $T$ (K). $d_0$ (m) is the capillary length with $\lambda$ (J m$^{-2}$) the interfacial free energy, $a$ (m) the mean intermolecular spacing in the ice and $k$ the Boltzmann constant \cite{kaempfer_phase-field_2009}. The saturation vapor density $\rho_{vs}(T, C=0)$ above a flat surface has been largely studied, and can be determined using one of the existing parameterizations. We use the formulation of \citeA{gofflow} which is appropriated for our range of temperature and can be found in \citeA{murphy2005review}. 
+%\begin{equation}
+%    \log\rho=-9,0972(273/T -1) - 3,5665\log(273/T) + 0.87679(1-T/273) + %5.0281\log(273/T)
+%\end{equation}
+The effect of the curvature-driven evolution is illustrated in Figure \ref{fig:eboni_sous_volume} where ice sublimates on high curvature surfaces and water vapor deposits on low curvature surfaces, leading to rounding, coarsening and sintering the ice structure.\\
+Using the Hertz-Knudsen equation considering that the vapor density in pores is at equilibrium and that supersaturation depends only on curvature effect, e.g. that $\rho_v = \rho_{vs}(T)$, the saturation vapor density can be linked to the growth speed of the interfaces:\\
 \begin{align}
-v_{n} &= \alpha v_{k i n} \frac{\rho_v - \rho_{v s}(T, C)}{\rho_{v s}(T, C)} \\
+v_{n} &= \alpha v_{k i n} \frac{\rho_{vs}(T) - \rho_{v s}(T, C)}{\rho_{v s}(T, C)}\quad \text{on}\ \Gamma\text{,} \\
 v_{k i n} &= \frac{\rho_{v s}(T, C=0)}{\rho_i}\sqrt{\frac{k T}{2 \pi m}} % vérifier la formulation de vkin ?
 \end{align}
 \label{eq:hertz_knu}
-This equation relates the curvature to the interface velocity $v_n$ and defines the kinetic velocity $v_{\mathrm{kin}}$. $\alpha$ is the condensation coefficient, $m$ is the mass of a water molecule and $\rho_i$ is the ice density. 
+This equation relates the curvature to the interface velocity normal to the interface $v_n$ and defines the kinetic velocity $v_{\mathrm{kin}}$. $\alpha$ is the condensation coefficient, $m$ is the mass of a water molecule and $\rho_i$ is the ice density. 
 
 
 %PHASE FIELD ET MODELE NUMERIQUE
-\color{blue}
-In \citeA{bretin_phase-field_2019} model, the curvature-driven sublimation-deposition process is described by a two-phases medium evolving under mean curvature flow. This flow  is defined by an interface evolution where the normal velocity $v_n$ is proportional to the curvature C, the volume of each phase being conserved. The morphological transformation induced by the mean curvature flow can be interpreted as "smoothing" surfaces and is equivalent to sublimation on high curvature surfaces and deposition on negative curvature surfaces. The mean curvature flow is solved with the phase-field method enabling a implicit description of the interface using a function that varies smoothly from a value in ice to another value in air. The phase-field equation can be expressed as \cite{bretin_and_denis_discrete-continuous_2015}:\\
-\begin{equation}\frac{\partial u}{\partial t}(x, t)= d_0 \alpha v_{kin} \left(\Delta u(x, t)-\frac{1}{\varepsilon^{2}} W^{\prime}(u)\right)\end{equation}
-\noindent with $u$ the phase function defined as: \begin{equation}
+%\color{blue}
+\citeA{bretin_phase-field_2019} model simulates a two-phases medium evolving under mean curvature flow. This flow  is defined by an interface evolution where the normal velocity $v_n$ is proportional to the curvature C, the volume of each phase being conserved. The morphological transformation induced by the mean curvature flow can be interpreted as "smoothing" surfaces and is equivalent to sublimation on high curvature surfaces and deposition on negative curvature surfaces. It is applied here on the curvature-driven sublimation-deposition process description. The mean curvature flow is solved with the phase-field method enabling a implicit description of the interface using a function that varies smoothly from a value in ice to another value in air. The phase-field equation can be expressed as \cite{bretin_and_denis_discrete-continuous_2015}:\\
+\begin{equation}\label{eq:phase-field}\frac{\partial u}{\partial t}(x, t)= d_0 \alpha v_{kin} \left(\Delta u(x, t)-\frac{1}{\varepsilon^{2}} W^{\prime}(u)\right)\end{equation}
+\noindent with $u$ the phase function defined as: \begin{equation}\label{eq:phase-func}
 u(x,t) := \frac{1}{2}\left(1-\tanh\left(\frac{s}{2}\right)\right)\frac{d(x,t)}{\varepsilon}
 \end{equation}
 In the following, we will work at constant temperature. We choose the characteristic time as: $d_x^2 / \left(\alpha v_{kin} d_0\right)$ with $d_x$ (m) the characteristic length which is the input image resolution. The canonical dimensionless form of this equation solved by the model is the famous Allen-Cahn equation \cite{bretin_and_denis_discrete-continuous_2015, kaempfer_phase-field_2009}:
-\begin{equation}\frac{\partial u}{\partial t}(x, t)=\Delta u(x, t)-\frac{1}{\varepsilon^{2}} W^{\prime}(u)\end{equation}
+\begin{equation}\label{eq:allen-cahn}\frac{\partial u}{\partial t}(x, t)=\Delta u(x, t)-\frac{1}{\varepsilon^{2}} W^{\prime}(u)\end{equation}
 
-with $s$ the curvilinear  abscissa, $d$ the distance function from the interface $\Gamma$, $\varepsilon$ the interface sharpness parameter, and $W$ a double-well potential $W(s):=\frac{1}{2} s^{2}(1-s)^{2}$. The distance function  is linked to the surface mean curvature C by $\Delta d(x) = C$ and to the interface normal speed $v_n$ by $\partial_t d (x,t) = - v_n$.\\
-
-\color{black}
-
+with $s$ the curvilinear  abscissa, $d$ the distance function from the interface $\Gamma$, $\varepsilon$ the interface sharpness parameter, and $W$ a double-well potential $W(s):=\frac{1}{2} s^{2}(1-s)^{2}$. The distance function  is linked to the surface mean curvature C by $\Delta d(x) = C$ and to the interface normal speed $v_n$ by $\partial_t d (x,t) = - v_n$.
+%\color{black}
 \begin{figure}
     \centering
     \includegraphics[width=0.7\linewidth]{Figures/disconnections_iso01_iso15.pdf}
@@ -125,12 +127,12 @@ with $s$ the curvilinear  abscissa, $d$ the distance function from the interface
     \label{fig:disco}
 \end{figure}
 
+
 % ARTEFACTS
-The model takes as input a binary 3D tomographic image of a snow sample as in Figure \ref{fig:eboni_sous_volume}. The adjustable parameters are the time step $t_{step}$, the number of time steps $n$ and the interface sharpness parameter $\varepsilon$. The output is a series of 3D binary images that underwent the mean curvature flow.\\ 
-Artefacts are induced by the sample geometry during the simulation, including: 
+The model takes as input a binary 3D tomographic image of a snow sample as in Figure \ref{fig:eboni_sous_volume}. The adjustable parameters are the time step $t_{step}$, the number of time steps $n$ and the interface sharpness parameter $\varepsilon$. The output is a series of 3D binary images that underwent the mean curvature flow. Artefacts are induced by the sample geometry during the simulation, including: 
 \begin{itemize}[label=-]
-\item Edge effect: The driver of the model is the curvature difference. Due to the periodic boundary conditions of the model, some curvature misestimations may occur at the edge of snow 3D volumes, i.e., snow grains may be considered as cut by the borders of the image, leading to very high curvatures. To avoid those errors  in this area of the sample, we chose to cut a certain width of the image edges on the simulation output images before the calculation of the microstructural properties.\\
-\vspace{0.2cm}
+\item Edge effect: Due to the periodic boundary conditions of the model, some curvature misestimations may occur at the edge of snow 3D volumes, i.e., snow grains may be considered as cut by the borders of the image, leading to very high curvatures. To avoid those errors  in this area of the sample, we chose to cut a certain width of the image edges on the simulation output images before the calculation of the microstructural properties.\\
+\vspace{0.1cm}
 
 \item Grain disconnection: As the model does not simulate gravity, when particles are disconnected because of morphological evolution, they tend to ``float" in the air phase before getting small enough to disappear. To prevent this non physical phenomenon, we suppress disconnected ice particles during the simulation, and we chose as inputs snow samples that already underwent preliminary stages of metamorphism and settling. An example of disconnections is shown in Figure \ref{fig:disco}. 
 % As an example, we loose 6.10$^{-4}$ g of Grad3 sample (0.08 g) during the simulated 75 days of ETM with the suppression of disconnected particles. 
@@ -138,7 +140,7 @@ Artefacts are induced by the sample geometry during the simulation, including:
 
 
 
-\begin{table}[ht]
+\begin{table}
 \hspace*{-0.5cm}
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline Reference & ETM stage & Resolution & Dimension & Density & Snow types \\
@@ -152,27 +154,10 @@ Artefacts are induced by the sample geometry during the simulation, including:
 \label{tab:series_exp}
 \end{table}
 
-
-\begin{table}[ht]
-\hspace*{-3cm}
-\begin{tabular}{|c|c|c|c|c|c|}
-\hline Name (Reference) & Metamorphism stage & Resolution & Dimension & Density & Snow types \\
- &  & ($\upmu$m) &(voxels) & (kg m$^{-3}$) &  \\
-\hline 
-I17 \small{\cite{dumont2017experimental}} & Recent snow & 7.3 & 700 & 147 & \small{$\mathrm{DF}$} \\
-TG2 \small{\cite{dumont2017experimental}} & 16 days, $\mathrm{TG}=19\ \mathrm{K}\ \mathrm{m}^{-1}, \mathrm{T}=-5^{\circ} \mathrm{C}$ & 7 & 700 & 254 & \small{$\mathrm{FC} / \mathrm{DH}$} \\
-Grad3 \small{\cite{flin2011computations}} & 8 days, $\mathrm{TG}=100\ \mathrm{K}\ \mathrm{m}^{-1}, \mathrm{T}=-5^{\circ} \mathrm{C}$ & 10 & 600 & 372 & \small{$\mathrm{DH}$} \\
-7G9m \small{\cite{calonne_study_2014}} & 21 days, $\mathrm{TG}=43\ \mathrm{K}\ \mathrm{m}^{-1}, \mathrm{T}=-4^{\circ} \mathrm{C}$ & 9.7 & 950 & 314 & \small{$\mathrm{DH}$} \\
-\hline
-\end{tabular}
-\caption{Experimental images used as prediction to simulate isothermal metamorphism.}
-\label{tab:series_sim}
-\end{table}
-
 \subsection{Calibration} 
 \label{subsec:calib}
 
-Considering the characteristic time of the equations, the model physical time can be expressed as \cite{bretin_and_denis_discrete-continuous_2015}: 
+Considering the characteristic time of the equations \eqref{eq:phase-field} to \eqref{eq:allen-cahn}, the model physical time can be expressed as \cite{bretin_and_denis_discrete-continuous_2015}: 
 \begin{equation}\label{equ:alpha}
    t_\varphi = \frac{t_{\text{sim}} d_x^2}{\alpha v_{kin} d_0}
 \end{equation}
@@ -196,8 +181,8 @@ To calibrate the model we used the experimental series of \citeA{flin_three-dime
 \begin{enumerate}
     \item We used the model Snow-3D to obtain a simulated series composed of 10 images. 
     \item We calculated the SSA evolution of the series during the simulation (Graphs b) and c)).
-    \item We fitted the simulated SSA to the experimental SSA curve (Graph a)) by adjusting the x-axis. More precisely, we scaled the simulation steps to the real time (Equation \ref{equ:alpha}) such that they match the experiment best by minimizing the Root Mean Square Error (RMSE) between the two curves.   
-    \item We used the simulation time and the fitted physical time to find a value of the condensation coefficient $\alpha$ (Equation \ref{equ:alpha}). A weighted average is calculated on $\alpha$ using the inverse of the RMSE as weight to maximize the influence of the $\alpha$ originating from the best fit to the experimental curve. 
+    \item We fitted the simulated SSA to the experimental SSA curve (Graph a)) by adjusting the x-axis. More precisely, we scaled the simulation steps to the real time (Equation \eqref{equ:alpha}) such that they match the experiment best by minimizing the Root Mean Square Error (RMSE) between the two curves.   
+    \item We used the simulation time and the fitted physical time to find a value of the condensation coefficient $\alpha$ (Equation \eqref{equ:alpha}). A weighted average is calculated on $\alpha$ using the inverse of the RMSE as weight to maximize the influence of the $\alpha$ originating from the best fit to the experimental curve. 
 \end{enumerate}
 
 \hspace*{-0.2cm}
@@ -207,10 +192,27 @@ To calibrate the model we used the experimental series of \citeA{flin_three-dime
     \caption{Workflow of the time calibration approach}
     \label{fig:workflow}
 \end{figure}
-Those steps have been applied to each images of the experimental series, from 5 days to 33 days. The three last images of the experimental series are not used because of the lack of data to fit them with. It results in 7 simulated series composed of 10 images simulating equi-temperature metamorphism from a different input image, i.e. from a different metamorphism stage. The condensation coefficient $\alpha$ have been calibrated using the SSA parameter because it is a good indicator of the global sample microstructure evolution. The resulting condensation coefficient is $\alpha = ( 9.9 \pm 0.6) 10^{-4}$. As the temperature condition of \citeA{flin_three-dimensional_2004} is -2$^\circ$C, the calibrated model can only be used to simulate ETM at -2$^\circ$C. The uncertainty is calculated using a classical propagation of uncertainties of $\alpha$ through the equation (\ref{equ:alpha}). To see the influence of $\alpha$ in the microstructural parameters, we calculated the variation of the microstructural parameters as a function of $\alpha$ variation. In the range of our $\alpha$ variation through the different samples, the parameters such as density, specific surface area and covariance length (described in Section \ref{subsec:methode_physical_appli}) only have a maximum alteration of 5\%, which is small compared to the precision of those parameters. 
+Those steps have been applied to each images of the experimental series, from 5 days to 33 days. The three last images of the experimental series are not used because of the lack of data to fit them with. It results in 7 simulated series composed of 10 images simulating equi-temperature metamorphism from a different input image, i.e. from a different metamorphism stage. The condensation coefficient $\alpha$ have been calibrated using the SSA parameter because it is a good indicator of the global sample microstructure evolution. The resulting condensation coefficient is $\alpha = ( 9.9 \pm 0.6) 10^{-4}$. As the temperature condition of \citeA{flin_three-dimensional_2004} is -2$^\circ$C, the calibrated model can only be used to simulate ETM at -2$^\circ$C. The uncertainty is calculated using a classical propagation of uncertainties of $\alpha$ through the equation \eqref{equ:alpha}. To see the influence of $\alpha$ in the microstructural parameters, we calculated the variation of the microstructural parameters as a function of $\alpha$ variation. In the range of our $\alpha$ variation through the different samples, the parameters such as density, specific surface area and covariance length (described in Section \ref{subsec:methode_physical_appli}) only have a maximum alteration of 5\%, which is small compared to the precision of those parameters. 
 
 \subsection{ETM model prediction: computation of snow properties}
 \label{subsec:methode_physical_appli}
+
+\begin{table}
+\hspace*{-3cm}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline Name (Reference) & Metamorphism stage & Resolution & Dimension & Density & Snow types \\
+ &  & ($\upmu$m) &(voxels) & (kg m$^{-3}$) &  \\
+\hline 
+I17 \small{\cite{dumont2017experimental}} & Recent snow & 7.3 & 700 & 147 & \small{$\mathrm{DF}$} \\
+TG2 \small{\cite{dumont2017experimental}} & 16 days, $\mathrm{TG}=19\ \mathrm{K}\ \mathrm{m}^{-1}, \mathrm{T}=-5^{\circ} \mathrm{C}$ & 7 & 700 & 254 & \small{$\mathrm{FC} / \mathrm{DH}$} \\
+Grad3 \small{\cite{flin2011computations}} & 8 days, $\mathrm{TG}=100\ \mathrm{K}\ \mathrm{m}^{-1}, \mathrm{T}=-5^{\circ} \mathrm{C}$ & 10 & 600 & 372 & \small{$\mathrm{DH}$} \\
+7G9m \small{\cite{calonne_study_2014}} & 21 days, $\mathrm{TG}=43\ \mathrm{K}\ \mathrm{m}^{-1}, \mathrm{T}=-4^{\circ} \mathrm{C}$ & 9.7 & 950 & 314 & \small{$\mathrm{DH}$} \\
+\hline
+\end{tabular}
+\caption{Experimental images used as prediction to simulate isothermal metamorphism.}
+\label{tab:series_sim}
+\end{table}
+
 Once the model calibration through the condensation coefficient $\alpha$ have been performed, we evaluated the calibrated model using the independent ETM series of \citeA{hagenmuller_motion_2019} (Table \ref{tab:series_exp}). The series of \citeA{hagenmuller_motion_2019} is a 110h long experiment of isothermal metamorphism at -2$^\circ$C with 32 tomographic images. The series was used to study dust particles in snow under temperature gradient conditions. As our model does not work on more than 2 phases, the dust particles were converted to air before using it in Snow-3D. A temperature gradient of 5 K m$^{-1}$ was detected and corrected after 38h of experiment, thus we only work with the final part of the series (approx. 70h of isothermal metamorphism). In \citeA{hagenmuller_motion_2019} the snow sample was observed with operando X-ray tomography, meaning than the same sample was scanned at regular interval. In contrast, the \citeA{flin_three-dimensional_2004} series uses samples that were extruded at different locations of the snow slab for each tomographic scan.\\
 
 After considering the calibration evaluation and validation, the model was used to predict equi-temperature metamorphism effects on different experimental images (Table \ref{tab:series_sim}). Those samples have been chosen to constitute a representative range of snow microstructures. We ran the simulations with Snow-3D taking 4 different snow samples as initial stage, named I17 (DF), TG2 (FC/DH), Grad3 (DH), and 7G9m (DH) (see table \ref{tab:series_sim}). The simulations were performed with isothermal conditions at a temperature T = -2$^\circ$C and $\alpha = 9.9\ 10^{-4}$. It led to 4 series of 4 to 11 images simulating from 70 days to 80 days of isothermal metamorphism. This time range enables to capture the important physical evolution while remaining realistic. In Figure \ref{fig:evolutions_3D}, we see the simulated series of our 4 samples, with a perspective view of three steps for each series, and vertical slices associated to those steps.\\
