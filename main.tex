@@ -84,8 +84,25 @@ The model of \citeA{bretin_phase-field_2019} is applied to the simulation of sno
 % The model can be applied to the topological changes of ETM in the sense that mean curvature flow can be closely related to the sublimation-deposition process.
 %
 % It can take as input tomographic snow samples as in Figure \ref{fig:eboni_sous_volume}. It describes the process of sublimation and deposition at the ice/air interface due to water vapor density variations driven by curvature. Vapor transport in the pore space by diffusion or convection is not simulated and is assumed to be instantaneous, so the evolution is limited by the kinetics at the interface. Finally, the model does not include any mechanics and the settling of the ice grains is thus not described here.\\
+
+Using the Hertz-Knudsen equation vapor density can be linked to the growth speed of the interface $\Gamma$:\\
+\begin{subequations}
+\begin{align}
+v_{n} &= \alpha v_{k i n} \frac{\rho_{vs}(T) - \rho_{v s}(T, C)}{\rho_{v s}(T, C)}\quad \text{on}\ \Gamma\text{,} 
+\end{align}
+\begin{align}
+v_{k i n} &= \frac{\rho_{v s}(T, C=0)}{\rho_i}\sqrt{\frac{k T}{2 \pi m}} % vérifier la formulation de vkin ?
+\end{align}
+\end{subequations}
+\label{eq:hertz_knu}
+
+\noindent This equation relates the curvature to the interface velocity normal to the interface oriented toward the air $v_n$ and defines the kinetic velocity $v_{\mathrm{kin}}$. $\alpha$ is the condensation coefficient, $m$ is the mass of a water molecule, $k$ is the Boltzmann constant and $\rho_i$ is the ice density.
+ $\rho_{vs}(T, C)$ is the saturation vapor density at an interface of mean curvature $C$ (m$^{-1}$) and of temperature $T$ (K). The saturation vapor density $\rho_{vs}(T, C=0)$ in air above a flat surface has been largely studied, and can be determined using one of the existing parameterizations. We use the formulation of \citeA{gofflow} which is appropriated for our range of temperature and can be found in \citeA{murphy2005review}.\\
+
+This equation is given for the case of vapor density in pores at equilibrium ,e.g. that $\rho_v = \rho_{vs}(T)$. The difference between the saturation vapor density in the pores $\rho_{vs}(T)$ and the saturation vapor density at the interface $\rho_{vs}(T, C)$ drives the interface velocity.
+
 %
-At the interface $\Gamma$, the saturation density depends on the surface curvature and on the temperature, which is considered isotropic and constant. It is described by the Gibbs-Thomson relation:\\
+At the interface, the saturation density depends on the surface curvature and on the temperature, which is considered isotropic and constant. It is described by the Gibbs-Thomson relation:\\
 \begin{subequations}\label{equ:gibbs}
 \begin{minipage}{0.55\textwidth}\begin{align}
     \rho_{vs}(T,C)=\rho_{vs}(T, C=0)\ e^{d_0 C}\quad \text{on}\ \Gamma\text{,}
@@ -95,17 +112,10 @@ At the interface $\Gamma$, the saturation density depends on the surface curvatu
 \end{align}\end{minipage}
 \end{subequations}
 
-\noindent with $\rho_{vs}(T, C)$ the saturation vapor density in the pores above a point of mean curvature $C$ (m$^{-1}$) and of temperature $T$ (K). $d_0$ (m) is the capillary length with $\lambda$ (J m$^{-2}$) the interfacial free energy, $a$ (m) the mean intermolecular spacing in the ice and $k$ the Boltzmann constant \cite{kaempfer_phase-field_2009}. The saturation vapor density $\rho_{vs}(T, C=0)$ above a flat surface has been largely studied, and can be determined using one of the existing parameterizations. We use the formulation of \citeA{gofflow} which is appropriated for our range of temperature and can be found in \citeA{murphy2005review}.\\
+\noindent $d_0$ (m) is the capillary length with $\lambda$ (J m$^{-2}$) the interfacial free energy and $a$ (m) the mean intermolecular spacing in the ice \cite{kaempfer_phase-field_2009}.
 %\begin{equation}
 %    \log\rho=-9,0972(273/T -1) - 3,5665\log(273/T) + 0.87679(1-T/273) + %5.0281\log(273/T)
 %\end{equation}
-Using the Hertz-Knudsen equation considering that the vapor density in pores is at equilibrium and that supersaturation depends only on curvature effect, e.g. that $\rho_v = \rho_{vs}(T)$, the saturation vapor density can be linked to the growth speed of the interfaces:\\
-\begin{align}
-v_{n} &= \alpha v_{k i n} \frac{\rho_{vs}(T) - \rho_{v s}(T, C)}{\rho_{v s}(T, C)}\quad \text{on}\ \Gamma\text{,} \\
-v_{k i n} &= \frac{\rho_{v s}(T, C=0)}{\rho_i}\sqrt{\frac{k T}{2 \pi m}} % vérifier la formulation de vkin ?
-\end{align}
-\label{eq:hertz_knu}
-This equation relates the curvature to the interface velocity normal to the interface $v_n$ and defines the kinetic velocity $v_{\mathrm{kin}}$. $\alpha$ is the condensation coefficient, $m$ is the mass of a water molecule and $\rho_i$ is the ice density. 
 
 
 %PHASE FIELD ET MODELE NUMERIQUE
