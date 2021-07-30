@@ -110,7 +110,7 @@ v_{k i n} &= \frac{\rho_{v s}^{f}}{\rho_i}\sqrt{\frac{k T}{2 \pi m}} % vérifier
 \end{align}
 \end{subequations}
 
-\noindent Equation \eqref{eq:hertz_knu} is the Hertz-Knudsen equation. It relates the curvature to the velocity normal to the interface and oriented toward the air $v_n$ and defines the kinetic velocity $v_{\mathrm{kin}}$. The interface velocity $v_n$ is driven by the difference between the ambient saturation vapor density in the pores $\rho_{vs}^{amb}$ and the saturation vapor density at the interface $\rho_{vs}^{\Gamma}$.\\
+\noindent Equation \eqref{eq:hertz_knu} is the Hertz-Knudsen equation. It relates the curvature to the velocity normal on the interface and oriented toward the air $v_n$ and defines the kinetic velocity $v_{\mathrm{kin}}$. The interface velocity $v_n$ is driven by the difference between the ambient saturation vapor density in the pores $\rho_{vs}^{amb}$ and the saturation vapor density at the interface $\rho_{vs}^{\Gamma}$.\\
 
 \noindent Equation \eqref{equ:gibbs} is the Gibbs-Thomson relation, witch describe dependencies between saturation vapor density and curvatures using $d_0 = \lambda a^3/(k T)$ (m) the capillary length \cite{kaempfer_phase-field_2009}.
 $\rho_{vs}^{amb}$ is the ambient saturation vapor density in the pores in equilibrium with the whole sample mean curvature $C^{amb}$. 
@@ -134,15 +134,14 @@ $\alpha$ & condensation coeffcient & $10^{-3}\ \mathrm{to}\ 10^{-1}$ & \cite{lib
 \end{table}
 
 
- The mean curvature flow is solved with the phase-field method enabling an implicit description of the interface using a function that varies smoothly from a value in ice to another value in air. The model of \cite{bretin_phase-field_2019} adapted and applied to ETM with two-phases, air and ice is expressed by the phase-field equation:\\
+\citeA{bretin_phase-field_2019} mean curvature flow model is solved with the phase-field method which enable an implicit description of the interface using a function that varies smoothly from a value in ice to another value in air.  When adapted and applied to ETM with two-phases, air and ice, the phase-field equation can be expressed as:\\
 \begin{equation}\label{eq:phase-field}\frac{\partial u}{\partial t}(x, t)= d_0 \alpha v_{kin} \left(\Delta u(x, t)-\frac{1}{\varepsilon^{2}} W^{\prime}(u)\right)\end{equation}
 \noindent with $u$ the phase function defined as: \begin{equation}\label{eq:phase-func}
 u(x,t) := \frac{1}{2}\left(1-\tanh\left(\frac{s}{2}\right)\right)\frac{d(x,t)}{\varepsilon}
 \end{equation}
-and $s$ the curvilinear  abscissa, $d$ the distance function from the interface $\Gamma$, $\varepsilon$ the interface sharpness parameter, and $W$ a double-well potential $W(s):=\frac{1}{2} s^{2}(1-s)^{2}$. The distance function  is linked to the surface mean curvature C by $\Delta d(x) = C$ and to the interface normal speed $v_n$ by $\partial_t d (x,t) = - v_n$.
-In the following, we will work at constant temperature. We choose the characteristic time as: $d_x^2 / \left(\alpha v_{kin} d_0\right)$ with $d_x$ (m) the characteristic length which is the input image resolution. The canonical dimensionless form of this equation solved by the model is the famous Allen-Cahn equation \cite{bretin_and_denis_discrete-continuous_2015, kaempfer_phase-field_2009}:
-\begin{equation}\label{eq:allen-cahn}\frac{\partial u}{\partial t}(x, t)=\Delta u(x, t)-\frac{1}{\varepsilon^{2}} W^{\prime}(u)\end{equation}
-
+and $s$ the curvilinear  abscissa, $d$ the distance function from the interface $\Gamma$, $\varepsilon$ the interface sharpness parameter, and $W$ a double-well potential $W(s):=\frac{1}{2} s^{2}(1-s)^{2}$. The distance function  is linked to the surface mean curvature C by $\Delta d(x) = C$ and to the interface normal speed $v_n$ by $\partial_t d (x,t) = - v_n$. By substituting the physical variables to non-dimensional variables such as: $\Tilde{t} = t \alpha v_{kin} d_0 / d_x^2 $, $\Tilde{x} = x/d_x$ and $\Tilde{\varepsilon} = \varepsilon/d_x$ with $d_x$ (m) the input image resolution, the canonical dimensionless form of this equation is the famous Allen-Cahn equation \cite{bretin_and_denis_discrete-continuous_2015, kaempfer_phase-field_2009}:
+% \begin{equation}\label{eq:allen-cahn}\frac{\partial u}{\partial t}(x, t)=\Delta u(x, t)-\frac{1}{\varepsilon^{2}} W^{\prime}(u)\end{equation}
+\begin{equation}\label{eq:allen-cahn}\frac{\partial \Tilde{u}}{\partial \Tilde{t}}(\Tilde{x}, \Tilde{t})=\Delta \Tilde{u}(\Tilde{x}, \Tilde{t})-\frac{1}{\Tilde{\varepsilon}^{2}} W^{\prime}(\Tilde{u})\end{equation}
 
 \begin{figure}
     \centering
@@ -150,6 +149,7 @@ In the following, we will work at constant temperature. We choose the characteri
     \caption{Influence of the starting snow type on the disconnections. a) Fresh snow from \protect\cite{flin_three-dimensional_2004} series: initial state (left) and after 40 days of simulation (right) ; b) Sample that underwent 30 days of equi-temperature conditions: initial state (left) and after 40 days of simulation (right) }
     \label{fig:disco}
 \end{figure}
+
 
 
 %% ARTEFACTS
