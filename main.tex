@@ -94,29 +94,29 @@ This model describes ETM based on the kinetic-limited assumption: interface grow
 Under those conditions, ETM is classically described by the following set of equations \cite<e.g.>{flin_full_2003, kaempfer_phase-field_2009}:  \
 \begin{subequations}\label{eq:hertz_knu}
 \begin{align}
-v_{n} &= \alpha v_{\mathrm{kin}} \frac{\rho_{vs}^{amb} - \rho_{v s}^{\Gamma}}{\rho_{v s}^{ \Gamma }}\quad \text{on}\ \Gamma\text{,} 
+v_{n} &= \alpha v_{\mathrm{kin}} \frac{\rho_{vs}^{\mathrm{amb}} - \rho_{v s}^{\Gamma}}{\rho_{v s}^{ \Gamma }}\quad \text{on}\ \Gamma\text{,} 
 \end{align}
 \begin{align}
-v_{k i n} &= \frac{\rho_{v s}^{f}}{\rho_i}\sqrt{\frac{k T}{2 \pi m}} % vérifier la formulation de vkin ?
+v_{k i n} &= \frac{\rho_{v s}^{\mathrm{f}}}{\rho_i}\sqrt{\frac{k T}{2 \pi m}} % vérifier la formulation de vkin ?
 \end{align}
 \end{subequations}
 
 \begin{subequations}\label{equ:gibbs}
 \begin{align}
-    \rho_{vs}^{amb}=\rho_{vs}^{f}\ e^{d_0 C^{amb}}
+    \rho_{vs}^{\mathrm{amb}}=\rho_{vs}^{\mathrm{f}}\ e^{d_0 C^{\mathrm{amb}}}
 \end{align}
 \begin{align}
-    \rho_{vs}^{\Gamma}=\rho_{vs}^{f}\ e^{d_0 C} \quad \text{on}\ \Gamma\text{,} 
+    \rho_{vs}^{\Gamma}=\rho_{vs}^{\mathrm{f}}\ e^{d_0 C} \quad \text{on}\ \Gamma\text{,} 
 \end{align}
 \end{subequations}
 
-\noindent Equation \eqref{eq:hertz_knu} is the Hertz-Knudsen equation. It relates the curvature to the velocity normal on the interface and oriented toward the air $v_n$ and defines the kinetic velocity $v_{\mathrm{kin}}$. The interface velocity $v_n$ is driven by the difference between the ambient saturation vapor density in the pores $\rho_{vs}^{amb}$ and the saturation vapor density at the interface $\rho_{vs}^{\Gamma}$.\\
+\noindent Equation \eqref{eq:hertz_knu} is the Hertz-Knudsen equation. It relates the curvature to the velocity normal on the interface and oriented toward the air $v_n$ and defines the kinetic velocity $v_{\mathrm{kin}}$. The interface velocity $v_n$ is driven by the difference between the ambient saturation vapor density in the pores $\rho_{vs}^{\mathrm{amb}}$ and the saturation vapor density at the interface $\rho_{vs}^{\Gamma}$.\\
 
 \noindent Equation \eqref{equ:gibbs} is the Gibbs-Thomson relation, witch describe dependencies between saturation vapor density and curvatures using $d_0 = \lambda a^3/(k T)$ (m) the capillary length \cite{kaempfer_phase-field_2009}.
-$\rho_{vs}^{amb}$ is the ambient saturation vapor density in the pores in equilibrium with the whole sample mean curvature $C^{amb}$. 
+$\rho_{vs}^{\mathrm{amb}}$ is the ambient saturation vapor density in the pores in equilibrium with the whole sample mean curvature $C^{\mathrm{amb}}$. 
 $\rho_{vs}^{\Gamma}$ is the saturation vapor density at an interface of local curvature $C$.\\ 
   
- \noindent $\rho_{vs}^f$ is the saturation vapor density in air above a flat surface. It has been largely studied, and can be determined as a function of the temperature using one of the existing parameterizations. We use the formulation of \citeA{gofflow} which is appropriated for our range of temperature and can be found in \citeA{murphy2005review}. All the variables are presented in Table \ref{tab:variables}.
+ \noindent $\rho_{vs}^\mathrm{f}$ is the saturation vapor density in air above a flat surface. It has been largely studied, and can be determined as a function of the temperature using one of the existing parameterizations. We use the formulation of \citeA{gofflow} which is appropriated for our range of temperature and can be found in \citeA{murphy2005review}. All the variables are presented in Table \ref{tab:variables}.
 
 \begin{table}[ht]
 \centering
@@ -130,7 +130,7 @@ $\lambda$ & interfacial free energy of ice & $1.09 \times 10^{-1}\ \mathrm{J}\ \
 $\alpha$ & condensation coeffcient & $10^{-3}\ \mathrm{to}\ 10^{-1}$ & \cite{libbrecht1999} \\
 \hline
 $\varepsilon$ & interface sharpness parameter & $3$ voxels & \cite{bretin_and_denis_discrete-continuous_2015} \\
-$t_{step}$ & model time step & 0.5 to 8 & \\
+$t_{\mathrm{step}}$ & model time step & 0.5 to 8 & \\
 $n$ & number of model time steps & 4 to 11 &\\
 \hline
 \end{tabular}
@@ -139,11 +139,11 @@ $n$ & number of model time steps & 4 to 11 &\\
 
 
 \citeA{bretin_phase-field_2019} mean curvature flow model is solved with the phase-field method which enable an implicit description of the interface using a function that varies smoothly from a value in ice to another value in air.  When adapted and applied to ETM with two-phases, air and ice, the phase-field equation can be expressed as:\\
-\begin{equation}\label{eq:phase-field}\frac{\partial u}{\partial t}(x, t)= d_0 \alpha v_{kin} \left(\Delta u(x, t)-\frac{1}{\varepsilon^{2}} W^{\prime}(u)\right)\end{equation}
+\begin{equation}\label{eq:phase-field}\frac{\partial u}{\partial t}(x, t)= d_0 \alpha v_{\mathrm{kin}} \left(\Delta u(x, t)-\frac{1}{\varepsilon^{2}} W^{\prime}(u)\right)\end{equation}
 \noindent with $u$ the phase function defined as: \begin{equation}\label{eq:phase-func}
 u(x,t) := \frac{1}{2}\left(1-\tanh\left(\frac{s}{2}\right)\right)\frac{d(x,t)}{\varepsilon}
 \end{equation}
-and $s$ the curvilinear  abscissa, $d$ the distance function from the interface $\Gamma$, $\varepsilon$ the interface sharpness parameter, and $W$ a double-well potential $W(s):=\frac{1}{2} s^{2}(1-s)^{2}$. The distance function  is linked to the surface mean curvature C by $\Delta d(x) = C$ and to the interface normal speed $v_n$ by $\partial_t d (x,t) = - v_n$. By substituting the physical variables to non-dimensional variables such as: $\Tilde{t} = t \alpha v_{kin} d_0 / d_x^2 $, $\Tilde{x} = x/d_x$ and $\Tilde{\varepsilon} = \varepsilon/d_x$ with $d_x$ (m) the input image resolution, the canonical dimensionless form of this equation is the famous Allen-Cahn equation \cite{bretin_and_denis_discrete-continuous_2015, kaempfer_phase-field_2009}:
+and $s$ the curvilinear  abscissa, $d$ the distance function from the interface $\Gamma$, $\varepsilon$ the interface sharpness parameter, and $W$ a double-well potential $W(s):=\frac{1}{2} s^{2}(1-s)^{2}$. The distance function  is linked to the surface mean curvature C by $\Delta d(x) = C$ and to the interface normal speed $v_n$ by $\partial_t d (x,t) = - v_n$. By substituting the physical variables to non-dimensional variables such as: $\Tilde{t} = t \alpha v_{\mathrm{kin}} d_0 / d_x^2 $, $\Tilde{x} = x/d_x$ and $\Tilde{\varepsilon} = \varepsilon/d_x$ with $d_x$ (m) the input image resolution, the canonical dimensionless form of this equation is the famous Allen-Cahn equation \cite{bretin_and_denis_discrete-continuous_2015, kaempfer_phase-field_2009}:
 % \begin{equation}\label{eq:allen-cahn}\frac{\partial u}{\partial t}(x, t)=\Delta u(x, t)-\frac{1}{\varepsilon^{2}} W^{\prime}(u)\end{equation}
 \begin{equation}\label{eq:allen-cahn}\frac{\partial \Tilde{u}}{\partial \Tilde{t}}(\Tilde{x}, \Tilde{t})=\Delta \Tilde{u}(\Tilde{x}, \Tilde{t})-\frac{1}{\Tilde{\varepsilon}^{2}} W^{\prime}(\Tilde{u})\end{equation}
 
@@ -171,7 +171,7 @@ The equation \eqref{eq:allen-cahn} is the general form of the phase-field equati
 %%%%%%%
 
 
-The resulting software is called Snow-3D. The model takes as input a 3D binary image of snow microstructure, as illustrated in Figure \ref{fig:eboni_sous_volume}. The output is a series of simulated 3D binary images at different time steps of the simulation. The adjustable parameters are the time step $t_{step}$, the number of time steps $n$ and the interface sharpness parameter $\varepsilon$. The different ranges used for those parameters in this work are given in Table \ref{tab:variables}. In Figure \ref{fig:eboni_sous_volume} the effect of the curvature-driven evolution is illustrated with ice sublimation on high curvature surfaces and water vapor deposition on low curvature surfaces, leading to rounding, coarsening and sintering the ice structure.
+The resulting software is called Snow-3D. The model takes as input a 3D binary image of snow microstructure, as illustrated in Figure \ref{fig:eboni_sous_volume}. The output is a series of simulated 3D binary images at different time steps of the simulation. The adjustable parameters are the time step $t_{\mathrm{step}}$, the number of time steps $n$ and the interface sharpness parameter $\varepsilon$. The different ranges used for those parameters in this work are given in Table \ref{tab:variables}. In Figure \ref{fig:eboni_sous_volume} the effect of the curvature-driven evolution is illustrated with ice sublimation on high curvature surfaces and water vapor deposition on low curvature surfaces, leading to rounding, coarsening and sintering the ice structure.
 
 % ARTEFACTS
 Finally, some corrections were necessary to limit some artefacts of the model. Periodic boundary conditions are applied on the images. It leads to errors in estimating curvature at the image boundaries resulting in very high curvatures. The edges of the simulated images were thus cut off of a certain width (0.6 mm) prior to further analysis. Also, as the model does not simulate gravity, simulations can lead to create ``floating" ice grains,  especially for snow in early stages of metamorphism and settling such as fresh snow. An example of grain disconnections is shown in Figure \ref{fig:disco}. To prevent this non-physical phenomenon, we restrict simulations to adequate snow microstructures and process the simulated images such as disconnected ice grains were suppressed. 
@@ -197,13 +197,13 @@ Finally, some corrections were necessary to limit some artefacts of the model. P
 
 \subsection{Calibration} 
 \label{subsec:calib}
-To be able to compare our results to experiments or to use them to predict ETM, a calibration step is needed. The model output is a series of $n$ images separated by a time step $t_{step}$, without any notion of physical duration of the simulated ETM.
+To be able to compare our results to experiments or to use them to predict ETM, a calibration step is needed. The model output is a series of $n$ images separated by a time step $t_{\mathrm{step}}$, without any notion of physical duration of the simulated ETM.
 Considering the non-dimensional time used to deduce the dimensionless equation \eqref{eq:allen-cahn}, the model physical time can be expressed as \cite{bretin_and_denis_discrete-continuous_2015}: 
 \begin{equation}\label{equ:alpha}
-   t = \frac{\Tilde{t}\ d_x^2}{\alpha v_{kin} d_0}
+   t = \frac{\Tilde{t}\ d_x^2}{\alpha v_{\mathrm{kin}} d_0}
 \end{equation}
-with $t$ the physical time (s) and $\Tilde{t} = t_{step} \times n$ the simulated time (-). As the only unclear parameter is $\alpha$, finding a value of this parameter is needed to scale the simulation time to dimensional time. To find a value of $\alpha$, a simulated series will be compared to a part of the experimental series of \citeA{flin_three-dimensional_2004} (cf Table \ref{tab:series_exp}) through the time evolution of the SSA parameter.\\
-The series corresponds to 10 tomographic images of snow microstructure showing snow at different time of its evolution in ETM at -2$^\circ$C, from 0 to 84 days. The first images of the series of \citeA{flin_three-dimensional_2004} correspond to fresh snow and were not used to avoid grains disconnections issues (Sec. \ref{subsec:model}). $\alpha$ have been calibrated using the SSA because it is a good scalar descriptor of the microstructure evolution.\\
+with $t$ the physical time (s) and $\Tilde{t} = t_{\mathrm{step}} \times n$ the simulated time (-). As the only unclear parameter is $\alpha$, finding a value of this parameter is needed to scale the simulation time to dimensional time. To find a value of $\alpha$, a simulated series will be compared to a part of the experimental series of \citeA{flin_three-dimensional_2004} (cf Table \ref{tab:series_exp}) through the time evolution of the SSA parameter.\\
+The series corresponds to 10 tomographic images of snow microstructure showing snow at different time of its evolution in ETM at -2$^\circ$C, from 0 to 84 days. The series used samples that were extruded at different locations of the snow slab for each tomographic scan. The first images of the series of \citeA{flin_three-dimensional_2004} correspond to fresh snow and were not used to avoid grains disconnections issues (Sec. \ref{subsec:model}). $\alpha$ have been calibrated using the SSA because it is a good scalar descriptor of the microstructure evolution.\\
 The calibration process is schematized in 5 steps in Figure \ref{fig:workflow}. For each selected image of the experimental series taken successively as input: \\
 \begin{enumerate}
     \item We used the model Snow-3D to obtain a simulated series composed of 10 images. 
@@ -281,7 +281,7 @@ In the following, $D$, $k$ and $K$ refer to the averages of the diagonal terms o
 
 Here, we evaluate the calibrated model by comparing experiments and simulations. We compared with the time series of \citeA{flin_three-dimensional_2004}, the dataset used to calibrate the condensation coefficient required in the model (Sec. \ref{subsec:calib}), as well as with the one of \citeA{hagenmuller_motion_2019} to allow for an independent comparison.\\
 
-The series of \citeA{hagenmuller_motion_2019} (Table \ref{tab:series_exp}) is a 110 h long experiment of isothermal metamorphism at -2$^\circ$C with 32 tomographic images. The series was used to study dust particles in snow under temperature gradient conditions. As our model does not work on more than 2 phases and dust is insensitive to metamorphism, the dust particles were converted to air before using it in Snow-3D. A temperature gradient of 5 K m$^{-1}$ was detected and corrected after 38 h of experiment, thus we only work with the final part of the series (approx. 70 h of isothermal metamorphism). In the work of \citeA{hagenmuller_motion_2019}, the snow sample was observed with in operando X-ray tomography, meaning than the same sample was scanned at regular intervals. In contrast, the \citeA{flin_three-dimensional_2004} series used samples that were extruded at different locations of the snow slab for each tomographic scan.\\
+The series of \citeA{hagenmuller_motion_2019} (Table \ref{tab:series_exp}) is a 110 h long experiment of isothermal metamorphism at -2$^\circ$C with 32 tomographic images. The series was used to study dust particles in snow under temperature gradient conditions. As our model does not work on more than 2 phases and dust is insensitive to metamorphism, the dust particles were converted to air before using it in Snow-3D. A temperature gradient of 5 K m$^{-1}$ was detected and corrected after 38 h of experiment, thus we only work with the final part of the series (approx. 70 h of isothermal metamorphism). In the work of \citeA{hagenmuller_motion_2019}, the snow sample was observed with in operando X-ray tomography, meaning than the same sample was scanned at regular intervals. It enable to compare directly simulated and experimental images, unlike for the \citeA{flin_three-dimensional_2004} series for which comparing mean variables is preferable.\\
 
 Results of SSA, covariance length and mean curvature for each time series are shown in Figure \ref{fig:flin_evaluation} and \ref{fig:eboni}, respectively. For the comparison with the data of \citeA{flin_three-dimensional_2004}, iso05, the first image used for the calibration which is a RG sample of snow scanned after 118 h of ETM, was used as initial image.\\
 
