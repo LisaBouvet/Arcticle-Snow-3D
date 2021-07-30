@@ -129,6 +129,10 @@ $\rho_i$ & density of ice & $917\ \mathrm{kg}\ \mathrm{m}^{-3}$& \\
 $\lambda$ & interfacial free energy of ice & $1.09 \times 10^{-1}\ \mathrm{J}\ \mathrm{m}^{-2}$ & \cite{libbrecht1999} \\
 $\alpha$ & condensation coeffcient & $10^{-3}\ \mathrm{to}\ 10^{-1}$ & \cite{libbrecht1999} \\
 \hline
+$\varepsilon$ & interface sharpness parameter & $3$ voxels & \cite{bretin_and_denis_discrete-continuous_2015} \\
+$t_{step}$ & model time step & 0.5 to 8 & \\
+$n$ & number of model time steps & 4 to 11 &\\
+\hline
 \end{tabular}
 \caption{Notations and numerical values of parameters}\label{tab:variables}
 \end{table}
@@ -150,7 +154,7 @@ and $s$ the curvilinear  abscissa, $d$ the distance function from the interface 
     \label{fig:disco}
 \end{figure}
 
-
+The equation \eqref{eq:allen-cahn} is the general form of the phase-field equation. In the model another term is added on the form of a Lagrangian multiplier to guarantee the volume conservation \cite<See>{bretin_phase-field_2019}.
 
 %% ARTEFACTS
 %The model takes as input a binary 3D tomographic image of a snow sample as in Figure \ref{fig:eboni_sous_volume} where the effect of the curvature-driven evolution is illustrated with ice sublimation on high curvature surfaces and water vapor %deposition on low curvature surfaces, leading to rounding, coarsening and sintering the ice structure. The adjustable parameters are the time step $t_{step}$, the number of time steps $n$ and the interface sharpness parameter $\varepsilon$. The %output is a series of 3D binary images that underwent the mean curvature flow. Artefacts are induced by the sample geometry during the simulation, including: 
@@ -167,10 +171,10 @@ and $s$ the curvilinear  abscissa, $d$ the distance function from the interface 
 %%%%%%%
 
 
-The resulting software is called Snow-3D. The model takes as input a 3D binary image of snow microstructure, as illustrated in Figure \ref{fig:eboni_sous_volume}, on which period boundary conditions are applied to compute the required mean curvature map. The output is a series of simulated 3D binary images at different time steps of the simulation. The adjustable parameters are the time step $t_{step}$, the number of time steps $n$ and the interface sharpness parameter $\varepsilon$.
+The resulting software is called Snow-3D. The model takes as input a 3D binary image of snow microstructure, as illustrated in Figure \ref{fig:eboni_sous_volume}. The output is a series of simulated 3D binary images at different time steps of the simulation. The adjustable parameters are the time step $t_{step}$, the number of time steps $n$ and the interface sharpness parameter $\varepsilon$. The different ranges used for those parameters in this work are given in Table \ref{tab:variables}. In Figure \ref{fig:eboni_sous_volume} the effect of the curvature-driven evolution is illustrated with ice sublimation on high curvature surfaces and water vapor deposition on low curvature surfaces, leading to rounding, coarsening and sintering the ice structure.
 
 % ARTEFACTS
-Finally, some corrections were necessary to limit some artefacts of the model. First, due to the periodic boundary conditions applied on the images, errors in estimating curvature may occur at the image boundaries leading to very high curvatures. The edges of the simulated images were thus cut off of a certain width prior to further analysis. Also, as the model does not simulate gravity, simulations can lead to create ``floating" ice grains,  especially for snow in early stages of metamorphism and settling such as fresh snow. An example of grain disconnections is shown in Figure \ref{fig:disco}. To prevent this non-physical phenomenon, we restrict simulations to adequate snow microstructures and process the simulated images such as disconnected ice grains were suppressed. 
+Finally, some corrections were necessary to limit some artefacts of the model. Periodic boundary conditions are applied on the images. It leads to errors in estimating curvature at the image boundaries resulting in very high curvatures. The edges of the simulated images were thus cut off of a certain width (0.6 mm) prior to further analysis. Also, as the model does not simulate gravity, simulations can lead to create ``floating" ice grains,  especially for snow in early stages of metamorphism and settling such as fresh snow. An example of grain disconnections is shown in Figure \ref{fig:disco}. To prevent this non-physical phenomenon, we restrict simulations to adequate snow microstructures and process the simulated images such as disconnected ice grains were suppressed. 
 % As an example, we loose 6.10$^{-4}$ g of Grad3 sample (0.08 g) during the simulated 75 days of ETM with the suppression of disconnected particles. 
 
 
@@ -183,11 +187,11 @@ Finally, some corrections were necessary to limit some artefacts of the model. F
 \hline Reference & ETM stage & Resolution & Dimension & Density & Snow types \\
  &  & ($\upmu$m) &(voxel) & (kg m$^{-3}$) &  \\
 \hline 
-\cite{flin_three-dimensional_2004} & $2026\ \mathrm{h}$, T = $-2^{\circ} \mathrm{C}$ & 4.9 & 512 & 158 & \small{$\mathrm{PP} \rightarrow \mathrm{RG}$} \\
+\cite{flin_three-dimensional_2004} & $84\ \mathrm{days}$, T = $-2^{\circ} \mathrm{C}$ & 4.9 & 512 & 158 & \small{$\mathrm{PP} \rightarrow \mathrm{RG}$} \\
 \cite{hagenmuller_motion_2019} & 4 days, $\mathrm{T}=-2^{\circ} \mathrm{C}$ & 7.5 & 450 & 212 & \small{$\mathrm{DF/RG}$} \\
 \hline
 \end{tabular}
-\caption{Experimental equi-temperature series used to calibrate and evaluate the model. The density conrresponds to the initial density of the used portion of each series. The snow types separated by an arrow present the initial and final type of the series.}
+\caption{Experimental equi-temperature series used to calibrate and evaluate the model. The density corresponds to the initial density of the used portion of each series. The snow types separated by an arrow present the initial and final type of the series.}
 \label{tab:series_exp}
 \end{table}
 
