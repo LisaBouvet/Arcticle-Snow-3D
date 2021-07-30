@@ -197,33 +197,19 @@ Finally, some corrections were necessary to limit some artefacts of the model. P
 
 \subsection{Calibration} 
 \label{subsec:calib}
-
-Considering the characteristic time used to deduce the dimensionless equation \eqref{eq:allen-cahn}, the model physical time can be expressed as \cite{bretin_and_denis_discrete-continuous_2015}: 
+To be able to compare our results to experiments or to use them to predict ETM, a calibration step is needed. The model output is a series of $n$ images separated by a time step $t_{step}$, without any notion of physical duration of the simulated ETM.
+Considering the non-dimensional time used to deduce the dimensionless equation \eqref{eq:allen-cahn}, the model physical time can be expressed as \cite{bretin_and_denis_discrete-continuous_2015}: 
 \begin{equation}\label{equ:alpha}
-   t_\varphi = \frac{t_{\text{sim}} d_x^2}{\alpha v_{kin} d_0}
+   t = \frac{\Tilde{t}\ d_x^2}{\alpha v_{kin} d_0}
 \end{equation}
-with $t_{\varphi}$ the physical time (s) and $t_{\text{sim}}$ the simulated time (-). Finding a value of the condensation coefficient $\alpha$ is thus equivalent to scale the simulation steps to time.
-
-% An important effort has been made in calibrating the model through the condensation coefficient $\alpha$. In our case, finding $\alpha$ is equivalent to scale the simulation steps to real time steps via the equations \cite{bretin_and_denis_discrete-continuous_2015}: \\
-
-% \begin{subequations}\label{equ:alpha}
-% \begin{minipage}{0.45\textwidth}\begin{align}
-%     t_\varphi = \frac{t_{\text{sim}} \rho_i dx^2}{\alpha \rho_{v s}(T) d_0} \sqrt{\frac{2 \pi M}{R T}}
-% \end{align}\end{minipage}
-% \begin{minipage}{0.45\textwidth}\begin{align}\label{equ:d0calib}
-%     d_0 = \frac{\lambda a^3}{k T}
-% \end{align}\end{minipage}
-% \end{subequations}\\
-% \vspace{0.3cm}
-
-% \noindent with $t_{\varphi}$ the physical time in s, $t_{\text{sim}}$ the simulated time in the model, $dx$ the image resolution in m. Equation (\ref{equ:d0}) comes from the  Gibbs-Thomson relation and links the capillary length $d_0$ to $\lambda$ the interfacial free energy in J m$^{-2}$ and $a$ the mean intermolecular spacing in the ice in m \cite{kaempfer_phase-field_2009}. The saturation vapor density $\rho_{\text{sat}}$ has been deduced as a function of temperature with the formulation of \citeA{gofflow}.% which is generally considered as the reference equation \cite{murphy2005review}. 
-
-To calibrate the model, we used part of the experimental series of \citeA{flin_three-dimensional_2004} (cf Table \ref{tab:series_exp}).  The series corresponds to 10 tomographic images of snow microstructure showing snow at different time of its evolution in ETM at -2$^\circ$C, from 0 to 84 days. The first images of the series of \citeA{flin_three-dimensional_2004} correspond to fresh snow and were not used to avoid grains disconnections issues (Sec. \ref{subsec:model}). The condensation coefficient $\alpha$ have been calibrated using the SSA parameter because it was the most relevant parameter to characterize snow microstructure under ETM in our case. The calibration process is schematized in 5 steps in Figure \ref{fig:workflow}. For each selected image of the experimental series taken successively as input: \\
+with $t$ the physical time (s) and $\Tilde{t} = t_{step} \times n$ the simulated time (-). As the only unclear parameter is $\alpha$, finding a value of this parameter is needed to scale the simulation time to dimensional time. To find a value of $\alpha$, a simulated series will be compared to a part of the experimental series of \citeA{flin_three-dimensional_2004} (cf Table \ref{tab:series_exp}) through the time evolution of the SSA parameter.\\
+The series corresponds to 10 tomographic images of snow microstructure showing snow at different time of its evolution in ETM at -2$^\circ$C, from 0 to 84 days. The first images of the series of \citeA{flin_three-dimensional_2004} correspond to fresh snow and were not used to avoid grains disconnections issues (Sec. \ref{subsec:model}). $\alpha$ have been calibrated using the SSA because it is a good scalar descriptor of the microstructure evolution.\\
+The calibration process is schematized in 5 steps in Figure \ref{fig:workflow}. For each selected image of the experimental series taken successively as input: \\
 \begin{enumerate}
     \item We used the model Snow-3D to obtain a simulated series composed of 10 images. 
     \item We calculated the SSA evolution of the series during the simulation (Graphs b) and c)).
-    \item We fitted the SSA of the simulated series to the SSA of the experimental series (Graph a)) by adjusting the x-axis. More precisely, we scaled the simulation steps to the real time (Equation \eqref{equ:alpha}) such that they match the experiment best by minimizing the Root Mean Square Error (RMSE) between the two curves.   
-    \item We used the simulation time and the fitted physical time to find a value of the condensation coefficient $\alpha$ (Equation \eqref{equ:alpha}). 
+    \item We fitted the SSA of the simulated series to the SSA of the experimental series (Graph a)) by adjusting the time axis. More precisely, we scaled the simulation steps to the real time (Equation \eqref{equ:alpha}) such that they match the experiment best by minimizing the Root Mean Square Error (RMSE) between the two curves.   
+    \item We used the simulation time and the fitted physical time to find a value of the condensation coefficient $\alpha$ through the equation \eqref{equ:alpha}). 
 \end{enumerate}
 
 \hspace*{-0.2cm}
@@ -233,9 +219,9 @@ To calibrate the model, we used part of the experimental series of \citeA{flin_t
     \caption{Workflow of the time calibration approach}
     \label{fig:workflow}
 \end{figure}
-Those steps have been applied to the image Iso05, Iso08, Iso11 and Iso15, from 5 days to 33 days. The last three images of the experimental series (Iso19, Iso21, and Iso23) were not used as they are close in time to the end of the experiment. It resulted in 4 simulated series composed of 10 images simulating equi-temperature metamorphism from a different input image, i.e. from a different metamorphism stage. We removed on each side of the simulated images a layer with a thickness equal to the size of two heterogeneities (0.6 mm) before the SSA calculation to avoid edge artifacts while keeping volumes larger than REVs (representative elementary volume) for most of the properties of interest. A weighted average is calculated on the $\alpha$ coefficients using the inverse of the RMSE as weight to maximize the influence of the $\alpha$ originating from the best fit to the experimental curve. The resulting condensation coefficient is $\alpha = ( 9.9 \pm 0.6) 10^{-4}$. This uncertainty is calculated using a classical propagation of uncertainties of $\alpha$ through the equation \eqref{equ:alpha}. As the temperature condition of \citeA{flin_three-dimensional_2004} is -2$^\circ$C, the calibrated model can only be used to simulate ETM at -2$^\circ$C. To see the influence of $\alpha$ in the microstructural parameters, we calculated the variation of the microstructural parameters as a function of $\alpha$ variation. In the range of our $\alpha$ variation through the different samples, the parameters such as density, specific surface area and covariance length (described in Section \ref{subsec:methode_physical_appli}) only have a maximum alteration of 5\%, which is small compared to the precision of those parameters. 
+Those steps have been applied to the image Iso05, Iso08, Iso11 and Iso15, from 5 days to 33 days. The last three images of the experimental series (Iso19, Iso21, and Iso23) were not used as they are close in time to the end of the experiment, which prevent a precise estimation of $\alpha$. It resulted in 4 simulated series composed of 10 images simulating equi-temperature metamorphism from a different input image, i.e. from a different metamorphism stage. We removed on each side of the simulated image a layer with a thickness equal to the size of two heterogeneities (0.6 mm) before the SSA calculation to avoid edge artifacts while keeping volumes larger than REVs (representative elementary volume) for most of the properties of interest. A weighted average is calculated on the $\alpha$ coefficients using the inverse of the RMSE as weight to maximize the influence of the $\alpha$ originating from the best fit to the experimental curve. The resulting condensation coefficient is $\alpha = ( 9.9 \pm 0.6) 10^{-4}$. This uncertainty is calculated using a classical propagation of uncertainties of $\alpha$ through the equation \eqref{equ:alpha}. As the temperature condition of \citeA{flin_three-dimensional_2004} is -2$^\circ$C, the calibrated model can only be used to simulate ETM at -2$^\circ$C. To see the influence of $\alpha$ in the microstructural parameters, we calculated the variation of the microstructural parameters as a function of $\alpha$ variation. In the range of our $\alpha$ variation through the different samples, the parameters such as density, specific surface area and covariance length (described in Section \ref{subsec:methode_physical_appli}) only have a maximum alteration of 5\%, which is small compared to the physical precision of those parameters. 
 
-\subsection{ETM model prediction: computation of snow properties}
+\subsection{Computation of snow properties}
 \label{subsec:methode_physical_appli}
 
 \begin{table}
