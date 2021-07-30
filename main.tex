@@ -85,48 +85,55 @@ In this article, we attend to go further by applying the phase-field model of \c
 
 %PHASE FIELD ET MODELE NUMERIQUE
 %\color{blue}
-\citeA{bretin_phase-field_2019} phase-field model simulates a multi-phase medium evolving under mean curvature flow and volume conservation of each phase. This flow is defined by an interface evolution where the normal velocity $v_n$ is proportional to the curvature C. The morphological transformation induced by the mean curvature flow can be interpreted as "smoothing" surfaces and seems suited to model ETM as the morphological transformations are equivalent to sublimation on high curvature surfaces and deposition on negative curvature surfaces. %It is applied here on the description of the curvature-driven sublimation-deposition process.
-%\color{black}
+\citeA{bretin_phase-field_2019} phase-field model simulates a multi-phase medium evolving under mean curvature flow and volume conservation of each phase. This flow is defined by an interface evolution where the normal velocity $v_n$ is proportional to the curvature C. The model minimize local curvatures while keeping constant the sample mean curvature. The morphological transformation induced by the mean curvature flow can be interpreted as "smoothing" surfaces and seems suited to model ETM as the morphological transformations are equivalent to sublimation on high curvature surfaces and deposition on negative curvature surfaces. 
+
 
 % APPLICATION A LA NEIGE (EQUATIONS ETC)
-%The model is applied to the simulation of snow equi-temperature metamorphism, i.e. the sublimation and deposition process at the ice/air interface due to water vapor density variations driven by curvature.  
-This model describes ETM based on the kinetic-limited assumption: interface growth velocity depends on the interface kinetic through a condensation coefficient but does not depend on the vapor transport in the pore space. The latter is considered instantaneous, so that vapor density in air is constant and at equilibrium with temperature. Vapor transport processes in air (diffusion) is thus not described. Finally, the model does not include any mechanics and the settling of the ice grains is thus not represented here.
-% It can take as input tomographic snow samples as in Figure \ref{fig:eboni_sous_volume}. It describes the process of sublimation and deposition at the ice/air interface due to water vapor density variations driven by curvature. Vapor transport in the pore space by diffusion or convection is not simulated and is assumed to be instantaneous, so the evolution is limited by the kinetics at the interface. Finally, the model does not include any mechanics and the settling of the ice grains is thus not described here.\\
+This model describes ETM based on the kinetic-limited assumption: interface growth velocity depends on the interface kinetic through a condensation coefficient but does not depend on the vapor transport in the pore space. The latter is considered instantaneous, so that vapor density in air is constant and at equilibrium with temperature. Vapor transport processes in air (diffusion) is thus not described and temperature is considered isotropic and constant. Finally, the model does not include any mechanics and the settling of the ice grains is thus not represented here.\\
 
-Under those conditions, ETM is classically described by the following set of equations \cite<e.g.>{flin_full_2003, kaempfer_phase-field_2009}. Using the Hertz-Knudsen equation vapor density can be linked to the growth speed of the interface $\Gamma$:\\
-\begin{subequations}
+Under those conditions, ETM is classically described by the following set of equations \cite<e.g.>{flin_full_2003, kaempfer_phase-field_2009}:  \
+\begin{subequations}\label{eq:hertz_knu}
 \begin{align}
-v_{n} &= \alpha v_{k i n} \frac{\rho_{vs}^{amb} - \rho_{v s}^{\Gamma}}{\rho_{v s}^{ \Gamma }}\quad \text{on}\ \Gamma\text{,} 
+v_{n} &= \alpha v_{\mathrm{kin}} \frac{\rho_{vs}^{amb} - \rho_{v s}^{\Gamma}}{\rho_{v s}^{ \Gamma }}\quad \text{on}\ \Gamma\text{,} 
 \end{align}
 \begin{align}
 v_{k i n} &= \frac{\rho_{v s}^{f}}{\rho_i}\sqrt{\frac{k T}{2 \pi m}} % vérifier la formulation de vkin ?
 \end{align}
 \end{subequations}
-\label{eq:hertz_knu}
 
-\noindent This equation relates the curvature to the velocity normal to the interface and oriented toward the air $v_n$ and defines the kinetic velocity $v_{\mathrm{kin}}$. $\alpha$ is the condensation coefficient, $m$ is the mass of a water molecule, $k$ is the Boltzmann constant and $\rho_i$ is the ice density.
- $\rho_{vs}(T, C)$ is the saturation vapor density at an interface of mean curvature $C$ (m$^{-1}$) and of temperature $T$ (K). $\rho_{vs}(T, C=0)$ is the saturation vapor density in air above a flat surface. It has been largely studied, and can be determined using one of the existing parameterizations. We use the formulation of \citeA{gofflow} which is appropriated for our range of temperature and can be found in \citeA{murphy2005review}.\\
-
-This equation is given for the case of vapor density in pores at equilibrium, e.g. that $\rho_v = \rho_{vs}(T)$. The difference between the saturation vapor density in the pores $\rho_{vs}(T)$ and the saturation vapor density at the interface $\rho_{vs}(T, C)$ drives the interface velocity.
-
-%
-At the interface, the saturation density depends on the surface curvature and on the temperature, which is considered isotropic and constant. It is described by the Gibbs-Thomson relation:\\
 \begin{subequations}\label{equ:gibbs}
-\begin{minipage}{0.3\textwidth}\begin{align}
+\begin{align}
     \rho_{vs}^{amb}=\rho_{vs}^{f}\ e^{d_0 C^{amb}}
-\end{align}\end{minipage}
-\begin{minipage}{0.3\textwidth}\begin{align}
-    \rho_{vs}^{\Gamma}=\rho_{vs}^{f}\ e^{d_0 C^{\Gamma}}
-\end{align}\end{minipage}
-\begin{minipage}{0.2\textwidth}\begin{align}\label{equ:d0}
-    d_0 = \frac{\lambda a^3}{k T}
-\end{align}\end{minipage}
+\end{align}
+\begin{align}
+    \rho_{vs}^{\Gamma}=\rho_{vs}^{f}\ e^{d_0 C} \quad \text{on}\ \Gamma\text{,} 
+\end{align}
 \end{subequations}
 
-\noindent $d_0$ (m) is the capillary length with $\lambda$ (J m$^{-2}$) the interfacial free energy and $a$ (m) the mean intermolecular spacing in the ice \cite{kaempfer_phase-field_2009}.\\
-%\begin{equation}
-%    \log\rho=-9,0972(273/T -1) - 3,5665\log(273/T) + 0.87679(1-T/273) + %5.0281\log(273/T)
-%\end{equation}
+\noindent Equation \eqref{eq:hertz_knu} is the Hertz-Knudsen equation. It relates the curvature to the velocity normal to the interface and oriented toward the air $v_n$ and defines the kinetic velocity $v_{\mathrm{kin}}$. The interface velocity $v_n$ is driven by the difference between the ambient saturation vapor density in the pores $\rho_{vs}^{amb}$ and the saturation vapor density at the interface $\rho_{vs}^{\Gamma}$.\\
+
+\noindent Equation \eqref{equ:gibbs} is the Gibbs-Thomson relation, witch describe dependencies between saturation vapor density and curvatures using $d_0 = \lambda a^3/(k T)$ (m) the capillary length \cite{kaempfer_phase-field_2009}.
+$\rho_{vs}^{amb}$ is the ambient saturation vapor density in the pores in equilibrium with the whole sample mean curvature $C^{amb}$. 
+$\rho_{vs}^{\Gamma}$ is the saturation vapor density at an interface of local curvature $C$.\\ 
+  
+ \noindent $\rho_{vs}^f$ is the saturation vapor density in air above a flat surface. It has been largely studied, and can be determined as a function of the temperature using one of the existing parameterizations. We use the formulation of \citeA{gofflow} which is appropriated for our range of temperature and can be found in \citeA{murphy2005review}. All the variables are presented in Table \ref{tab:variables}.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline \multicolumn{1}{|c} {Symbol} & \multicolumn{1}{|c} { Description } & \multicolumn{1}{|c} { Value, unit } &  \multicolumn{1}{|c|} {Reference} \\
+\hline$a$ & mean intermolecular spacing in ice & $3.19 \times 10^{-10}\ \mathrm{m}$ & \cite{petrenko1999physics} \\
+$k_B$ & Boltzmann's constant & $1.38 \times 10^{-23}\ \mathrm{J\ K}^{-1}$ & \\
+$m$ & mass of a water molecule & $2.99 \times 10^{-26}\ \mathrm{kg}$ & \cite{petrenko1999physics} \\
+$\rho_i$ & density of ice & $917\ \mathrm{kg}\ \mathrm{m}^{-3}$& \\
+$\lambda$ & interfacial free energy of ice & $1.09 \times 10^{-1}\ \mathrm{J}\ \mathrm{m}^{-2}$ & \cite{libbrecht1999} \\
+$\alpha$ & condensation coeffcient & $10^{-3}\ \mathrm{to}\ 10^{-1}$ & \cite{libbrecht1999} \\
+\hline
+\end{tabular}
+\caption{Notations and numerical values of parameters}\label{tab:variables}
+\end{table}
+
+
  The mean curvature flow is solved with the phase-field method enabling an implicit description of the interface using a function that varies smoothly from a value in ice to another value in air. The model of \cite{bretin_phase-field_2019} adapted and applied to ETM with two-phases, air and ice is expressed by the phase-field equation:\\
 \begin{equation}\label{eq:phase-field}\frac{\partial u}{\partial t}(x, t)= d_0 \alpha v_{kin} \left(\Delta u(x, t)-\frac{1}{\varepsilon^{2}} W^{\prime}(u)\right)\end{equation}
 \noindent with $u$ the phase function defined as: \begin{equation}\label{eq:phase-func}
