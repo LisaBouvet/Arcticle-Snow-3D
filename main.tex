@@ -359,8 +359,7 @@ In this section we present 3D estimates of macroscopic transport properties (Sec
 
 The Figure \ref{fig:Tplot} shows estimates of conductivity, effective coefficient of diffusion and permeability plotted as a function of the porosity for each image of our simulated series. To show the structural anisotropy of the samples, the tips and horizontal bars of the ``T" markers represent respectively the vertical and horizontal components. Colors correspond to the ICSSG \cite{fierz2009international} and the arrows indicate the evolution direction of the simulated series in time. The relative changes between the initial sample and the last step of the simulation, calculated for the horizontal component ($\tau_{x y}$) and for the vertical component ($\tau_{z}$) are indicated in the legends for each property.\\
  
-When looking at Figure \ref{fig:Tplot}, the series show an evolution along the density axis, with a maximum of 10 kg m$^{-3}$ increase for the TG2 series and a minimum of 4 kg m$^{-3}$ for the Grad3 series. As the model is supposed to operate at constant density, this rather small density changes are an artefact caused by misestimations of curvature at the images edges. %It could however lead to a relatively realistic increase in density in terms of mass distribution in the sample (Sec. \ref{sec:disc}). 
-We suppose that the increase in density is distributed on the whole sample such that the arising images have a realistic microstructure (Sec. \ref{sec:disc}).
+When looking at Figure \ref{fig:Tplot}, the series show an evolution along the density axis, with a maximum of 10 kg m$^{-3}$ increase for the TG2 series and a minimum of 4 kg m$^{-3}$ for the Grad3 series. As the model is supposed to operate at constant density, this rather small density changes are an artefact caused by misestimations of curvature at the images edges. We suppose that the increase in density is distributed on the whole sample such that the arising images have a realistic microstructure (Sec. \ref{sec:disc}).
 
 The temporal evolution of the different series in terms of the macroscale properties and of the density, represented by the arrows and by the relative changes $\tau_{x y}$ and $\tau_{x y}$, mostly follow the reference parameterizations. This shows that the predicted ETM is in overall good agreement with the expected evolution of those macroscopic properties. 
 
@@ -369,32 +368,14 @@ This microstructure influence is also present for the permeability, as seen in F
 For the thermal conductivity, the microstructure impact does not seem to be that distinct as seen in the Figure 1 of \cite{calonne_numerical_2011}.
 
 
-
-
-%  For the thermal conductivity, the fit of \citeA{calonne_numerical_2011} was used. This regression has been obtained using images of snow spanning a wide range of seasonal snow types using the same analysis tools we used above. It is expressed as:
-% \begin{equation}k_{\mathrm{th}}=2.5 \times 10^{-6} \rho_{\mathrm{s}}^{2}-1.23 \times 10^{-4} \rho_{\mathrm{s}}+0.024\end{equation}
-% with $\rho_{\mathrm{s}}$ the snow density, linked to the porosity by $\rho_s = (1 - \phi)\rho_i$ with $\rho_i$ the ice density.
-% The parameterization is in good agreement with our results and the errors are mostly linked to the anisotropy. Indeed, the vertical component of conductivity of faceted crystals and depth hoar samples like TG2, Grad3 and 7G9m is always larger than the horizontal component, while rounded grains like I17 exhibit the inverse behavior.\\
-
-% In the case of air diffusion, we display here the self-consistent estimate of diffusion for spherical inclusions from \citeA{calonne_macroscopic_2014}:
-% \begin{equation}
-%     D^{\mathrm{SC}} = D_v(3\phi - 1)/2
-% \end{equation}
-% with $D_v$ the water vapor diffusion coefficient in air. The results are in good agreement with our samples, especially I17 and TG2. The horizontal components of Grad3 and 7G9m, which are more anisotropic, are significantly lower than the model. In those cases, the self-consistent estimate of diffusion for ellipsoidal inclusions could be more appropriated \cite{calonne_numerical_2011}.\\
-
-%  For the permeability, the fit from \citeA{calonne_3D_2012} which uses the normalized permeability is applied. It is expressed as:
-% \begin{equation}K=(3.0 \pm 0.3)\ r_{\mathrm{es}}^{2} \exp \left((-0.0130 \pm 0.0003) \rho_{\mathrm{s}}\right)\end{equation}
-% $r_{\mathrm{es}}$ is the equivalent sphere radius related to the SSA by the following equation: $r_{\mathrm{es}}=3/(\mathrm{SSA} \times \rho_{\mathrm{i}})$.
-% We see that the fit is good for each image, except for the high anisotropic images from the Grad3 and TG2 series, which slightly diverge from the regression curve.\\
-
-% Overall we see that the model is consistent with all those parameterizations, meaning that the simulated structures of snow respects those physical transport properties. The limit of this comparison is the handling of the anisotropic samples which are poorly described by these isotropic parameterizations (\citeA{calonne_numerical_2011}, \citeA{calonne_3D_2012}, \citeA{calonne_thermal_2019}). 
-
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{Figures/Tplot_tau_invert.pdf}
     \caption{Thermal conductivity, normalized vapor diffusion and normalized permeability as a function of porosity.}
     \label{fig:Tplot}
 \end{figure}
+
+
 \section{Discussion}
 \label{sec:disc}
 
@@ -421,26 +402,6 @@ Enter acknowledgments, including your data availability statement, here.
 \bibliography{Snow3D}
 
 
-
-%Reference citation instructions and examples:
-%
-% Please use ONLY \cite and \citeA for reference citations.
-% \cite for parenthetical references
-% ...as shown in recent studies (Simpson et al., 2019)
-% \citeA for in-text citations
-% ...Simpson et al. (2019) have shown...
-%
-%
-%...as shown by \citeA{jskilby}.
-%...as shown by \citeA{lewin76}, \citeA{carson86}, \citeA{bartoldy02}, and \citeA{rinaldi03}.
-%...has been shown \cite{jskilbye}.
-%...has been shown \cite{lewin76,carson86,bartoldy02,rinaldi03}.
-%... \cite <i.e.>[]{lewin76,carson86,bartoldy02,rinaldi03}.
-%...has been shown by \cite <e.g.,>[and others]{lewin76}.
-%
-% apacite uses < > for prenotes and [ ] for postnotes
-% DO NOT use other cite commands (e.g., \citet, \citep, \citeyear, \nocite, \citealp, etc.).
-%
 
 
 
