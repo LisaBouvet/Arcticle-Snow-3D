@@ -24,6 +24,7 @@
 
 
 \begin{document}
+
 %TC:ignore
 \title{Snow equi-temperature metamorphism on 3D micro-tomography images using a phase-field model: prediction of microstructural and physical properties}
 
@@ -43,28 +44,14 @@
 
 \begin{abstract}
 
-Representing snow equi-temperature metamorphism (ETM) is key to model the evolution and properties of the snow cover. Recently, a phase-field model describing the mean curvature flow on 3D microstructures was proposed \cite{bretin_phase-field_2019}. In the present work, this model is used to simulate ETM at the pore scale, considering the only process of moving interfaces by sublimation-deposition driven by curvatures. This model runs on experimental 3D micro-tomographic images and gives a temporal series of 3D images simulating ETM. To relate simulated and physical evolution, a value of the condensation coefficient, which shows complex dependencies and is still poorly known, has been determined. This calibration was done by reproducing the time evolution of the specific surface area (SSA) measured during an isothermal experimental time-series at -2$^\circ$C \cite{flin_three-dimensional_2004} and led to a value of the condensation coefficient of 9.8 $\pm$ 0.7 10$^{‑4}$. We obtained a good agreement between an independent series of ETM at -2$^\circ$C \cite{hagenmuller_motion_2019} and its simulation. Four images representing a large range of snow microstructure have been chosen as input to predict ETM at -2$^\circ$C during 75 days. The obtained temporal series of 3D images were then used to calculate the evolution of microstructural (density, SSA, covariance lengths) and macro-scale transport properties (thermal conductivity, effective diffusion, permeability). Comparing our numerical estimations of physical properties to current parameterizations gives good agreement. An interesting new result arising from the simulations is the conservation or enhancement of the structural anisotropy under equi-temperature conditions for the samples that were initially strongly anisotropic. 
+Representing snow equi-temperature metamorphism (ETM) is key to model the evolution and properties of the snow cover. Recently, a phase-field model describing the mean curvature flow on 3D microstructures was proposed \cite{bretin_phase-field_2019}. In the present work, this model is used to simulate ETM at the pore scale, considering the only process of moving interfaces by sublimation-deposition driven by curvatures. We take 3D micro-tomographic images of snow to initialize the model and obtain a time series of simulated microstructures as output. Relating the numerical time, as defined in the model, to the real, physical time involves the condensation coefficient, a poorly-constrained parameter. A calibration step was thus done;  we fit simulated microstructures to experimental ones, matching the evolution of the specific surface area (SSA) during ETM at  -2°C.  A value of 9.8 is obtained and uses in all the following simulations. The calibrated model enables to well reproduce an independent time series of ETM at -2°C in terms of SSA, covariance lengths, and mean curvature distribution. Finally, we use the calibrated model to investigate the effect of ETM on four different snow microstructures. As an interesting preliminary result, we observe an enhancement of the structural anisotropy in the case of initially anisotropic microstructures. Also, the potential of such model to provide predictions of effective properties of snow under ETM is illustrated. The evolution of the transport properties (thermal conductivity, vapor diffusion, permeability) is presented and follows current parameterizations.
 
 \end{abstract}
 
-%%%%%%%%%%%%%% NOUVEL ABSTRACT %%%%%%%%%%%%%%%%%%%%
-Representing snow equi-temperature metamorphism (ETM) is key to model the evolution and properties of the snow cover. Recently, a phase-field model describing the mean curvature flow on 3D microstructures was proposed \cite{bretin_phase-field_2019}. In the present work, this model is used to simulate ETM at the pore scale, considering the only process of moving interfaces by sublimation-deposition driven by curvatures. We took 3D micro-tomographic images of snow to initialize the model and obtained a time series of simulated microstructures as output. Relating the numerical time, as defined in the model, to the real, physical time involves the condensation coefficient, a poorly-constrained parameter. A calibration step was thus done;  we fitted simulated microstructures to experimental ones, matching the evolution of the specific surface area (SSA) of snow during ETM at  -2°C.  A value of 9.8 was obtained and taken in all the following simulations. To further evaluate the calibrated model, another time series of tomographic images  of ETM at -2°C was simulated and good agreements were found through the SSA, covariance lengths, and mean curvature distribution. Finally, we used the calibrated model to investigate the effect of ETM on four different snow microstructures. As an interesting preliminary result, we observed an enhancement of the structural anisotropy in the case of the initally anisotropic microstructure.  Also, the potential of such model to provide predictions of effective properties of snow under ETM is illustrated. The evolution of the transport properties (thermal conductivity, ..) is presented for the four microstructures and follows current parameterizations.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
 \section*{Plain Language Summary}
 
-Snow on the ground is subject to structural changes due to differences in temperature and pressure called metamorphism. Equi-temperature metamorphism (ETM) occurs when the snow layer present an uniform temperature. Its description is key to model the snow cover evolution. Recently, a model describing a smoothing process applicable on 3D structures has been proposed \cite{bretin_phase-field_2019}. This smoothing process is used to describe the major process of ETM: the sublimation and deposition of water vapor molecules, which results in rounding ice surfaces. 3D micro-tomographic images are used as input in the model, the output is a temporal series of 3D images simulating ETM. To link simulated and experimental evolution, the model is calibrated through one parameter: the condensation coefficient. It describes how water molecules are integrated to ice and is still poorly known. The calibration is done by comparing the model to an experimental series of ETM at -2$^\circ$C \cite{flin_three-dimensional_2004}. We validate the model using another independent series at -2$^\circ$C \cite{hagenmuller_motion_2019} with good results. As the model seems to be consistent, we use it to predict ETM on a large range of snow types. The simulated series of 3D images are then used to calculate structural properties and macro-scale transport properties. Comparing our numerical results of physical properties to models and current regressions gives good agreement.
-
-%%%%%%%%%% NOUVEL PLAIN LANGUAGE SUMMARY %%%%%%%%%%
-%TC:endignore
-
-Snow on the ground is a skeleton of ice and air that evolves continuously under different environmental constraints. Among them, equi-temperature metamorphism (ETM) refers to the smoothing and rounding of the snow structure under the effect of curvature differences at the ice grains surface. It is one of the main mechanisms of snow evolution and its correct representation is crucial. In this work, we adapt a recent mean curvature flow model describing smoothing of 3D microstructures, to simulate ETM of snow. 3D micro-tomographic images are used as input in the model, the output is a temporal series of 3D images simulating ETM. To link simulated and experimental evolution, the model is calibrated through the condensation coefficient, a parameter that influences the efficiency of the snow evolution. The calibration is done by comparing the model to an experimental series of ETM at -2$^\circ$C \cite{flin_three-dimensional_2004}. We validate the model using another independent series at -2$^\circ$C with good results. As the model seems to be consistent, we use it to predict ETM on a large range of snow types. The simulated series of 3D images are then used to calculate structural properties and macro-scale transport properties. Comparing our numerical results of physical properties to models and current regressions gives good agreement.
-
-%TC:ignore
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+Snow on the ground is a skeleton of ice and air that evolves continuously under different environmental constraints. Among them, equi-temperature metamorphism (ETM) refers to the smoothing and rounding of the snow structure under the effect of curvature differences at the ice grain surface. It is one of the main mechanisms of snow evolution and its correct representation is crucial. Here, we use a mean curvature flow model, describing smoothing of 3D microstructures, to simulate ETM of snow. 3D micro-tomographic images of snow samples are used as input; the output is a time series of 3D images showing ETM evolution. The ETM rate is classically driven by the condensation coefficient. This parameter is however still poorly-constrained. We estimate it by fitting the model to experimental data of ETM at -2$^\circ$C. A value of 9.8 was found. Good agreement was reported when comparing the fitted model to an independent experimental time-series. Finally, we model ETM for four different snow microstructures. The simulated images are then used to predict structural properties and macro-scale transport properties evolution.
+Overall this work presents promising tools for snow metamorphism study and the development of predictive means for large scale snow model. 
 
 \section{Introduction}
 \label{sec:intro}
@@ -144,6 +131,7 @@ $\alpha$ & condensation coeffcient & $10^{-3}\ \mathrm{to}\ 10^{-1}$ & \cite{lib
 $\varepsilon$ & interface sharpness parameter & $3$ voxels & \cite{bretin_and_denis_discrete-continuous_2015} \\
 $t_{\mathrm{step}}$ & model time step & 0.5 to 8 & \\
 $n$ & number of model time steps & 4 to 11 &\\
+T & ETM temperature & -2$^\circ$C &\\
 \hline
 \end{tabular}
 \caption{Notations and numerical values of parameters}\label{tab:variables}
@@ -159,12 +147,12 @@ with $s$ the curvilinear  abscissa, $d$ the distance function from the interface
 % \begin{equation}\label{eq:allen-cahn}\frac{\partial u}{\partial t}(x, t)=\Delta u(x, t)-\frac{1}{\varepsilon^{2}} W^{\prime}(u)\end{equation}
 \begin{equation}\label{eq:allen-cahn}\frac{\partial \Tilde{u}}{\partial \Tilde{t}}(\Tilde{x}, \Tilde{t})=\Delta \Tilde{u}(\Tilde{x}, \Tilde{t})-\frac{1}{\Tilde{\varepsilon}^{2}} W^{\prime}(\Tilde{u})\end{equation}
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.7\linewidth]{Figures/disconnections_iso01_iso15.pdf}
-    \caption{Influence of the starting snow type on the disconnections. a) Fresh snow from \protect\cite{flin_three-dimensional_2004} series: initial state (left) and after 40 days of simulation (right) ; b) Sample that underwent 30 days of equi-temperature conditions: initial state (left) and after 40 days of simulation (right) }
-    \label{fig:disco}
-\end{figure}
+% \begin{figure}
+%     \centering
+%     \includegraphics[width=0.7\linewidth]{Figures/disconnections_iso01_iso15.pdf}
+%     \caption{Influence of the starting snow type on the disconnections. a) Fresh snow from \protect\cite{flin_three-dimensional_2004} series: initial state (left) and after 40 days of simulation (right) ; b) Sample that underwent 30 days of equi-temperature conditions: initial state (left) and after 40 days of simulation (right) }
+%     \label{fig:disco}
+% \end{figure}
 
 The equation \eqref{eq:allen-cahn} is the general form of the phase-field equation. In the model another term is added on the form of a Lagrangian multiplier to guarantee the volume conservation \cite<See>{bretin_phase-field_2019}.
 
@@ -173,7 +161,9 @@ The equation \eqref{eq:allen-cahn} is the general form of the phase-field equati
 The resulting software is called Snow-3D. The model takes as input a 3D binary image of snow microstructure, as illustrated in Figure \ref{fig:eboni_sous_volume}. The output is a series of simulated 3D binary images at different time steps of the simulation. The adjustable parameters are the time step $t_{\mathrm{step}}$, the number of time steps $n$ and the interface sharpness parameter $\varepsilon$. The different ranges used for those parameters in this work are given in Table \ref{tab:variables}. In Figure \ref{fig:eboni_sous_volume} the effect of the curvature-driven evolution is illustrated with ice sublimation on high curvature surfaces and water vapor deposition on low curvature surfaces.
 
 % ARTEFACTS
-Finally, corrections were necessary to limit some artefacts of the model. Periodic boundary conditions are applied on the images. It leads to errors in estimating curvature at the image boundaries resulting in very high curvatures. The edges of the simulated images were thus cut off of a certain width (0.6 mm) prior to further analysis. Also, as the model does not simulate gravity, simulations can lead to create ``floating" ice grains,  especially for snow in early stages of metamorphism that undergo significant settling \cite{schleef2014influence}. An example of grain disconnections is shown in Figure \ref{fig:disco}. To prevent this non-physical phenomenon, we restrict simulations to adequate snow microstructures and process the simulated images such as disconnected ice grains were suppressed. 
+Finally, corrections were necessary to limit some artefacts of the model. Periodic boundary conditions are applied on the images. It leads to errors in estimating curvature at the image boundaries resulting in very high curvatures. The edges of the simulated images were thus cut off of a certain width (0.6 mm) prior to further analysis. Also, as the model does not simulate gravity, simulations can lead to create ``floating" ice grains,  especially for snow in early stages of metamorphism that undergo significant settling \cite{schleef2014influence}. 
+% An example of grain disconnections is shown in Figure \ref{fig:disco}. 
+To prevent this non-physical phenomenon, we restrict simulations to adequate snow microstructures and process the simulated images such as disconnected ice grains were suppressed. 
 % As an example, we loose 6.10$^{-4}$ g of Grad3 sample (0.08 g) during the simulated 75 days of ETM with the SUPPRESSION of disconnected particles. 
 
 
@@ -260,7 +250,7 @@ To characterize our simulated and experimental microstructures, we calculated on
 \end{itemize}
 
 
-\noindent \textbf{Physical transport properties}$\quad$ The 3D tensor of the effective coefficient of diffusion  $\mathbf{D}$ (m$^2$ s$^{-1}$), of the effective thermal conductivity $\mathbf{k}$ and of the intrinsic permeability  $\mathbf{K}$ (m$^2$) were computed on a set of simulated 3D images. For each property, a specific boundary value problem, arising from a homogenization technique \cite{auriault2009homogenization, calonne2015macroscopic}, is solved on the images applying periodic boundary conditions on the external boundaries of each volume using the software Geodict \cite{thoemen_3d_2008}. The effective diffusion coefficient was computed with an artificial diffusion coefficient of gas in free air set to $D^{\mathrm{air}} =$ 1 m$^2$ s$^{-1}$. In this study, we present the normalized values of the effective diffusion $\mathbf{D} / D^{\mathrm{air}}$ (dimensionless). %These normalized values can be multiplied by the diffusion coefficient of the gas of interest in free air to get the physical, non-normalized values of effective diffusion coefficient of this gas in snow or firn (for example, the diffusion coefficient of vapor in free air, that is $2.036 \times 10^{-5}$ m$^2$ s$^{-1}$ at -10$^\circ$C \cite{massman_review_1998}, could be used to get the effective diffusion coefficient of vapor). 
+\noindent \textbf{Macroscale transport properties}$\quad$ The 3D tensor of the effective coefficient of diffusion  $\mathbf{D}$ (m$^2$ s$^{-1}$), of the effective thermal conductivity $\mathbf{k}$ and of the intrinsic permeability  $\mathbf{K}$ (m$^2$) were computed on a set of simulated 3D images. For each property, a specific boundary value problem, arising from a homogenization technique \cite{auriault2009homogenization, calonne2015macroscopic}, is solved on the images applying periodic boundary conditions on the external boundaries of each volume using the software Geodict \cite{thoemen_3d_2008}. The effective diffusion coefficient was computed with an artificial diffusion coefficient of gas in free air set to $D^{\mathrm{air}} =$ 1 m$^2$ s$^{-1}$. In this study, we present the normalized values of the effective diffusion $\mathbf{D} / D^{\mathrm{air}}$ (dimensionless). %These normalized values can be multiplied by the diffusion coefficient of the gas of interest in free air to get the physical, non-normalized values of effective diffusion coefficient of this gas in snow or firn (for example, the diffusion coefficient of vapor in free air, that is $2.036 \times 10^{-5}$ m$^2$ s$^{-1}$ at -10$^\circ$C \cite{massman_review_1998}, could be used to get the effective diffusion coefficient of vapor). 
 $\mathbf{K}$ is normalized by the equivalent sphere radius $r_{\mathrm{es}}=3/(\mathrm{SSA} \times \rho_{\mathrm{i}})$ to introduce a dimensionless tensor: $\mathbf{K}\mathrm{^{*}} = \mathbf{K}/r_{\mathrm{es}}^2$  \cite{calonne_3D_2012}.
 As the non-diagonal terms of the tensor $\mathbf{D}$, $\mathbf{k}$ and  $\mathbf{K}$ are negligible, we consider only the diagonal terms, i.e. seen as the eigenvalues of the tensors (the image axes $x$, $y$ and $z$ are the principal directions of the microstructure, $z$ being along the direction of gravity). Besides, the tensors are transversely isotropic as the components in $x$ are very similar to the ones in $y$.
 In the following, $D$, $k$ and $K$ refer to the averages of the diagonal terms of $\mathbf{D}$, $\mathbf{k}$ and $\mathbf{K}$, respectively. $D_z$, $k_z$ and $K_z$ refer to the vertical components and $D_{xy}$, $k_{xy}$ and $K_{xy}$ refer to the mean horizontal components where $D_{xy} = (D_{x} + D_{y}) /2$, $k_{xy} = (k_{x} + k_{y}) /2$ and $K_{xy} = (K_{x} + K_{y}) /2$. Finally, the anisotropy of the properties is characterized based on the anisotropy ratio $\mathcal{A}(D) = D_z / D_{xy}$, $\mathcal{A}(k) = k_z / k_{xy}$ and $\mathcal{A}(K) = K_z / K_{xy}$ \cite<e.g.>{calonne_study_2014}.
@@ -268,7 +258,7 @@ In the following, $D$, $k$ and $K$ refer to the averages of the diagonal terms o
 
 \section{Results}
 
-\subsection{Model evaluation against experimental data}
+\subsection{Model evaluation}
 \label{Section:Calibration}
 
 \begin{figure}
@@ -302,7 +292,7 @@ Overall good agreements are found for the mean curvature distribution (Fig. \ref
 \end{figure}
 
 
-\subsection{Model prediction: evolution of different snow microstructures during ETM}
+\subsection{Model prediction}
 \label{sec:prediction}
 
 After considering the calibration evaluation and validation, the model is used to predict equi-temperature metamorphism effects on different snow experimental images (Table \ref{tab:series_sim}). We selected 4 3D experimental images of snow showing various features and use them as initial image in the model. The samples are I17 (DF), which present an isotropic structure with rounded shapes, TG2 (FC/DH), Grad3 (DH), and 7G9m (DH). The 3 last images underwent various temperature gradient with an effect increasingly pronounced (see Table \ref{tab:series_sim}). The simulations were performed with isothermal conditions at a temperature T = -2$^\circ$C and $\alpha = 9.8\ 10^{-4}$. It led to 4 series of 4 to 11 images simulating from 70 days to 80 days of isothermal metamorphism. This time range enables to capture the important physical evolution while remaining realistic. In Figure \ref{fig:evolutions_3D}, we see the simulated series of our 4 samples, with a perspective view of three steps for each series, and vertical slices associated to those steps.\\
