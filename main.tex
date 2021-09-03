@@ -343,7 +343,7 @@ K_{\mathrm{Calonne\ 2012}}=(3.0 \pm 0.3)\ \exp \left(\left(-0.0130 \pm 0.0003\ri
 The Figure \ref{fig:Tplot} shows estimates of conductivity, effective coefficient of diffusion and permeability plotted as a function of the density for each image of our simulated series. To show the structural anisotropy of the samples, the tips and horizontal bars of the ``T" markers represent respectively the vertical and horizontal components. The arrows indicate the evolution direction of the simulated series in time. The relative change between the initial sample and the last step of the simulation $\tau$ is indicated in the legends for each property.
 % , calculated for the horizontal component ($\tau_{x y}$) and for the vertical component ($\tau_{z}$) are indicated in the legends for each property.\\
  
-When looking at Figure \ref{fig:Tplot}, the series show an evolution along the density axis, with a maximum of 10 kg m$^{-3}$ increase for the TG2 series and a minimum of 4 kg m$^{-3}$ for the Grad3 series. As the model is supposed to operate at constant density, this rather small density changes are an artefact caused by misestimations of curvature at the images edges. We suppose that the increase in density is distributed on the whole sample such that the arising images have a realistic microstructure (Sec. \ref{sec:disc}).
+When looking at Figure \ref{fig:Tplot}, the series show an evolution along the density axis, with a maximum of 10 kg m$^{-3}$ increase for the TG2 series and a minimum of 4 kg m$^{-3}$ for the Grad3 series. As the model is supposed to operate at constant density, this rather small density changes are an artefact. This artefact is visible because of the images resolution, too high in comparison with the small elements of the snow images, causing inaccurate loss or gain of ice voxels in the model. We suppose that the increase in density is however distributed on the whole sample such that the arising images have a realistic microstructure (Sec. \ref{sec:disc}).
 
 The temporal evolution of the different series in terms of the macroscale properties and of the density, represented by the arrows and by the relative changes $\tau$, mostly follow the reference parameterizations. This shows that the predicted ETM is in overall good agreement with the expected evolution of those macroscopic properties. 
 
@@ -354,8 +354,8 @@ For the thermal conductivity, the microstructure impact does not seem to be that
 
 \begin{figure}
     \centering
-    \includegraphics[width=\linewidth]{Figures/Tplot_tau_color.pdf}
-    \caption{Thermal conductivity, normalized vapor diffusion and normalized permeability as a function of density.}
+    \includegraphics[width=\linewidth]{Figures/tplot_all.pdf}
+    \caption{Effective thermal conductivity, normalized effective vapor diffusion and normalized permeability as a function of density.}
     \label{fig:Tplot}
 \end{figure}
 
@@ -369,10 +369,15 @@ This work provides a new simple curvature driven sublimation-deposition model re
 
 Having the results in mind, it is worth while discussing the models artefacts in some more details. 
 % density increase ------------
-For our 4 simulated series, we observed a moderate increase in density in Figure \ref{fig:Tplot} whereas the model does not simulate changes in density. This change is thus an artefact that contradicts mass conservation. A likely cause is the curvature misestimations close to the image edges induced by the non-fulfilment of the periodic conditions used for the calculation. From those errors, the sample ambient mean curvature $C^{\mathrm{amb}}$, which guarantee the mass conservation, is modified. Thus, the local $C$ converge towards a modified $C^{\mathrm{amb}}$ causing addition of ice voxels distributed on the whole sample structure. The maximum density increase is of 10 kg m$^{-3}$ for the TG2 series. It is however within the precision range of snow density measurement such as the box cutter that have a precision of 5\% \cite{proksch2016intercomparison}. Moreover, the settling process has an important role in ETM. For example in \citeA{flin_three-dimensional_2004} the density increases of 95 kg m$^{-3}$ in 80 days. Thus, the artefact is small in comparison with the measurement precision and the observed settling, and it enables to investigate snow density variation during the simulation.
-
+For our 4 simulated series, we observed a moderate increase in density in Figure \ref{fig:Tplot} whereas the model does not simulate changes in density. This change is thus an artefact that contradicts mass conservation. This artefact appears to be a resolution issue. In Figure \ref{fig:cubes}, we run the model on four different images: a cube surrounded by air with a size of 40$^3$ voxels ; the same cube with a size of 400$^3$ voxels ; the complement of the cube - a cube of air surrounded by ice - with a size of 40$^3$ voxels and the same image at 400$^3$ voxels. The idea is to test the simulated density evolution for different resolution and shapes, with an image presenting convex shapes (the cube) and with one presenting concave shapes (the cube complement). Those shapes have been created such as the ratio of the object length over the voxel size is similar to the one of the data of Figure \ref{fig:Tplot}. We see clearly in the graph that for a fine resolution, the density is stable in time, whereas for a coarser resolution, the density has an erratic progression, with loss and gain of about 40 kg m$^{-3}$. In our data, the maximum density increase is of 10 kg m$^{-3}$ for the TG2 series. It is however within the precision range of snow density measurement such as the box cutter that have a precision of 5\% \cite{proksch2016intercomparison}. Moreover, the settling process has an important role in ETM. For example in \citeA{flin_three-dimensional_2004} the density increases of 95 kg m$^{-3}$ in 80 days. Thus, the artefact is small in comparison with the measurement precision and the observed settling, and it enables to investigate the model on images with different snow densities.\\
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\linewidth]{Figures/cubes_compl_density_propre.pdf}
+    \caption{Influence of the image resolution on the modeled density evolution: example of a cube surrounded by air and its complementary image.}
+    \label{fig:cubes}
+\end{figure}
 % ---------------------------- 1ere itération
-In Figure \ref{fig:Tplot} we also see a gap between the first image of each series, which is the experimental one, and the simulated ones. This gap can be caused by the first step of the algorithm, which modify the image to conform it to the model constraints.
+In Figure \ref{fig:Tplot} we also see a gap between the first image of each series, which is the experimental one, and the simulated ones. This gap can be caused by the first step of the algorithm, which modify the image to conform it to the model constraints.\\
 % -----------------------------
 % Calibration et validation -------------
 Other points worth discussing are the calibration and validation. The condensation coefficient $\alpha$ has been approximated by an isotropic constant value. This hypothesis has however never been verified and $\alpha$ seems to have numerous dependencies. For example, \citeA{libbrecht2019snow} highlighted dependencies in temperature, supersaturation and crystalline orientation. He measured basal and prismatic $\alpha$ on growing snow crystal, with results between $10^{-3}$ and $10^{-1}$.
