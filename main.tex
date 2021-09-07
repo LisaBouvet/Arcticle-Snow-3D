@@ -87,11 +87,10 @@ The paper is organized as follows. The model and the tools used for snow analysi
 \end{figure}
 
 %PHASE FIELD ET MODELE NUMERIQUE
-%\color{blue}
-The phase-field model of \citeA{bretin_phase-field_2019} simulates a multi-phase medium evolving under mean curvature flow and volume conservation of each phase. This flow is defined by an interface evolution where the normal velocity $v_n$ is proportional to the local interface curvature C. The model minimizes local curvatures while keeping constant the average of the sample mean curvature. The morphological transformation induced by the mean curvature flow can be interpreted as ``smoothing" surfaces and seems suited to model ETM as similar features are encountered. 
+The phase-field model of \citeA{bretin_phase-field_2019} simulates a multi-phase medium evolving under mean curvature flow and volume conservation of each phase. This flow is defined by an interface evolution where the normal velocity $v_n$ is proportional to the local interface curvature C. The model minimizes local curvatures while conserving the average of the sample mean curvature (equivalent to mass conservation). The morphological transformations induced by the mean curvature flow can be interpreted as ``smoothing" surfaces and seems suited to model ETM as similar features are encountered. 
 
 % APPLICATION A LA NEIGE (EQUATIONS ETC)
-We apply the model of \citeA{bretin_phase-field_2019} to ETM. This implies that we assume the kinetic-limited metamorphism: interface growth velocity depends on the interface kinetic through a condensation coefficient but does not depend on the vapor transport in the pore space. The latter is considered instantaneous, so that vapor density in air is constant and at equilibrium with temperature and with the ambient sample mean curvature. Vapor transport processes in air (diffusion) is thus not described. Also, temperature is considered isotropic and constant. Finally, the model does not include any mechanics and the settling of the ice grains is thus not represented here.\\
+We apply the model of \citeA{bretin_phase-field_2019} to ETM. This implies that we assume the kinetic-limited metamorphism: vapor transport in the pore space (diffusion) is not described. The latter is considered instantaneous, so that vapor density in air is constant and at equilibrium with temperature and with the ambient sample mean curvature. Also, temperature is considered isotropic and constant. Finally, the model does not include any mechanics and the settling of the ice grains is thus not represented here.\\
 
 Under those conditions, ETM is classically described by the following set of equations \cite<e.g.>{flin_full_2003, kaempfer_phase-field_2009}:  \
 \begin{subequations}\label{eq:hertz_knu}
@@ -114,9 +113,9 @@ v_{\mathrm{kin}} &= \frac{\rho_{v s}^{\mathrm{ref}}}{\rho_i}\sqrt{\frac{k T}{2 \
 \end{align}
 \end{subequations}
 
-\noindent Equation \eqref{eq:hertz_knu} is the Hertz-Knudsen equation. The velocity normal on the interface and oriented toward the air $v_n$ is related to the difference between the ambient saturation vapor density in the pores $\rho_{vs}^{\mathrm{amb}}$ and the saturation vapor density at the interface $\rho_{vs}^{\Gamma}$.\\
+\noindent Equation \eqref{eq:hertz_knu} is the Hertz-Knudsen equation. The velocity normal on the interface and oriented toward the air $v_n$ is related to the difference between the ambient saturation vapor density in the pores $\rho_{vs}^{\mathrm{amb}}$ and the saturation vapor density at the interface $\rho_{vs}^{\Gamma}$. We see in this equation that the interface growth velocity - the ETM rate - depends linearly on the condensation coefficient $\alpha$.\\
 
-\noindent Equation \eqref{equ:gibbsa} and \eqref{equ:gibbsb} are the Gibbs-Thomson relation applied to the ambient saturated vapor density in the pores $\rho_{vs}^{\mathrm{amb}}$ in equilibrium with the whole sample mean curvature $C^{\mathrm{amb}}$ and applied to the interface saturated water density $\rho_{vs}^{\Gamma}$ at an interface of local curvature $C$. It describes dependencies between saturation vapor density and curvatures using the capillary length $d_0 = \lambda a^3/(k T)$ (m) \cite{kaempfer_phase-field_2009}.\\ 
+\noindent Equation \eqref{equ:gibbsa} is the Gibbs-Thomson relation applied to the ambient saturated vapor density in the pores $\rho_{vs}^{\mathrm{amb}}$ in equilibrium with the whole sample mean curvature $C^{\mathrm{amb}}$. Equation \eqref{equ:gibbsb} is also the Gibbs-Thomson relation, applied to the interface saturated water density $\rho_{vs}^{\Gamma}$ at an interface of local curvature $C$. It describes dependencies between saturation vapor density and curvatures using the capillary length $d_0 = \lambda a^3/(k T)$ (m) \cite{kaempfer_phase-field_2009}.\\ 
   
  \noindent $\rho_{vs}^\mathrm{ref}$ is the saturation vapor density in air above a flat surface. It has been largely studied, and can be determined as a function of the temperature using one of the existing parameterizations. We use the formulation of \citeA{gofflow} which is appropriated for our range of temperature and can be found in \citeA{murphy2005review}. All the variables are presented in Table \ref{tab:variables}.
 
@@ -127,17 +126,17 @@ v_{\mathrm{kin}} &= \frac{\rho_{v s}^{\mathrm{ref}}}{\rho_i}\sqrt{\frac{k T}{2 \
 \hline$a$ & mean intermolecular spacing in ice & $3.19 \times 10^{-10}\ \mathrm{m}$ & \cite{petrenko1999physics} \\
 $k$ & Boltzmann's constant & $1.38 \times 10^{-23}\ \mathrm{J\ K}^{-1}$ & \\
 $m$ & mass of a water molecule & $2.99 \times 10^{-26}\ \mathrm{kg}$ & \cite{petrenko1999physics} \\
-$\rho_i$ & density of ice & $917\ \mathrm{kg}\ \mathrm{m}^{-3}$& \\
-$\lambda$ & interfacial free energy of ice & $1.09 \times 10^{-1}\ \mathrm{J}\ \mathrm{m}^{-2}$ & \cite{libbrecht1999} \\
 $\alpha$ & condensation coeffcient & $10^{-3}\ \mathrm{to}\ 10^{-1}$ & \cite{libbrecht1999} \\
+$\lambda$ & interfacial free energy of ice & $1.09 \times 10^{-1}\ \mathrm{J}\ \mathrm{m}^{-2}$ & \cite{libbrecht1999} \\
+$\rho_i$ & density of ice & $917\ \mathrm{kg}\ \mathrm{m}^{-3}$& \\
 \hline
-$\varepsilon$ & interface sharpness parameter & $3$ voxels & \cite{bretin_and_denis_discrete-continuous_2015} \\
-$t_{\mathrm{step}}$ & model time step & 0.5 to 8 & \\
-$n$ & number of model time steps & 4 to 11 &\\
 T & ETM temperature & -2$^\circ$C &\\
+$n$ & number of model time steps & 4 to 11 &\\
+$t_{\mathrm{step}}$ & model time step & 0.5 to 8 & \\
+$\varepsilon$ & interface sharpness parameter & $3$ voxels & \cite{bretin_and_denis_discrete-continuous_2015} \\
 \hline
 \end{tabular}
-\caption{Notations and numerical values of parameters (above) and constants used for the phase-field computations (below).}\label{tab:variables}
+\caption{Notations and numerical values of physical parameters (above) and constants used in the model (below).}\label{tab:variables}
 \end{table}
 
 
@@ -146,7 +145,7 @@ The mean curvature flow model of \citeA{bretin_phase-field_2019} is solved with 
 \noindent with $x$ the position, $t$ the time and $u$ the phase function defined as: \begin{equation}\label{eq:phase-func}
 u(x,t) := \frac{1}{2}\left(1-\tanh\left(\frac{s}{2}\right)\right)\frac{d(x,t)}{\varepsilon}
 \end{equation}
-with $s$ the curvilinear  abscissa, $d$ the distance function from the interface $\Gamma$, $\varepsilon$ the interface sharpness parameter, and $W$ a double-well potential $W(s):=\frac{1}{2} s^{2}(1-s)^{2}$. The distance function is linked to the surface local curvature C by $\Delta d(x) = C$ and to the interface normal speed $v_n$ by $\partial_t d (x,t) = - v_n$. By substituting the physical variables to non-dimensional variables such as: $\Tilde{t} = t \alpha v_{\mathrm{kin}} d_0 / d_x^2 $, $\Tilde{x} = x/d_x$ and $\Tilde{\varepsilon} = \varepsilon/d_x$ with $d_x$ (m) the input image resolution, the canonical dimensionless form of equation \ref{eq:phase-field} is the famous Allen-Cahn equation \cite{bretin_and_denis_discrete-continuous_2015, kaempfer_phase-field_2009}:
+with $s$ the curvilinear  abscissa, $d$ the distance function from the interface $\Gamma$, $\varepsilon$ the interface sharpness parameter, and $W$ a double-well potential $W(s):= s^{2}(1-s)^{2}/2$. The distance function is linked to the surface local curvature $C$ by $\Delta d(x) = C$ and to the interface normal speed $v_n$ by $\partial_t d (x,t) = - v_n$. By substituting the physical variables to non-dimensional variables such as: $\Tilde{t} = t \alpha v_{\mathrm{kin}} d_0 / d_x^2 $, $\Tilde{x} = x/d_x$ and $\Tilde{\varepsilon} = \varepsilon/d_x$ with $d_x$ (m) the input image resolution, the canonical dimensionless form of equation \ref{eq:phase-field} is the famous Allen-Cahn equation \cite{kaempfer_phase-field_2009, bretin_and_denis_discrete-continuous_2015}:
 % \begin{equation}\label{eq:allen-cahn}\frac{\partial u}{\partial t}(x, t)=\Delta u(x, t)-\frac{1}{\varepsilon^{2}} W^{\prime}(u)\end{equation}
 \begin{equation}\label{eq:allen-cahn}\frac{\partial \Tilde{u}}{\partial \Tilde{t}}(\Tilde{x}, \Tilde{t})=\Delta \Tilde{u}(\Tilde{x}, \Tilde{t})-\frac{1}{\Tilde{\varepsilon}^{2}} W^{\prime}(\Tilde{u})\end{equation}
 
@@ -161,14 +160,12 @@ The equation \eqref{eq:allen-cahn} is the general form of the phase-field equati
 
 
 
-The resulting software is called Snow-3D. The model takes as input a 3D binary image of snow microstructure, as illustrated in Figure \ref{fig:eboni_sous_volume}. The output is a series of simulated 3D binary images at different time steps of the simulation. The adjustable parameters are the time step $t_{\mathrm{step}}$, the number of time steps $n$ and the interface sharpness parameter $\varepsilon$. The different ranges used for those parameters in this work are given in Table \ref{tab:variables}. In Figure \ref{fig:eboni_sous_volume} the effect of the curvature-driven evolution is illustrated with ice sublimation on high curvature surfaces and water vapor deposition on low curvature surfaces.
+The resulting phase-field software is called Snow-3D. The model takes as input a 3D binary image of snow microstructure that can be derived from a snow tomography, as illustrated in Figure \ref{fig:eboni_sous_volume}. The output is a series of 3D binary images at different time steps of the simulation. The adjustable parameters are the time step $t_{\mathrm{step}}$, the number of time steps $n$ and the interface sharpness parameter $\varepsilon$. The different ranges used for those parameters in this work are given in Table \ref{tab:variables}. In Figure \ref{fig:eboni_sous_volume} the effect of the curvature-driven evolution is illustrated with ice sublimation on high curvature surfaces and water vapor deposition on low curvature surfaces.
 
 % ARTEFACTS
 Finally, corrections were necessary to limit some artefacts of the model. Periodic boundary conditions are applied on the images. It leads to errors in estimating curvature at the image boundaries resulting in very high curvatures. The edges of the simulated images were thus cut off of a certain width (0.6 mm) prior to further analysis. Also, as the model does not simulate gravity, simulations can lead to create ``floating" ice grains,  especially for snow in early stages of metamorphism that undergo significant settling \cite{schleef2014influence}. 
 % An example of grain disconnections is shown in Figure \ref{fig:disco}. 
-To prevent this non-physical phenomenon, we restrict input simulation to adequate snow microstructures and suppress disconnected ice grains.
-% As an example, we loose 6.10$^{-4}$ g of Grad3 sample (0.08 g) during the simulated 75 days of ETM with the SUPPRESSION of disconnected particles. 
-
+To prevent this non-physical phenomenon, we restrict input images to adequate snow microstructures and suppress disconnected ice grains.
 
 
 \subsection{Calibration} 
