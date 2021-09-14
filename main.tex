@@ -25,9 +25,9 @@
 
 \begin{document}
 
-%TC:ignore
-\title{Snow equi-temperature metamorphism on 3-D micro-tomography images using a phase-field model: prediction of microstructural and physical properties}
-\textit{Application of a phase-field model on micro-scale snow equi-temperature metamorphism: prediction of microstructural and physical properties}
+
+\title{Snow equi-temperature metamorphism using a phase-field model applicable on micro-tomography images: prediction of microstructural and transport properties}
+% \textit{Application of a phase-field model on micro-scale snow equi-temperature metamorphism: prediction of microstructural and physical properties}
 
 
 \authors{L. Bouvet\affil{1,2}, N. Calonne\affil{1}, F. Flin\affil{1}, and C. Geindreau\affil{2}}
@@ -40,7 +40,7 @@
 \begin{keypoints}
 \item A phase-field model of mean curvature flow is applied on the process of sublimation-deposition describing equi-temperature metamorphism.
 \item The model is calibrated through the condensation coefficient parameter by fitting experimental and simulated data at -2$^\circ$C.
-\item Equi-temperature metamorphism is predicted on different snow microstructures. Microstructural and physical properties are analyzed.
+\item Equi-temperature metamorphism is predicted on different snow microstructures; morphological and transport properties are analyzed.
 \end{keypoints}
 
 
@@ -71,7 +71,7 @@ Modeling the physics of snow growth classically relies on a condensation paramet
 To evaluate 3-D models, simulated images are compared to experimental data through microstructural properties that can be calculated on 3-D microstructures. Specific surface area (SSA), growth speed, ice thickness and mean curvature were used in previous studies \cite{flin_full_2003, vetter_simulating_2010}. In \citeA{kaempfer_phase-field_2009}, the model results are compared to a 1D pseudo-analytical case using the growth speed variable. Another way of evaluation, not explored yet, could be based on macro-scale properties, which can also be calculated on simulated 3-D images \cite<e.g.,>{calonne_numerical_2011, calonne_study_2014, courville2010lattice, kaempfer2005microstructural, srivastava2010observation}. It would enable comparison with well established regressions and models from literature.\\
 %
 % In this article, we apply the phase-field model of \citeA{bretin_phase-field_2019} on the curvature-driven snow equi-temperature metamorphism usable on $\upmu$CT images. We calibrated the model by deriving a single value of the condensation coefficient using an experimental equi-temperature series. This calibration has been evaluated on an independent ETM series. The model has been used to predict ETM on a representative range of 3-D microstructures. Those results are shown along with microstructural properties and transport properties, which are analyzed and compared to current models and parameterizations. 
-The paper is organized as follows. The model and the tools used for snow analysis are shown along with the model calibration in section \ref{sec:method}. Evaluation of the calibrated model and ETM prediction for different snow microstructures are investigated in section \ref{sec:results}. Section \ref{sec:disc} discuss in details the model artefacts and the different results of the paper. Finally, section \ref{sec:conclusion} concludes the manuscript with a summary. 
+The paper is organized as follows. The model and the tools used for snow analysis are shown along with the model calibration in section \ref{sec:method}. Evaluation of the calibrated model and ETM prediction for different snow microstructures are investigated in section \ref{sec:results}. Section \ref{sec:disc} discuss in details the model artefacts and the different results of the paper. Finally, section \ref{sec:conclusion} concludes the manuscript. 
 
 \section{Method}
 \label{sec:method}
@@ -123,17 +123,17 @@ v_{\mathrm{kin}} &= \frac{\rho_{v s}^{\mathrm{ref}}}{\rho_i}\sqrt{\frac{k T}{2 \
 \centering
 \begin{tabular}{|c|c|c|c|}
 \hline \multicolumn{1}{|c} {Symbol} & \multicolumn{1}{|c} { Description } & \multicolumn{1}{|c} { Value, unit } &  \multicolumn{1}{|c|} {Reference} \\
-\hline$a$ & mean intermolecular spacing in ice & $3.19 \times 10^{-10}\ \mathrm{m}$ & \cite{petrenko1999physics} \\
+\hline$a$ & mean intermolecular spacing in ice & $3.19 \times 10^{-10}\ \mathrm{m}$ & \citeA{petrenko1999physics}\\
 $k$ & Boltzmann's constant & $1.38 \times 10^{-23}\ \mathrm{J\ K}^{-1}$ & \\
-$m$ & mass of a water molecule & $2.99 \times 10^{-26}\ \mathrm{kg}$ & \cite{petrenko1999physics} \\
-$\alpha$ & condensation coeffcient & $10^{-3}\ \mathrm{to}\ 10^{-1}$ & \cite{libbrecht2005physics} \\
-$\lambda$ & interfacial free energy of ice & $1.09 \times 10^{-1}\ \mathrm{J}\ \mathrm{m}^{-2}$ & \cite{libbrecht2005physics} \\
+$m$ & mass of a water molecule & $2.99 \times 10^{-26}\ \mathrm{kg}$ & \citeA{petrenko1999physics}\\
+$\alpha$ & condensation coeffcient & $10^{-3}\ \mathrm{to}\ 10^{-1}$ & \citeA{libbrecht2005physics}\\
+$\lambda$ & interfacial free energy of ice & $1.09 \times 10^{-1}\ \mathrm{J}\ \mathrm{m}^{-2}$ & \citeA{libbrecht2005physics}\\
 $\rho_i$ & density of ice & $917\ \mathrm{kg}\ \mathrm{m}^{-3}$& \\
 \hline
 T & ETM temperature & -2$^\circ$C &\\
 $n$ & number of model time steps & 4 to 11 &\\
 $t_{\mathrm{step}}$ & model time step & 0.5 to 8 & \\
-$\varepsilon$ & interface sharpness parameter & $3$ voxels & \cite{bretin_and_denis_discrete-continuous_2015} \\
+$\varepsilon$ & interface sharpness parameter & $3$ voxels & \citeA{bretin_and_denis_discrete-continuous_2015}\\
 \hline
 \end{tabular}
 \caption{Notations and numerical values of physical parameters (above) and constants used in the model (below).}\label{tab:variables}
@@ -207,7 +207,7 @@ The calibration process is schematized in 5 steps in Figure \ref{fig:workflow}. 
     \caption{Workflow of the time calibration approach}
     \label{fig:workflow}
 \end{figure}
-We apply those steps to the image Iso05 (day 5), Iso08 (day 12), Iso11 (day18) and Iso15 (day 33). The last three images of the experimental series (Iso19, Iso21, and Iso23) are not used as they are close in time to the end of the experiment, which prevent a precise estimation of $\alpha$. We remove on each side of the simulated image a layer with a thickness equal to the size of two heterogeneities (0.6 mm) before the SSA calculation to avoid edge artefacts while keeping volumes larger than the SSA REV. The average and the standard deviation are calculated on the 4 resulting $\alpha$ coefficients. The resulting condensation coefficient is $\alpha = ( 9.8 \pm 0.7) 10^{-4}$. As the temperature condition of \citeA{flin_three-dimensional_2004} is -2$^\circ$C, the calibrated model can only be used to simulate ETM at -2$^\circ$C. To see the influence of $\alpha$ in the microstructural parameters, we calculate the variation of the microstructural parameters (SSA, covariance length, mean curvature) as a function of $\alpha$ variation. In the range of the $\alpha$ derived from the different samples, the parameters only have a maximum alteration of 5\%, which is small compared to the physical precision of those parameters. 
+We apply those steps to the image Iso05 (day 5), Iso08 (day 12), Iso11 (day18) and Iso15 (day 33). The last three images of the experimental series (Iso19, Iso21, and Iso23) are not used as they are close in time to the end of the experiment, which prevent a precise estimation of $\alpha$. We remove on each side of the simulated image a layer with a thickness equal to the size of two heterogeneities (0.6 mm) before the SSA calculation to avoid edge artefacts while keeping volumes larger than the SSA elementary representative volume (REV). The average and the standard deviation are calculated on the 4 resulting $\alpha$ coefficients. The resulting condensation coefficient is $\alpha = ( 9.8 \pm 0.7) 10^{-4}$. As the temperature condition of \citeA{flin_three-dimensional_2004} is -2$^\circ$C, the calibrated model can only be used to simulate ETM at -2$^\circ$C. To see the influence of $\alpha$ in the microstructural parameters, we calculate the variation of the microstructural parameters (SSA, covariance length, mean curvature) as a function of $\alpha$ variation. In the range of the $\alpha$ derived from the different samples, the parameters only have a maximum alteration of 5\%, which is small compared to the physical precision of those parameters. 
 
 \subsection{Computation of snow properties}
 \label{subsec:methode_physical_appli}
@@ -294,6 +294,9 @@ Overall good agreements are found for the mean curvature distribution (Fig. \ref
 
 After considering the calibration evaluation, the model is used to predict equi-temperature metamorphism effects on different snow experimental images (Table \ref{tab:series_sim}). We selected four 3-D experimental images of snow showing various features and use them as input image in the model. The samples are I17 (DF), which present an isotropic structure with rounded shapes, TG2 (FC/DH), Grad3 (DH), and 7G9m (DH). The 3 last images underwent various temperature gradient with an effect increasingly pronounced (see Table \ref{tab:series_sim}). The simulations were performed with isothermal conditions at a temperature T = -2$^\circ$C and $\alpha = 9.8\ 10^{-4}$. It led to 4 series of 4 to 11 images simulating from 70 days to 80 days of ETM. This time range enables to capture the important physical evolution while keeping realistic microstructures. In Figure \ref{fig:evolutions_3D}, we see the simulated series of our 4 samples, with a perspective view of three steps for each series, and vertical slices associated to those steps.\\
 
+
+
+\subsubsection{Microstructural parameters}
 \begin{figure}
     \centering
     \includegraphics[width =\linewidth]{Figures/evolution_3D_new_textepetit_courr.pdf}
@@ -301,7 +304,7 @@ After considering the calibration evaluation, the model is used to predict equi-
     \label{fig:evolutions_3D}
 \end{figure}
 
-\subsubsection{Microstructural parameters}
+In Figure \ref{fig:histo_i17_grad3}, we see the mean curvature distribution evolution for I17 (DF) and Grad3 (DH) samples (Sec. \ref{subsec:methode_physical_appli}). For I17 simulated evolution (Figure \ref{fig:histo_i17_grad3}.a), the initial upward and downward distributions are similar with a peak of mean curvature located around 4 mm$^{-1}$ and an occurrence ratio of 5 \%. It shows that this sample was initially isotropic. With time, the area-averaged mean curvature decreases gradually, and the distributions are narrowing as the ice structure tends to become larger and more uniform.\\
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{Figures/histo_i17_grad3_copie_invert.pdf}
@@ -309,12 +312,11 @@ After considering the calibration evaluation, the model is used to predict equi-
     \label{fig:histo_i17_grad3}
 \end{figure}
 
-In Figure \ref{fig:histo_i17_grad3}, we see the mean curvature distribution evolution for I17 (DF) and Grad3 (DH) samples (Sec. \ref{subsec:methode_physical_appli}). For I17 simulated evolution (Figure \ref{fig:histo_i17_grad3}.a), the initial upward and downward distributions are similar with a peak of mean curvature located around 4 mm$^{-1}$ and an occurrence ratio of 5 \%. It shows that this sample was initially isotropic. With time, the area-averaged mean curvature decreases gradually, and the distributions are narrowing as the ice structure tends to become larger and more uniform.\\
 For Grad3 evolution (Figure \ref{fig:histo_i17_grad3}.b), the initial upward and downward distributions are wider than for I17 initial sample. It can be explained by the large variety of shapes encountered in Grad3 and not in I17 that already presents homogeneous rounded shapes. For Grad3, the initial upward and downward surfaces exhibit clearly distinct distributions: the peak of mean curvature is located around 0 mm$^{-1}$ for the downward ones, and at 1.5 mm$^{-1}$ for the upward ones. The near 0 downward distribution depicts the plane surfaces that are typically found downward a depth hoar structure, unlike the upward outlook that presents more rounded shapes. With time, the area-averaged mean curvature stays very low but the distributions are narrowing (approx. 7 \% occurrence ratio), showing the same trend as I17.\\
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\linewidth]{Figures/4images_microstruct.pdf}
+    \includegraphics[width=0.75\linewidth]{Figures/4images_microstruct.pdf}
     \caption{Microstructural parameters of the simulated series.}
     \label{fig:4_images_microstruct}
 \end{figure}
@@ -325,7 +327,15 @@ The covariance length evolution shows the characteristic increase of the ETM, re
 
 \subsubsection{Macro-scale transport properties}
 
-In this section we present 3-D estimates of macroscopic transport properties (Sec. \ref{subsec:methode_physical_appli}) calculated on the simulated series predicting ETM on 4 different microstructures (Sec. \ref{sec:prediction}). The estimations are displayed along with isotropic models based on simplified microstructures (effective coefficient of diffusion \textbf{D}) and current regressions (effective thermal conductivity \textbf{k} and permeability \textbf{K}). For the conductivity we use the regression of \citeA{calonne_numerical_2011} obtained using images of snow spanning a wide range of seasonal snow types. The self-consistent estimate of diffusion for spherical inclusions $D_{\mathrm{SC}}$ from \citeA{calonne_macroscopic_2014} is shown for the coefficient of diffusion, and the regression from \citeA{calonne_3D_2012} is used for the permeability: \\
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{Figures/4images_transport_temps_court.pdf}
+    \caption{Evolution of the macro-scale transport properties for I17 and Grad3 simulated series.}
+    \label{fig:transport_temps}
+\end{figure}
+
+In this section we present 3-D estimates of macroscopic transport properties (Sec. \ref{subsec:methode_physical_appli}) calculated on the simulated series predicting ETM on 4 different microstructures (Sec. \ref{sec:prediction}). Figure \ref{fig:transport_temps} presents the evolution of the transport properties for the samples I17 and Grad3. Wee see that the two samples evolve on different ranges on those properties, and that Grad3 seems to have a significant anisotropy compared to I17.
+In Figure \ref{fig:Tplot}, the estimations are displayed along with isotropic models based on simplified microstructures (effective coefficient of diffusion \textbf{D}) and current regressions (effective thermal conductivity \textbf{k} and permeability \textbf{K}). For the conductivity we use the regression of \citeA{calonne_numerical_2011} obtained using images of snow spanning a wide range of seasonal snow types. The self-consistent estimate of diffusion for spherical inclusions $D_{\mathrm{SC}}$ from \citeA{calonne_macroscopic_2014} is shown for the coefficient of diffusion, and the regression from \citeA{calonne_3D_2012} is used for the permeability: \\
 \begin{subequations}
 \begin{align}
 k_{\mathrm{Calonne\ 2011}}=2.5 \times 10^{-6} \rho_{\mathrm{s}}^{2}-1.23 \times 10^{-4} \rho_{\mathrm{s}}+0.024\end{align}
@@ -391,7 +401,7 @@ The application of \citeA{bretin_phase-field_2019} model to snow ETM described b
 
 \acknowledgments
 The 3SR lab is part of the Labex Tec 21 (investissements d'Avenir, Grand Agreement ANR-11-LABX-0030). CNRM/CEN is part of Labex OSUG@2020 (Investissements d'Avenir, Grand ANR-10-LABX-0056).
-%TC:endignore
+
 \bibliography{Snow3D}
 
 
