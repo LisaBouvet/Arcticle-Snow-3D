@@ -29,7 +29,7 @@
 \title{Snow equi-temperature metamorphism using a phase-field model applicable on micro-tomography images: prediction of microstructural and transport properties}
 % \textit{Application of a phase-field model on micro-scale snow equi-temperature metamorphism: prediction of microstructural and physical properties}
 
-
+%TC:ignore
 \authors{L. Bouvet\affil{1,2}, N. Calonne\affil{1}, F. Flin\affil{1}, and C. Geindreau\affil{2}}
 
 \affiliation{1}{Univ. Grenoble Alpes, Université de Toulouse, Météo-France, CNRS, CNRM, Centre d’Études de la Neige, 38000 Grenoble, France}
@@ -45,9 +45,9 @@
 
 
 \begin{abstract}
-
+%TC:endignore
 Representing snow equi-temperature metamorphism (ETM) is key to model the evolution and properties of the snow cover. Recently, a phase-field model describing the mean curvature flow on 3-D microstructures was proposed \cite{bretin_phase-field_2019}. In the present work, this model is used to simulate ETM at the pore scale, considering the only process of moving interfaces by sublimation-deposition driven by curvatures. We take 3-D micro-tomographic images of snow as input in the model and obtain a time series of simulated microstructures as output. Relating the numerical time, as defined in the model, to the real, physical time involves the condensation coefficient, a poorly-constrained parameter. A calibration step was thus done;  we fit simulated microstructures to experimental ones, matching the evolution of the specific surface area (SSA) during ETM at  -2°C.  A value of $(9.8\pm0.7)10^{-4}$ is obtained and used in all the following simulations. The calibrated model enables to well reproduce an independent time series of ETM at -2°C in terms of SSA, covariance length, and mean curvature distribution. Finally, we use the calibrated model to investigate the effect of ETM on four different snow microstructures. As an interesting preliminary result, we observe an enhancement of the structural anisotropy in the case of initially anisotropic microstructures. Also, the potential of such model to provide predictions of effective properties of snow under ETM is illustrated. The evolution of the transport properties (thermal conductivity, vapor diffusion, permeability) is presented and follows current parameterizations.
-
+%TC:ignore
 \end{abstract}
 
 \section*{Plain Language Summary}
@@ -316,7 +316,7 @@ For Grad3 evolution (Figure \ref{fig:histo_i17_grad3}.b), the initial upward and
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\linewidth]{Figures/4images_microstruct.pdf}
+    \includegraphics[width=\linewidth]{Figures/4images_microstruct_new.pdf}
     \caption{Microstructural parameters of the simulated series.}
     \label{fig:4_images_microstruct}
 \end{figure}
@@ -404,7 +404,7 @@ The 3SR lab is part of the Labex Tec 21 (investissements d'Avenir, Grand Agreeme
 
 \bibliography{Snow3D}
 
-
+%TC:endignore
 
 
 \end{document}
