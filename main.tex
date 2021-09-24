@@ -171,17 +171,24 @@ To prevent this non-physical phenomenon, we restrict input images to adequate sn
 \label{subsec:calib}
 
 \begin{table}
-\caption{\textit{Experimental ETM series used to calibrate and evaluate the model. The density corresponds to the initial density of the used part of each series. The snow types separated by an arrow present the initial and final type of the series.}}
+\caption{\textit{Above: Experimental ETM series used to calibrate and evaluate the model. The density corresponds to the initial density of the used part of each series. The snow types separated by an arrow present the initial and final type of the series. Below: Experimental images used as prediction to simulate ETM.}}
 \begin{tabular}{|c|c|c|c|c|c|}
-\hline Name & ETM stage & Resolution & Dimension & Density & Snow types \\
+\hline Name & Metamorphism stage & Resolution & Dimension & Density & Snow types \\
  &  & ($\upmu$m) &(voxel) & (kg m$^{-3}$) &  \\
 \hline 
 Iso$^\mathrm{a}$ & $84\ \mathrm{days}$, T = $-2^{\circ} \mathrm{C}$ & 4.9 & 512 & 158 & \small{$\mathrm{PP} \rightarrow \mathrm{RG}$}\\
 Eboni$^\mathrm{b}$ & 4 days, $\mathrm{T}=-2^{\circ} \mathrm{C}$ & 7.5 & 450 & 212 & \small{$\mathrm{DF/RG}$}\\
 \hline
+\hline 
+I17$^\mathrm{c}$ & Recent snow & 7.3 & 700 & 147 & \small{$\mathrm{DF}$} \\
+TG2$^\mathrm{c}$ & 16 days, $\mathrm{TG}=19\ \mathrm{K}\ \mathrm{m}^{-1}, \mathrm{T}=-5^{\circ} \mathrm{C}$ & 7 & 700 & 254 & \small{$\mathrm{FC} / \mathrm{DH}$} \\
+Grad3$^\mathrm{d}$ & 8 days, $\mathrm{TG}=100\ \mathrm{K}\ \mathrm{m}^{-1}, \mathrm{T}=-5^{\circ} \mathrm{C}$ & 10 & 600 & 372 & \small{$\mathrm{DH}$} \\
+7G9m$^\mathrm{e}$ & 21 days, $\mathrm{TG}=43\ \mathrm{K}\ \mathrm{m}^{-1}, \mathrm{T}=-4^{\circ} \mathrm{C}$ & 9.7 & 950 & 314 & \small{$\mathrm{DH}$} \\
+\hline
 \end{tabular}
-\label{tab:series_exp}\\
+\label{tab:series}
 $^\mathrm{a}$\protect\citeA{flin_three-dimensional_2004}. $^\mathrm{b}$\protect\citeA{hagenmuller_motion_2019}.
+$^\mathrm{c}$\protect\citeA{dumont2021experimental}.  $^\mathrm{d}$\protect\citeA{flin2011computations}. $^\mathrm{e}$\protect\citeA{calonne_study_2014}.
 \end{table}
 
 
@@ -211,23 +218,6 @@ We apply those steps to the image Iso05 (day 5), Iso08 (day 12), Iso11 (day18) a
 
 \subsection{Computation of snow properties}
 \label{subsec:methode_physical_appli}
-
-\begin{table}
-%\hspace*{-3cm}
-\caption{\textit{Experimental images used as prediction to simulate ETM.}}
-\begin{tabular}{|c|c|c|c|c|c|}
-\hline Name & Metamorphism stage & Resolution & Dimension & Density & Snow types \\
- &  & ($\upmu$m) &(voxel) & (kg m$^{-3}$) &  \\
-\hline 
-I17$^\mathrm{a}$ & Recent snow & 7.3 & 700 & 147 & \small{$\mathrm{DF}$} \\
-TG2$^\mathrm{a}$ & 16 days, $\mathrm{TG}=19\ \mathrm{K}\ \mathrm{m}^{-1}, \mathrm{T}=-5^{\circ} \mathrm{C}$ & 7 & 700 & 254 & \small{$\mathrm{FC} / \mathrm{DH}$} \\
-Grad3$^\mathrm{b}$ & 8 days, $\mathrm{TG}=100\ \mathrm{K}\ \mathrm{m}^{-1}, \mathrm{T}=-5^{\circ} \mathrm{C}$ & 10 & 600 & 372 & \small{$\mathrm{DH}$} \\
-7G9m$^\mathrm{c}$ & 21 days, $\mathrm{TG}=43\ \mathrm{K}\ \mathrm{m}^{-1}, \mathrm{T}=-4^{\circ} \mathrm{C}$ & 9.7 & 950 & 314 & \small{$\mathrm{DH}$} \\
-\hline
-\end{tabular}
-\label{tab:series_sim}
-$^\mathrm{a}$\protect\citeA{dumont2021experimental}.  $^\mathrm{b}$\protect\citeA{flin2011computations}. $^\mathrm{c}$\protect\citeA{calonne_study_2014}.
-\end{table}
 
 
 
