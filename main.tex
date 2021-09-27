@@ -26,7 +26,7 @@
 \begin{document}
 
 
-\title{Snow equi-temperature metamorphism using a phase-field model applicable on micro-tomography images: prediction of microstructural and transport properties}
+\title{Snow equi-temperature metamorphism described by a phase-field model applicable on micro-tomography images: prediction of microstructural and transport properties}
 % \textit{Application of a phase-field model on micro-scale snow equi-temperature metamorphism: prediction of microstructural and physical properties}
 
 
@@ -66,12 +66,12 @@ Recently, phase-field models have been developed to handle the numerical cost an
 \citeA{bretin_phase-field_2019} developed a very efficient phase-field multi-phase growth model for curvature-driven interface evolution, which is typically relevant for ETM.\\
 Modeling the physics of snow growth classically relies on a condensation parameter $\alpha$ \cite<e.g.,>{ flin_full_2003, kaempfer_phase-field_2009, libbrecht2005physics, yokoyama1990pattern}. This parameter embodies the surface physics that governs how water molecules are incorporated into the ice lattice and is thus key to model metamorphism. The $\alpha$ coefficient ranges from 0 to 1. One can think of $\alpha$ as a sticking probability, equal to the probability that a water vapor molecule striking the ice surface becomes assimilated into the crystal lattice \cite{furukawa2015snow, libbrecht2005physics}. However, it is still poorly understood and quantified, notably because of its complex dependencies to temperature, humidity and crystalline orientation. Numerous values can be found in the literature, ranging from 10$^{-3}$ to 10$^{-1}$ \cite<e.g.,>{libbrecht_measurements_2013}. The large uncertainty on this coefficient is one of the main limiting factor for metamorphism models accuracy.\\
 %
-To evaluate 3-D models, simulated images are usually compared to experimental data through microstructural properties that can be calculated on 3-D microstructures. Specific surface area (SSA), growth speed, ice thickness and mean curvature were used in previous studies \cite{flin_full_2003, kaempfer_phase-field_2009, vetter_simulating_2010}. To characterize the anisotropy of the microstructure, an anisotropy ratio was suggested based on the ratio of the horizontal and vertical covariance lengths \cite{lowe2013general}. Distributions of the mean curvature can be computed for the upward looking and downward looking ice surfaces, which can be interesting to identify faceted crystals and depth hoar \cite{calonne_study_2014}.\\
+To evaluate 3-D models, simulated images are usually compared to experimental data through microstructural properties that can be calculated on 3-D microstructures. Specific surface area (SSA), growth speed, ice thickness and mean curvature were used in previous studies \cite{flin_full_2003, kaempfer_phase-field_2009, vetter_simulating_2010}. To characterize the anisotropy of the microstructure, an anisotropy ratio was suggested based on the ratio of the horizontal and vertical covariance lengths \cite{lowe2013general}. Distributions of the mean curvature can be computed for the upward facing and downward facing ice surfaces, which can be interesting to identify faceted crystals and depth hoar \cite{calonne_study_2014}.\\
 
-Micro-scale models can be useful for modeling at larger scale, notably to obtain regressions to predict macro-scale mechanical and physical properties. Estimating those properties is often based on numerical computations of experimental tomographic snow images \cite<e.g.,>{calonne_numerical_2011, calonne_study_2014, courville2010lattice, kaempfer2005microstructural, srivastava2010observation}. As it is a tedious process, obtaining images spanning the wide range of snow types and conditions is challenging. 3-D micro-scale models could be an efficient method as those properties could be estimated on simulated images.\\
+Micro-scale models can be useful to design larger scale models, notably to obtain regressions to predict macro-scale mechanical and physical properties. Estimating those properties is often based on numerical computations of experimental tomographic snow images \cite<e.g.,>{calonne_numerical_2011, calonne_study_2014, courville2010lattice, kaempfer2005microstructural, srivastava2010observation}. As it is a tedious process, obtaining images spanning the wide range of snow types and conditions is challenging. 3-D micro-scale models could be an efficient method as those properties can be estimated on simulated images.\\
 
 In this article we intend to go further in the micro-scale modeling of ETM by presenting an efficient phase-field algorithm applicable on tomographic images of snow and by calibrating it through the condensation coefficient parameter at -2°C. We investigated the evolution of both microstructural and macro-scale transport properties calculated on the simulated images. 
-The paper is organized as follows. The model and the tools used for snow analysis are shown along with the model calibration in section \ref{sec:method}. Evaluation of the calibrated model and ETM prediction for different snow microstructures are investigated in section \ref{sec:results}. Section \ref{sec:disc} discuss in details the model artefacts and the different results of the paper. Finally, section \ref{sec:conclusion} concludes the manuscript. 
+The paper is organized as follows. The physics of ETM and the phase-field description of the model are described in the first section of  \ref{sec:method}. An overview of the tools used for snow analysis and the model calibration are also presented in section \ref{sec:method}. Evaluation of the calibrated model and ETM prediction for different snow microstructures are investigated in section \ref{sec:results}. Section \ref{sec:disc} discuss in details the model artefacts and the different results of the paper. Finally, section \ref{sec:conclusion} concludes the manuscript. 
 
 \section{Method}
 \label{sec:method}
@@ -81,7 +81,7 @@ The paper is organized as follows. The model and the tools used for snow analysi
 
 \begin{figure}
     \centering
-    \includegraphics[width=\linewidth]{Figures/eboni_sous_volumes_simu.pdf}
+    %\includegraphics[width=\linewidth]{Figures/eboni_sous_volumes_simu.pdf}
     \caption{3D representation of a tomographic snow sample from \protect\citeA{hagenmuller_motion_2019} under the ETM model Snow-3D after 0, 8 and 16 days at -2$^\circ$C. Concave surfaces are shown in green and convex surfaces in red according to the curvature map of \protect\citeA{ogawa2006representation}.}
     \label{fig:eboni_sous_volume}
 \end{figure}
@@ -126,7 +126,7 @@ v_{\mathrm{kin}} &= \frac{\rho_{v s}^{\mathrm{ref}}}{\rho_i}\sqrt{\frac{k T}{2 \
 \hline$a$ & mean intermolecular spacing in ice & $3.19 \times 10^{-10}\ \mathrm{m}$ & \citeA{petrenko1999physics}\\
 $k$ & Boltzmann's constant & $1.38 \times 10^{-23}\ \mathrm{J\ K}^{-1}$ & \\
 $m$ & mass of a water molecule & $2.99 \times 10^{-26}\ \mathrm{kg}$ & \citeA{petrenko1999physics}\\
-$\alpha$ & condensation coeffcient & $10^{-3}\ \mathrm{to}\ 10^{-1}$ & \citeA{libbrecht2005physics}\\
+$\alpha$ & condensation coefficient & $10^{-3}\ \mathrm{to}\ 10^{-1}$ & \citeA{libbrecht2005physics}\\
 $\lambda$ & interfacial free energy of ice & $1.09 \times 10^{-1}\ \mathrm{J}\ \mathrm{m}^{-2}$ & \citeA{libbrecht2005physics}\\
 $\rho_i$ & density of ice & $917\ \mathrm{kg}\ \mathrm{m}^{-3}$& \\
 \hline
@@ -163,7 +163,7 @@ The equation \eqref{eq:allen-cahn} is the general form of the phase-field equati
 The resulting phase-field software is called Snow-3D. The model takes as input a 3-D binary image of snow microstructure that can be derived from a snow tomography, as illustrated in Figure \ref{fig:eboni_sous_volume}. The output is a series of 3-D binary images at different time steps of the simulation. The adjustable parameters are the time step $t_{\mathrm{step}}$, the number of time steps $n$ and the interface sharpness parameter $\varepsilon$. The different ranges used for those parameters in this work are given in Table \ref{tab:variables}. In Figure \ref{fig:eboni_sous_volume} the effect of the curvature-driven evolution is illustrated with ice sublimation on high curvature surfaces and water vapor deposition on low curvature surfaces.
 
 % ARTEFACTS
-Finally, corrections were necessary to limit some artefacts of the model. First, as the model is base on periodic boundary conditions applied on the images , it may lead to errors in estimating curvature at the image boundaries, which results in very high curvatures. The edges of the simulated images were thus cut off of at certain width (0.6 mm) prior to further analysis.\\ 
+Finally, corrections were necessary to limit some artefacts of the model. First, as the model is based on periodic boundary conditions applied on the images, it may lead to errors in estimating curvatures at the image boundaries, which results in very high curvatures. The edges of the simulated images were thus cut off of at certain width (0.6 mm) prior to further analysis.\\ 
 Also, as the model does not account for gravity, simulations can lead to create ``floating" ice grains \cite<see>{flin_full_2003, vetter_simulating_2010},  especially for snow in early stages of metamorphism that undergo significant settling \cite{schleef2014influence}. 
 % An example of grain disconnections is shown in Figure \ref{fig:disco}. 
 To prevent this non-physical phenomenon, we restrict input images to adequate snow microstructures and suppress disconnected ice grains.
@@ -276,7 +276,6 @@ The rate of SSA decrease seems slightly underestimated by the model, reaching a 
     \label{fig:eboni}
 \end{figure}
 
-
 \subsection{Model prediction}
 \label{sec:prediction}
 
@@ -287,7 +286,7 @@ After considering the calibration evaluation, the model is used to predict equi-
 \subsubsection{Microstructural parameters}
 \begin{figure}
     \centering
-    \includegraphics[width =\linewidth]{Figures/evolution_3D_new_textepetit_courr.pdf}
+    %\includegraphics[width =\linewidth]{Figures/evolution_3D_new_textepetit_courr.pdf}
     \caption{Initial, intermediate and final stage of the simulated series of Grad3, 7G9m, TG2 and I17. 3-D views and vertical slices taken at the center of each cube are shown.}
     \label{fig:evolutions_3D}
 \end{figure}
@@ -322,9 +321,9 @@ The covariance length evolution shows the characteristic increase of the ETM, re
     \label{fig:transport_temps}
 \end{figure}
 
-In this section we present 3-D estimates of macroscopic transport properties (Sec. \ref{subsec:methode_physical_appli}) calculated on the simulated series predicting ETM on 4 different microstructures (Sec. \ref{sec:prediction}). Figure \ref{fig:transport_temps} presents the evolution of the transport properties for the samples I17 and Grad3. Wee see that the two samples evolve on different ranges on those properties, and that Grad3 seems to have a significant anisotropy compared to I17.
+In this section we present 3-D estimates of macroscopic transport properties (Sec. \ref{subsec:methode_physical_appli}) calculated on the simulated series predicting ETM on 4 different microstructures (Sec. \ref{sec:prediction}). Figure \ref{fig:transport_temps} presents the evolution of the transport properties for the samples I17 and Grad3. Wee see that the two samples evolve on different ranges for those properties, and that Grad3 seems to have a significant anisotropy compared to I17.
 
-The figure also display the evolution in density during the simulations. Those density changes are also visible in Figure \ref{fig:Tplot} with a maximum of 10 kg m$^{-3}$ (3 \%) increase for the TG2 series and a minimum of 4 kg m$^{-3}$ (1 \%) for the Grad3 series. As the model is based on ice mass conservation, these slight density changes correspond to artefacts. They could be caused by discretization effects of the phase-field function, leading to some inaccuracy in the images at the voxel scale (see Sec. \ref{sec:disc} for complementary discussion on this topic).
+The figure also display the evolution in density during the simulations. Those density changes are also visible in Figure \ref{fig:Tplot} and show a maximum of 10 kg m$^{-3}$ (3 \%) increase for the TG2 series and a minimum of 4 kg m$^{-3}$ (1 \%) for the Grad3 series. As the model is based on ice mass conservation, these slight density changes correspond to artefacts. They could be caused by discretization effects of the phase-field function, leading to some inaccuracy in the images at the voxel scale (see Sec. \ref{sec:disc} for complementary discussion on this topic).
 
 In Figure \ref{fig:Tplot}, the estimations are displayed along with isotropic models based on simplified microstructures (effective coefficient of diffusion \textbf{D}) and current regressions (effective thermal conductivity \textbf{k} and permeability \textbf{K}). The regression from \citeA{calonne_3D_2012} is used for the permeability. For the conductivity we use the regression of \citeA{calonne_numerical_2011} obtained using images of snow spanning a wide range of seasonal snow types. The self-consistent estimate of diffusion for spherical inclusions $D_{\mathrm{SC}}$ from \citeA{calonne_macroscopic_2014} is shown for the coefficient of diffusion: \\
 \begin{subequations}
@@ -338,7 +337,7 @@ D_{\mathrm{SC}} = 1 - \frac{3\rho_s}{2\rho_i}
 \end{align}
 \end{subequations}
 
-Figure \ref{fig:Tplot} shows 3-D estimates of permeability, effective conductivity and effective coefficient of diffusion plotted as a function of the density calculated on each image of our simulated series. To show the structural anisotropy of the samples, the tips and horizontal bars of the ``T" markers represent respectively the vertical and horizontal components. The arrows indicate the evolution direction of the simulated series in time. The relative change between the initial sample and the last step of the simulation $\tau$ is indicated in the legends for each property.
+Figure \ref{fig:Tplot} shows 3-D estimates of permeability, effective conductivity and effective coefficient of diffusion plotted as a function of the density calculated on each image of our simulated series. To show the anisotropy of the samples for the displayed properties, the tips and horizontal bars of the ``T" markers represent respectively the vertical and horizontal components. The arrows indicate the evolution direction of the simulated series in time. The relative change between the initial sample and the last step of the simulation $\tau$ is indicated in the legend for each property.
 
 The temporal evolution of the different series in terms of macro-scale properties and density, represented by the arrows and by the relative changes $\tau$, mostly follow the reference parameterizations. This shows that the predicted ETM is in overall good agreement with the expected evolution of those macroscopic properties. 
 
@@ -358,13 +357,13 @@ For the thermal conductivity, the microstructure impact is not that distinct in 
 \section{Discussion}
 \label{sec:disc}
 
-This work provides a new ETM model applicable on real 3-D tomographic images. This optimized model has been calibrated and evaluated using experimental ETM series, and used for metamorphism prediction on a large range of microstructures by characterizing the images using numerous microstructural and macro-scale transport properties.
+This work provides a new ETM model applicable on real 3-D tomographic images. This optimized model has been calibrated and evaluated using experimental ETM series, and used for metamorphism prediction on a set of different microstructures by characterizing the images using numerous microstructural and macro-scale transport properties.
 
 % The Snow-3D model is reliable for modeling ETM to some extent: it only consider sublimation-deposition, setting settling and water vapor transport processes aside and constraining the choice of the input microstructures.
 
 Having the results in mind, it is worth while discussing the model artefacts in some more details. 
 % density increase ------------
-For our 4 simulated series, we observe an increase in density in Figure \ref{fig:Tplot} and Figure \ref{fig:transport_temps} whereas the model does not simulate changes in density. This is thus an artefact that contradicts mass conservation. This error seems to occur during the binarization of the phase-field function. At the end of the simulation, the continuous interface of the phase-field function is approximated by air and ice voxels of finite length. This step can induce at most an error of one layer of voxels on the ice-air interface. Those voxels constitute 9 \% of TG2 and 6 \% of Grad3 ice phase, which cover the mass gain observed in the simulations. In Figure \ref{fig:cubes}, we run the model on four different images: a cube surrounded by air with a size of 40$^3$ voxels; the same cube with a size of 400$^3$ voxels; the complement of the cube - a cube of air surrounded by ice - with a size of 40$^3$ voxels and the same image at 400$^3$ voxels. The idea is to test the simulated density evolution for different resolutions and shapes, with an image presenting convex shapes (the cube) and with one presenting concave shapes (the cube complement). We see clearly in the graph that for a fine resolution, the density is stable in time, whereas for a coarser resolution, the density has an erratic progression, with loss and gain of about 10 \%. Indeed, the finer the resolution, the thinner the layer of voxel of the ice surface and the lower the error. In terms of ratio between the object length (covariance length) and the voxel size, the data of Figure \ref{fig:Tplot} are similar to the cube of 40$^3$ voxels. %Furthermore, the ratio between the elements size and the resolution gets larger from I17, to TG2 to Grad3 and to 7G9m, as the density changes gets smaller.
+For our 4 simulated series, we observe an increase in density in Figure \ref{fig:Tplot} and Figure \ref{fig:transport_temps} whereas the model does not simulate changes in density. This is thus an artefact that contradicts mass conservation. This error seems to occur during the binarization of the phase-field function. At the end of the simulation, the continuous interface of the phase-field function is approximated by air and ice voxels of finite length. This step can induce at most an error of one layer of voxels on the ice-air interface. Those voxels constitute 9 \% of TG2 and 6 \% of Grad3 ice phase, which cover the mass gain observed in the simulations. In Figure \ref{fig:cubes}, we run the model on four different images: a cube surrounded by air with a size of 40$^3$ voxels; the same cube with a size of 400$^3$ voxels; the complement of the cube - a cube of air surrounded by ice - with a size of 40$^3$ voxels and the same image at 400$^3$ voxels. The idea is to test the simulated density evolution for different resolutions and shapes, with an image presenting convex shapes (the cube) and with one presenting concave shapes (the cube complement). We see clearly in the graph that for a fine resolution, the density is stable in time, whereas for a coarser resolution, the density has an erratic progression, with and gain of about 10 \%. Indeed, the finer the resolution, the thinner the layer of voxel of the ice surface and the lower the error. In terms of ratio between the object length (covariance length) and the voxel size, the data of Figure \ref{fig:Tplot} are similar to the cube and the cube complement of 40$^3$ voxels. %Furthermore, the ratio between the elements size and the resolution gets larger from I17, to TG2 to Grad3 and to 7G9m, as the density changes gets smaller.
 In our data, the maximum density increase is of 3 \% for the TG2 series. It is however within the precision range of snow density measurements such as the box cutter that have a precision of 5 \% \cite{proksch2016intercomparison}. Moreover, the settling process has an important role in ETM. For example in \citeA{flin_three-dimensional_2004} the density increases of 60 \% in 80 days. Thus, the artefact is small in comparison with the measurement precision and the observed settling, and it enables to investigate the impact of slight density variations.\\
 \begin{figure}
     \centering
